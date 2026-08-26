@@ -1,0 +1,86 @@
+{
+  "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+  "lora": "checkpoints/lcpo-max/checkpoint-700",
+  "results": [
+    {
+      "dataset": "math500",
+      "budget": 256,
+      "n": 100,
+      "accuracy": 0.73,
+      "mean_tokens": 490.24,
+      "mean_abs_deviation": 238.12,
+      "overshoot_rate": 0.9,
+      "mean_overshoot": 236.18
+    },
+    {
+      "dataset": "math500",
+      "budget": 512,
+      "n": 100,
+      "accuracy": 0.7,
+      "mean_tokens": 558.7,
+      "mean_abs_deviation": 242.3,
+      "overshoot_rate": 0.42,
+      "mean_overshoot": 144.5
+    },
+    {
+      "dataset": "math500",
+      "budget": 1024,
+      "n": 100,
+      "accuracy": 0.69,
+      "mean_tokens": 546.06,
+      "mean_abs_deviation": 540.06,
+      "overshoot_rate": 0.03,
+      "mean_overshoot": 31.06
+    },
+    {
+      "dataset": "math500",
+      "budget": 2048,
+      "n": 100,
+      "accuracy": 0.68,
+      "mean_tokens": 527.94,
+      "mean_abs_deviation": 1520.06,
+      "overshoot_rate": 0.0,
+      "mean_overshoot": 0.0
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 256,
+      "n": 100,
+      "accuracy": 0.79,
+      "mean_tokens": 336.46,
+      "mean_abs_deviation": 86.66,
+      "overshoot_rate": 0.86,
+      "mean_overshoot": 83.56
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 512,
+      "n": 100,
+      "accuracy": 0.79,
+      "mean_tokens": 334.1,
+      "mean_abs_deviation": 180.18,
+      "overshoot_rate": 0.03,
+      "mean_overshoot": 1.14
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 1024,
+      "n": 100,
+      "accuracy": 0.8,
+      "mean_tokens": 339.99,
+      "mean_abs_deviation": 684.01,
+      "overshoot_rate": 0.0,
+      "mean_overshoot": 0.0
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 2048,
+      "n": 100,
+      "accuracy": 0.81,
+      "mean_tokens": 352.23,
+      "mean_abs_deviation": 1695.77,
+      "overshoot_rate": 0.0,
+      "mean_overshoot": 0.0
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+  "lora": null,
+  "results": [
+    {
+      "dataset": "math500",
+      "budget": 512,
+      "n": 4,
+      "accuracy": 0.0,
+      "mean_tokens": 640.0,
+      "mean_abs_deviation": 128.0
+    }
+  ]
+}

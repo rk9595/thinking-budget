@@ -1,0 +1,70 @@
+{
+  "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+  "lora": null,
+  "results": [
+    {
+      "dataset": "math500",
+      "budget": 512,
+      "n": 100,
+      "accuracy": 0.76,
+      "mean_tokens": 2472.1,
+      "mean_abs_deviation": 1973.16
+    },
+    {
+      "dataset": "math500",
+      "budget": 1024,
+      "n": 100,
+      "accuracy": 0.75,
+      "mean_tokens": 2483.43,
+      "mean_abs_deviation": 1560.67
+    },
+    {
+      "dataset": "math500",
+      "budget": 2048,
+      "n": 100,
+      "accuracy": 0.79,
+      "mean_tokens": 2472.99,
+      "mean_abs_deviation": 1094.75
+    },
+    {
+      "dataset": "math500",
+      "budget": 3600,
+      "n": 100,
+      "accuracy": 0.83,
+      "mean_tokens": 2462.05,
+      "mean_abs_deviation": 1439.69
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 512,
+      "n": 100,
+      "accuracy": 0.85,
+      "mean_tokens": 943.62,
+      "mean_abs_deviation": 578.28
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 1024,
+      "n": 100,
+      "accuracy": 0.82,
+      "mean_tokens": 1087.15,
+      "mean_abs_deviation": 815.49
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 2048,
+      "n": 100,
+      "accuracy": 0.83,
+      "mean_tokens": 1238.59,
+      "mean_abs_deviation": 1370.77
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 3600,
+      "n": 100,
+      "accuracy": 0.84,
+      "mean_tokens": 998.17,
+      "mean_abs_deviation": 2620.13
+    }
+  ]
+}

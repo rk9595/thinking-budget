@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+
+# 537M of adapter/optimizer state — the release lives on HF
+checkpoints/
+
+# regenerate with prepare_data.py
+data/

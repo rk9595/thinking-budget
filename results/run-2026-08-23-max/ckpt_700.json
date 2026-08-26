@@ -1,0 +1,46 @@
+{
+  "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+  "lora": "checkpoints/lcpo-max/checkpoint-700",
+  "results": [
+    {
+      "dataset": "math500",
+      "budget": 256,
+      "n": 50,
+      "accuracy": 0.62,
+      "mean_tokens": 472.94,
+      "mean_abs_deviation": 220.14,
+      "overshoot_rate": 0.92,
+      "mean_overshoot": 218.54
+    },
+    {
+      "dataset": "math500",
+      "budget": 512,
+      "n": 50,
+      "accuracy": 0.68,
+      "mean_tokens": 495.72,
+      "mean_abs_deviation": 165.32,
+      "overshoot_rate": 0.42,
+      "mean_overshoot": 74.52
+    },
+    {
+      "dataset": "math500",
+      "budget": 1024,
+      "n": 50,
+      "accuracy": 0.64,
+      "mean_tokens": 526.74,
+      "mean_abs_deviation": 497.26,
+      "overshoot_rate": 0.0,
+      "mean_overshoot": 0.0
+    },
+    {
+      "dataset": "math500",
+      "budget": 2048,
+      "n": 50,
+      "accuracy": 0.68,
+      "mean_tokens": 516.38,
+      "mean_abs_deviation": 1531.62,
+      "overshoot_rate": 0.0,
+      "mean_overshoot": 0.0
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+# API note: TRL 1.x dropped max_prompt_length and warmup_ratio; train_grpo.py targets 1.x.
+trl>=1.10
+transformers>=5.0
+datasets
+peft
+accelerate
+math-verify
+matplotlib
+wandb
+pytest
+# GPU training/eval box only:
+# vllm>=0.8

@@ -1,0 +1,87 @@
+{
+  "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+  "lora": "checkpoints/lcpo-exact/checkpoint-600",
+  "budget_wording": "exact",
+  "results": [
+    {
+      "dataset": "math500",
+      "budget": 256,
+      "n": 100,
+      "accuracy": 0.69,
+      "mean_tokens": 781.16,
+      "mean_abs_deviation": 525.16,
+      "overshoot_rate": 1.0,
+      "mean_overshoot": 525.16
+    },
+    {
+      "dataset": "math500",
+      "budget": 512,
+      "n": 100,
+      "accuracy": 0.73,
+      "mean_tokens": 783.33,
+      "mean_abs_deviation": 340.81,
+      "overshoot_rate": 0.7,
+      "mean_overshoot": 306.07
+    },
+    {
+      "dataset": "math500",
+      "budget": 1024,
+      "n": 100,
+      "accuracy": 0.77,
+      "mean_tokens": 762.93,
+      "mean_abs_deviation": 398.17,
+      "overshoot_rate": 0.2,
+      "mean_overshoot": 68.55
+    },
+    {
+      "dataset": "math500",
+      "budget": 2048,
+      "n": 100,
+      "accuracy": 0.74,
+      "mean_tokens": 821.41,
+      "mean_abs_deviation": 1277.69,
+      "overshoot_rate": 0.04,
+      "mean_overshoot": 25.55
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 256,
+      "n": 100,
+      "accuracy": 0.78,
+      "mean_tokens": 447.35,
+      "mean_abs_deviation": 193.03,
+      "overshoot_rate": 0.98,
+      "mean_overshoot": 192.19
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 512,
+      "n": 100,
+      "accuracy": 0.78,
+      "mean_tokens": 468.68,
+      "mean_abs_deviation": 124.04,
+      "overshoot_rate": 0.32,
+      "mean_overshoot": 40.36
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 1024,
+      "n": 100,
+      "accuracy": 0.8,
+      "mean_tokens": 443.64,
+      "mean_abs_deviation": 581.3,
+      "overshoot_rate": 0.01,
+      "mean_overshoot": 0.47
+    },
+    {
+      "dataset": "gsm8k",
+      "budget": 2048,
+      "n": 100,
+      "accuracy": 0.8,
+      "mean_tokens": 467.77,
+      "mean_abs_deviation": 1580.23,
+      "overshoot_rate": 0.0,
+      "mean_overshoot": 0.0
+    }
+  ]
+}

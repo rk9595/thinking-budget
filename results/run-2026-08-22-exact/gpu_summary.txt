@@ -1,0 +1,31 @@
+--- results/gpu_baseline.csv
+samples=115  duration=3.9 min
+GPU util   mean= 80.5%  p50=100.0%  p95=100.0%
+           idle (<5%) 16.5% of samples
+VRAM       mean= 66.4 GiB  peak= 74.0 / 80 GiB (93% peak)
+Power      mean=240.2 W  peak=323.7 / 400 W (60% of limit)
+Energy     ~0.016 kWh over the window
+--- results/gpu_eval.csv
+samples=179  duration=6.1 min
+GPU util   mean= 71.9%  p50= 99.0%  p95=100.0%
+           idle (<5%) 23.5% of samples
+VRAM       mean= 64.0 GiB  peak= 74.5 / 80 GiB (93% peak)
+Power      mean=185.7 W  peak=272.0 / 400 W (46% of limit)
+Energy     ~0.019 kWh over the window
+--- results/gpu_profile.csv
+samples=26  duration=0.9 min
+GPU util   mean= 13.7%  p50=  0.0%  p95= 95.0%
+           idle (<5%) 65.4% of samples
+VRAM       mean= 36.7 GiB  peak= 72.7 / 80 GiB (91% peak)
+Power      mean= 78.8 W  peak=180.8 / 400 W (20% of limit)
+Energy     ~0.001 kWh over the window
+
+  Mean utilization under 60% means the GPU is stalling - usually data loading,
+  reward computation on CPU, or too-small a rollout batch.
+--- results/gpu_train.csv
+samples=10780  duration=909.5 min
+GPU util   mean= 96.7%  p50=100.0%  p95=100.0%
+           idle (<5%) 1.3% of samples
+VRAM       mean= 44.7 GiB  peak= 44.8 / 80 GiB (56% peak)
+Power      mean=317.4 W  peak=483.5 / 400 W (79% of limit)
+Energy     ~4.812 kWh over the window
