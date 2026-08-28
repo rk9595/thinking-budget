@@ -13,8 +13,11 @@ datasets:
 # Thinking-Budget Qwen-1.5B (LCPO-Exact)
 
 A LoRA adapter for DeepSeek-R1-Distill-Qwen-1.5B, trained with GRPO on the LCPO-Exact
-reward from [L1](https://arxiv.org/abs/2503.04697) (Aggarwal & Welleck, 2025). Code, all
-three runs and the writeup: [github.com/rk9595/thinking-budget](https://github.com/rk9595/thinking-budget).
+reward from [L1](https://arxiv.org/abs/2503.04697) (Aggarwal & Welleck, 2025). Code and all
+three runs: [github.com/rk9595/thinking-budget](https://github.com/rk9595/thinking-budget).
+Writeup of all three runs, including the two that failed and why the conditioning never
+formed: [Three GRPO runs to give a 1.5B model a thinking-budget
+dial](https://rakeshkariya.vercel.app/blog/thinking-budget-lcpo).
 
 **What it actually does: it reasons ~3.2x more concisely than the base model for about 2
 points of accuracy on MATH-500.** That is the result. It is a fixed compression, not a
@@ -145,8 +148,9 @@ signal was flat for 600 steps, so extra steps buy compression, not a dial.
 
 The exact scripts this checkpoint was trained with are snapshotted in [`code/`](./code) of
 this repo — `prepare_data.py`, `rewards.py`, `train_grpo.py`, `eval_budget.py`, `pipeline.sh`.
-The full project, including the run-1 and run-2 archives and the writeup, is at
-[github.com/rk9595/thinking-budget](https://github.com/rk9595/thinking-budget).
+The full project, including the run-1 and run-2 archives, is at
+[github.com/rk9595/thinking-budget](https://github.com/rk9595/thinking-budget); the writeup
+is [here](https://rakeshkariya.vercel.app/blog/thinking-budget-lcpo).
 
 ```bash
 TB_LENGTH_REWARD=exact python prepare_data.py --out data/train   # 8k DeepScaleR, budgets 200-2000
