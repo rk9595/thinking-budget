@@ -39,7 +39,7 @@ python upload_hf.py --adapter "$CKPT" --repo "$REPO" --results /nonexistent \
 if ! python -c "import json,os,sys; d=json.load(open('results/base.json')); sys.exit(0 if d.get('budget_wording')==os.environ.get('TB_LENGTH_REWARD','exact') else 1)" 2>/dev/null; then
   echo "[pipeline] === base eval (recapture for $TB_LENGTH_REWARD wording) ==="
   python eval_budget.py --datasets math500 gsm8k \
-    --budgets 256 512 1024 2048 --limit 100 --max-tokens 4096 \
+    --budgets 256 512 1024 2048 3600 --limit 100 --max-tokens 4096 \
     --out results/base.json
   echo "[pipeline] base eval exit=$?"
 fi
@@ -47,7 +47,7 @@ fi
 echo "[pipeline] === trained eval ==="
 python gpu_monitor.py --out results/gpu_eval.csv --interval 2 & MON=$!
 python eval_budget.py --lora "$CKPT" --datasets math500 gsm8k \
-  --budgets 256 512 1024 2048 --limit 100 --max-tokens 4096 \
+  --budgets 256 512 1024 2048 3600 --limit 100 --max-tokens 4096 \
   --out results/trained.json
 echo "[pipeline] eval exit=$?"
 kill $MON 2>/dev/null
@@ -68,7 +68,7 @@ for STEP in 100 250 500 750 "$FINAL_STEP"; do
   if [ -d "$C" ] && [ ! -f "results/ckpt_$STEP.json" ]; then
     echo "[pipeline] sweep $C"
     python eval_budget.py --lora "$C" --datasets math500 \
-      --budgets 256 512 1024 2048 --limit 50 --max-tokens 4096 \
+      --budgets 256 512 1024 2048 3600 --limit 50 --max-tokens 4096 \
       --out "results/ckpt_$STEP.json" 2>&1 | tail -3
   fi
 done
