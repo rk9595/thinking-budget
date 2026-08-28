@@ -51,7 +51,23 @@ Raw numbers: `results/demo-2026-08-28/demo.json`.
 
 What it did buy is efficiency: **MATH-500 2524 → 787 tokens (3.2x) for −2.0 accuracy points**, GSM8K 1239 → 457 (2.7x) for −5.2. Run 2 paid 8–13 points for less.
 
-The diagnostic is `kl` = **0.006**, five times *lower* than run 2's 0.03 at an identical LR — Exact's gradients partially cancel (high budgets say "write more", low say "write less"; they reconcile only if the policy attends to N). The optimizer was healthy: `frac_reward_zero_std` 0, `clipped_ratio` 0. Final `rewards/length_reward/mean` −0.199 ⇒ mean |n−N| ≈ 660 tokens. **The untested lever is `ALPHA`:** at 3e-4 the length penalty (0.199) is ~half the correctness std (0.44), so length is a minority of the gradient. Try α≈1e-3, a higher LoRA rank, or a full fine-tune. Archived at `results/run-2026-08-24-exact/`; curves in W&B run `vt32er6f`.
+The diagnostic is `kl` = **0.006**, five times *lower* than run 2's 0.03 at an identical LR — Exact's gradients partially cancel (high budgets say "write more", low say "write less"; they reconcile only if the policy attends to N). The optimizer was healthy: `frac_reward_zero_std` 0, `clipped_ratio` 0. Final `rewards/length_reward/mean` −0.199 ⇒ mean |n−N| ≈ 660 tokens. **The untested lever is the budget range, not `ALPHA`** — see below. Archived at `results/run-2026-08-24-exact/`; curves in W&B run `vt32er6f`.
+
+### Where this diverges from L1
+
+| | L1 | run 3 |
+|---|---|---|
+| starting model | **DeepScaleR-1.5B-Preview** (already RL fine-tuned) | DeepSeek-R1-Distill-Qwen-1.5B (raw distill) |
+| method | **full fine-tune** | LoRA r=32 |
+| budget range | **U(100, 4000)** | U(200, 2000) |
+| data | 40K | 8K |
+| steps | 700 | 600 |
+
+The budget range is the one filed as a *fix* after run 1: L1 straddles the model's natural ~2500-token length, this run sat entirely below it. A model that ignores N and emits a constant pays the mean absolute deviation of the budget distribution, `(b−a)/4` for `U(a,b)` — **450 tokens here against L1's 975**, so refusing to condition was 2.2x cheaper than in the paper. At α=3e-4 that is a 0.135 penalty against a correctness spread of 0.44; under L1's range the same constant strategy costs 0.293.
+
+The qualitative half matters more: with every budget below the natural length, **"just be shorter" satisfies every training example**, so a uniform habit is a complete solution rather than an approximation. Straddling is what makes N informative in both directions. Since the penalty for ignoring N is `α·(b−a)/4`, widening the range and raising α are the same knob — widening is free and matches the paper.
+
+**Run 4, in order:** budget range `U(100, 4000)` (one flag, nothing else); then α≈1e-3; then capacity (higher LoRA rank or full fine-tune); starting from DeepScaleR instead of the raw distill would also drop an RL stage this run was doing simultaneously with length control. Kill criterion: spread still under 1.3x at checkpoint 250, stop. This is a hypothesis with arithmetic behind it, not a finding — the experiment costs ~9 GPU-hours and has not been run.
 
 **2026-08-23 (LCPO-Max, 700 steps, 7.6h, $8.12) — partial success.** All three run-1 fixes worked: `kl` 6e-4 → 0.03, mean completion length 4096 → 670, `clipped_ratio` 0.97 → 0. Ceiling compliance is real — MATH-500 over-budget rate 87% → 3% at budget 1024, 53% → 0% at 2048. **But mean tokens is flat across budgets** (490/559/546/528 for 256/512/1024/2048): the model learned "always be short", not "condition on N", which is the degenerate solution of a max-only reward — nothing penalizes finishing early, so nothing pulls length *up* toward the budget. Collapse was complete by step 100. Accuracy cost: MATH-500 −8 to −13 pts, GSM8K −1 to −5. Training-time correctness did not reveal this (0.298 → 0.277, noise-dominated at 32 samples/step); only held-out eval did. Archived under `results/run-2026-08-23-max/` (code snapshot in `code/`).
 

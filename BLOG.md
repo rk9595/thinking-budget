@@ -98,6 +98,9 @@ natural length of ~2500. Every example above 2500 was rewarding the model for wr
 *longer*. **Fixed: 200–2000**, entirely below the natural length, so every example points the
 same direction, and the 4096 completion cap stays as real headroom.
 
+*Read that last clause again — "every example points the same direction." I wrote it as a
+virtue. It is the reason the dial never formed. See [the better suspect](#the-better-suspect-i-made-not-conditioning-cheap-and-l1-didnt)."*
+
 ## Run 2 — LCPO-Max, and the degenerate solution
 
 700 steps, 7.6 h. All three fixes landed, and the training metrics were night and day:
@@ -254,7 +257,7 @@ developing a richer, length-aware policy; it is narrowing onto a single length *
 length *function* of N would need to preserve variability across contexts. This looks like the
 opposite.
 
-### The concrete suspect: α is too small
+### The first suspect: α is too small
 
 Final `rewards/length_reward/mean` = **−0.199**, i.e. mean `|n − N|` ≈ 660 tokens. Meanwhile
 `rewards/correctness_reward/std` = **0.44**.
@@ -266,12 +269,57 @@ less than the value of flipping one answer from wrong to right. The model's rati
 to optimize correctness and take the cheap constant-length approximation on the side. Which is
 exactly what it did.
 
-**If I ran a fourth time**, the single-variable experiment is **α ≈ 1e-3**, which would make a
-660-token miss cost 0.66 and put length on equal footing with correctness. Secondary levers:
-higher LoRA rank, or a full fine-tune — L1's published results use a full fine-tune, and it is
-entirely possible that a rank-32 adapter simply lacks the capacity to represent "read this
-integer and modulate my stopping behavior accordingly." The kill criterion is cheap: if
-budget spread is still under 1.3x at checkpoint 250, stop there.
+### The better suspect: I made not-conditioning cheap, and L1 didn't
+
+I went back to the paper to check what I had actually changed. Four things, and I had only
+been counting two of them:
+
+| | L1 | my run 3 |
+|---|---|---|
+| starting model | **DeepScaleR-1.5B-Preview** — already RL fine-tuned on this dataset | DeepSeek-R1-Distill-Qwen-1.5B — the raw distill |
+| method | **full fine-tune** | LoRA r=32 |
+| budget range | **U(100, 4000)** | U(200, 2000) |
+| data | 40K | 8K |
+| steps | 700 | 600 |
+
+The budget range is the one I had filed as a *fix*. L1 samples budgets that straddle the
+model's natural length; I narrowed mine to sit entirely below it. That decision has a price,
+and it is computable.
+
+A model that ignores N and emits a constant pays the mean absolute deviation of the budget
+distribution. For `U(a,b)` the best constant is the median and the cost is `(b−a)/4`:
+
+- my range: 1800/4 = **450 tokens**
+- L1's range: 3900/4 = **975 tokens**
+
+**Refusing to condition was 2.2x cheaper in my setup than in theirs.** At α = 3e-4 that is a
+0.135 penalty against a correctness spread of 0.44 — a minority shareholder, exactly as
+above. Under L1's range the same constant strategy costs 0.293, which is the same order as
+correctness rather than dominated by it.
+
+And there is a qualitative half that the arithmetic misses. With every budget below the
+natural length, **"just be shorter" satisfies every training example simultaneously.** All the
+gradients point one way, so a uniform habit is not an approximation — it is a complete
+solution. Straddling is what makes the budget informative in both directions: low budgets say
+shorten, high budgets say lengthen, and the only policy that satisfies both is one that reads
+N. I removed the pressure that makes conditioning necessary, and then spent 8.4 hours
+measuring its absence.
+
+This also reframes suspect 1. The penalty for ignoring N is `α · (b−a)/4`, so widening the
+range and raising α are the same knob. Widening is free, and it is what the paper did.
+
+**If I ran a fourth time**, the first experiment is the budget range: **U(100, 4000)**, one
+flag, no other changes. Then α ≈ 1e-3 if that is not enough. Then capacity — higher LoRA
+rank or a full fine-tune, since L1's numbers come from a full fine-tune and a rank-32 adapter
+may simply lack the room to represent "read this integer and modulate my stopping behavior
+accordingly." Starting from DeepScaleR rather than the raw distill would also remove an
+entire RL stage that my run was trying to do simultaneously with length control. The kill
+criterion is cheap either way: if budget spread is still under 1.3x at checkpoint 250, stop
+there.
+
+I want to be honest about the status of this. It is a hypothesis with arithmetic behind it,
+not a finding. The experiment that would settle it costs about nine GPU-hours and I have not
+run it.
 
 ---
 
