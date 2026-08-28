@@ -6,6 +6,45 @@ Reward: `r = 1[answer correct] − α·|N − tokens_used|` (LCPO-Exact, α=3e-4
 
 The prompt wording must match the reward variant ("exactly N" for Exact, "maximum N" for Max). It is set in one place — `TB_LENGTH_REWARD`, read by `rewards.budget_instruction()` — because `prepare_data.py`, `eval_budget.py` and `profile_inference.py` build prompts in separate processes and run 1 was lost to them disagreeing. `train_grpo.py` reads the wording back off `data/train` and refuses to start on a mismatch.
 
+## Try it
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rk9595/thinking-budget/blob/main/demo_colab.ipynb)
+
+`demo_colab.ipynb` runs the base model and the adapter side by side on a free T4. It loads
+the base once and toggles the LoRA with `disable_adapter()`, so the two columns are the same
+weights with and without the delta — no second download, nothing to mismatch.
+
+![base vs trained across budgets](results/demo-2026-08-28/budget_demo.png)
+
+Output of that notebook on 2026-08-28, four short arithmetic/algebra problems per budget:
+
+| budget | base tokens | trained tokens | compression |
+|---|---|---|---|
+| 256 | 1309 | 439 | 3.0x |
+| 512 | 1120 | 451 | 2.5x |
+| 1024 | 895 | 425 | 2.1x |
+| 2048 | 787 | 435 | 1.8x |
+
+Trained spread across budgets: **1.06x** (1.00x would be a fully inert dial). On one
+problem at budget 512 the base wrote 3633 tokens and the adapter 870 — 4.2x shorter, same
+answer.
+
+Read the chart as two separate claims. The **gap** between the lines is what the training
+bought. The **flatness** of the orange line, against the dashed ideal, is what it did not:
+the budget in the prompt is close to inert, which is the same 1.08x result the full n=100
+eval found.
+
+Three caveats, because four problems is not a measurement:
+- Absolute counts are far below the n=100 numbers below (440 vs 787 trained) because these
+  problems are much easier than MATH-500. The ratios transfer; the counts do not.
+- The base line sloping *down* with budget is almost certainly noise — one rambling
+  generation moves a 4-sample mean by hundreds of tokens — not the base model responding
+  to N. Raise `N_PROBLEMS` in the notebook to check it.
+- No accuracy is measured here. For the correctness cost of the compression see
+  `results/run-2026-08-24-exact/`.
+
+Raw numbers: `results/demo-2026-08-28/demo.json`.
+
 ## Run history
 
 **2026-08-24/25 (LCPO-Exact, 600 steps, 8.4h) — run 3: no dial, but a real compression result.** Exact penalizes undershoot as well as overshoot, which should force conditioning on N in both directions. It did not. MATH-500 mean tokens 781/783/763/821 across budgets 256/512/1024/2048 — a **1.08x spread**. The sweep shows tokens compressing (2178 → 965 → 776 → 751 at steps 100/250/500/600) while the spread never exceeds 1.17x: the model regressed to the **conditional mean** of the budget distribution rather than learning to read N.

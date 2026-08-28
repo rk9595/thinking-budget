@@ -1,0 +1,43 @@
+{
+  "source": "demo_colab.ipynb on a free Colab T4, 2026-08-28",
+  "n_problems": 4,
+  "note": "Four short arithmetic/algebra problems, not MATH-500. Ratios transfer, absolute counts do not - see results/run-2026-08-24-exact for n=100.",
+  "sampling": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "max_new_tokens": 4096
+  },
+  "trained_spread": 1.06,
+  "single_problem_example": {
+    "budget": 512,
+    "base_tokens": 3633,
+    "trained_tokens": 870,
+    "compression": 4.18
+  },
+  "results": [
+    {
+      "budget": 256,
+      "base_mean_tokens": 1309,
+      "trained_mean_tokens": 439,
+      "compression": 2.98
+    },
+    {
+      "budget": 512,
+      "base_mean_tokens": 1120,
+      "trained_mean_tokens": 451,
+      "compression": 2.48
+    },
+    {
+      "budget": 1024,
+      "base_mean_tokens": 895,
+      "trained_mean_tokens": 425,
+      "compression": 2.11
+    },
+    {
+      "budget": 2048,
+      "base_mean_tokens": 787,
+      "trained_mean_tokens": 435,
+      "compression": 1.81
+    }
+  ]
+}
