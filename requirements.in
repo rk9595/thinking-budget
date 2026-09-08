@@ -1,0 +1,9 @@
+# CPU tooling and training libraries; resolved for Python 3.12.
+trl==1.12.0
+transformers==5.12.1
+datasets==5.0.1
+peft==0.20.0
+math-verify==0.9.0
+matplotlib
+wandb
+pytest==9.1.1

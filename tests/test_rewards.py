@@ -29,6 +29,15 @@ def test_plain_string_completion():
     assert correctness_reward(["\\boxed{7}"], answer=["7"]) == [1.0]
 
 
+def test_only_final_answer_is_graded_after_thinking():
+    text = "<think>Maybe \\boxed{42}</think>Actually \\boxed{41}"
+    assert correctness_reward([text], answer=["42"]) == [0.0]
+
+
+def test_unfinished_explicit_thinking_is_not_an_answer():
+    assert correctness_reward(["<think>Maybe \\boxed{42}"], answer=["42"]) == [0.0]
+
+
 def test_batch_mixed():
     comps = [CHAT("\\boxed{1}"), CHAT("\\boxed{2}")]
     assert correctness_reward(comps, answer=["1", "3"]) == [1.0, 0.0]

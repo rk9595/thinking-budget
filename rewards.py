@@ -1,7 +1,6 @@
 import os
 
 ALPHA = 3e-4
-MODEL_ID = os.environ.get("TB_MODEL_ID", "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B")
 
 # The prompt wording has to match the reward variant, and training, eval and the
 # inference profile run as separate processes on the box. Run 1 shipped
@@ -22,7 +21,8 @@ def _get_tokenizer():
     if _tokenizer is None:
         from transformers import AutoTokenizer
 
-        _tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
+        _tokenizer = AutoTokenizer.from_pretrained(os.environ.get(
+            "TB_MODEL_ID", "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"))
     return _tokenizer
 
 
@@ -37,7 +37,11 @@ def is_correct(completion_text, gold_answer):
 
     try:
         gold = parse(f"${gold_answer}$")
-        pred = parse(completion_text)
+        # Do not grade an intermediate answer from inside a completed reasoning trace.
+        final = completion_text.split("</think>", 1)[-1]
+        if "<think>" in final:
+            return False
+        pred = parse(final)
         return bool(verify(gold, pred))
     except Exception:
         return False

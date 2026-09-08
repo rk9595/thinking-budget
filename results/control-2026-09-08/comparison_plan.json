@@ -1,0 +1,59 @@
+{
+  "protocol_version": 2,
+  "limit": 50,
+  "seeds": [
+    42
+  ],
+  "local_adapter": null,
+  "budgets": [
+    512,
+    1024,
+    3600
+  ],
+  "max_tokens": 8192,
+  "revisions": {
+    "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B": "ad9f0ae0864d7fbcd1cd905e3c6c5b069cc8b562",
+    "l3lab/L1-Qwen-1.5B-Exact": "b1fa57f192f0b14bd033d0085faaa80cdc39694b",
+    "rk9595/thinking-budget-qwen1.5b-lcpo": "642d4bc09a9b1d06a799711747bf5d9445277224"
+  },
+  "problem_set_sha256": "91af3b443c216b7fddc62286d12c1771d731d8279da3d9456f58df85d8041322",
+  "environment": {
+    "created_at": "2026-09-08T16:19:59.607592+00:00",
+    "versions": {
+      "torch": "2.14.0",
+      "transformers": "5.12.1",
+      "trl": "1.12.0",
+      "vllm": null,
+      "peft": "0.20.0",
+      "datasets": "5.0.1",
+      "math-verify": "0.9.0"
+    },
+    "git_commit": "002df3ca44f2fd02350de20c90ef05041b055103",
+    "tracked_diff_sha256": "c857fcdaadedc8735405db3d380d2d6786e79b56c58b519c4be88b592b328eb1"
+  },
+  "arms": [
+    {
+      "name": "base_exact",
+      "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+      "wording": "exact"
+    },
+    {
+      "name": "run3_exact",
+      "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+      "wording": "exact",
+      "adapter": true
+    },
+    {
+      "name": "base_l1",
+      "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+      "wording": "l1",
+      "template_model": "l3lab/L1-Qwen-1.5B-Exact"
+    },
+    {
+      "name": "reference_l1",
+      "model": "l3lab/L1-Qwen-1.5B-Exact",
+      "wording": "l1",
+      "template_model": "l3lab/L1-Qwen-1.5B-Exact"
+    }
+  ]
+}

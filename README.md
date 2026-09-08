@@ -1,8 +1,18 @@
 # thinking-budget
 
-Train a small reasoning model to obey an explicit thinking-token budget ("Think for maximum N tokens") using GRPO. Reproduces the L1/LCPO recipe (Aggarwal & Welleck, CMU 2025) on DeepSeek-R1-Distill-Qwen-1.5B, then extends it with a GGUF release and a llama.cpp demo of the budget knob.
+Experiments toward a small reasoning model with a controllable token budget. The released
+run-3 adapter compresses responses but does **not** provide a working budget dial. GGUF and
+the controllable-model release remain pending.
 
-Reward: `r = 1[answer correct] − α·|N − tokens_used|` (LCPO-Exact, α=3e-4), correctness via `math-verify` on the boxed answer. The budget is a **target**: both overshoot and undershoot are penalized, which is what forces the model to condition on N instead of just going short. `--length-reward max` switches to the LCPO-Max variant (`−α·max(0, tokens_used − N)`), which treats the budget as a ceiling only.
+**Current workflow: [RECOVERY.md](RECOVERY.md).** It adds a frozen reference-model comparison,
+per-response evaluation evidence, and a supervised-conditioning pilot before further GRPO.
+The historical run notes and commands below describe earlier experiments; follow RECOVERY.md
+for new work. Token budgets currently measure the whole generated completion, not reasoning alone.
+
+Reward: `r = 1[answer correct] − α·|N − tokens_used|` (LCPO-Exact, α=3e-4), correctness via `math-verify`.
+Both overshoot and undershoot are penalized; learning to condition on N is not guaranteed.
+`--length-reward max` retains our legacy additive overshoot penalty. It is **not** the published
+L1-Max recipe, which uses a correctness-gated clipped reward and starts from L1-Exact.
 
 The prompt wording must match the reward variant ("exactly N" for Exact, "maximum N" for Max). It is set in one place — `TB_LENGTH_REWARD`, read by `rewards.budget_instruction()` — because `prepare_data.py`, `eval_budget.py` and `profile_inference.py` build prompts in separate processes and run 1 was lost to them disagreeing. `train_grpo.py` reads the wording back off `data/train` and refuses to start on a mismatch.
 

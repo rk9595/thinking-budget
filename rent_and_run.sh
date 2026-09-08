@@ -9,6 +9,10 @@
 # Cost guard: refuses any offer above MAX_DPH.
 set -euo pipefail
 
+echo "Disabled: this legacy launcher can destroy a run on SSH disconnect." >&2
+echo "Use RECOVERY.md for the staged comparison and training workflow." >&2
+exit 2
+
 MAX_DPH="${MAX_DPH:-1.30}"           # $/hr ceiling
 DISK_GB="${DISK_GB:-80}"
 IMAGE="${IMAGE:-pytorch/pytorch:2.5.1-cuda12.1-cudnn9-devel}"
