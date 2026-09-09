@@ -36,7 +36,7 @@ def test_sft_keeps_reasoning_that_full_chat_template_would_strip():
             return "user question assistant<think>\n"
 
     row = {"prompt": [{"role": "user", "content": "q"}],
-           "completion": [{"role": "assistant", "content": "<think>preserve reasoning</think>42"}]}
+           "completion": [{"role": "assistant", "content": "<think>\npreserve reasoning</think>42"}]}
     example = render_examples([row], Tokenizer())[0]
     assert example["completion"] == "preserve reasoning</think>42<eos>"
     assert (example["prompt"]+example["completion"]).count("<think>") == 1

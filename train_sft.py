@@ -15,6 +15,10 @@ def render_examples(records, tokenizer):
         # DeepSeek starts <think> in its prompt; L1 may generate that token itself.
         if prompt.rstrip().endswith("<think>") and completion.lstrip().startswith("<think>"):
             completion = completion.lstrip()[len("<think>"):]
+            # The generation prefix already supplies its newline. A second newline
+            # merges with that token and makes TRL's prompt-boundary check disagree.
+            if prompt.endswith("\n"):
+                completion = completion.lstrip("\r\n")
         if tokenizer.eos_token and not completion.endswith(tokenizer.eos_token):
             completion += tokenizer.eos_token
         examples.append({"prompt": prompt, "completion": completion})
@@ -59,6 +63,9 @@ def main():
     # Fail instead of silently truncating the long-budget demonstrations.
     for i, row in enumerate(examples):
         ids = tok(row["prompt"]+row["completion"], add_special_tokens=False)["input_ids"]
+        prompt_ids = tok(row["prompt"], add_special_tokens=False)["input_ids"]
+        if ids[:len(prompt_ids)] != prompt_ids:
+            ap.error(f"example {i} has an unstable prompt/completion token boundary; inspect whitespace before training")
         if len(ids) > args.max_length:
             ap.error(f"example {i} exceeds max-length; inspect it before changing the cap")
     cfg = SFTConfig(output_dir=str(out), num_train_epochs=args.epochs, learning_rate=args.lr,
