@@ -7,13 +7,17 @@ recipe; it is not a faithful reproduction of the original full-finetuning experi
 ## Current status
 
 - CPU reward/evaluation checks and a real tiny-model GRPO pause/resume integration test are provided.
-- `results/control-2026-09-08/` contains the frozen 50-problem development set and model revisions.
-  It contains **no model evaluation results yet**.
+- The 50-problem four-arm comparison **passed** on an A100 on 2026-09-09. Raw responses,
+  manifests, paired statistics, and interpretation are in
+  [`results/control-2026-09-08/STATUS.md`](results/control-2026-09-08/STATUS.md).
+  L1 averages 512/924/3578 tokens; run 3 stays at 923/887/962 for targets 512/1024/3600.
 - `prepare_pilot.py split` prepares 500 training and 100 separate development problems locally.
   Generated data lives under ignored `data/pilot/`; rerun the command on the GPU machine or copy it.
 - Dependency locks resolve for Python 3.12. `requirements.txt` is the local macOS lock;
-  `requirements-gpu.txt` is the Linux x86-64 CUDA lock. CUDA execution still needs verification.
-- No paid instance, full training run, model upload, or GGUF release has been started by this workflow.
+  `requirements-gpu.txt` is the Linux x86-64 CUDA lock. Both installed successfully; the CUDA
+  environment passed its dependency check and 24 unit tests. All 25 local tests also pass.
+- A temporary paid A100 was used with a $3 total spending cap. Teacher generation is underway;
+  no SFT, GRPO, model upload, or GGUF release has started in this recovery workflow.
 
 ## 1. Install and validate
 
@@ -80,7 +84,7 @@ python prepare_pilot.py split --out-dir data/pilot --train-count 500 --dev-count
 python eval_budget.py --model l3lab/L1-Qwen-1.5B-Exact \
   --revision b1fa57f192f0b14bd033d0085faaa80cdc39694b \
   --wording l1 --problem-file data/pilot/train_problems.jsonl \
-  --budgets 512 1024 3600 --out results/teacher-pilot.json
+  --budgets 512 1024 3600 --batch-size 32 --out results/teacher-pilot.json
 python prepare_pilot.py filter --teacher-eval results/teacher-pilot.json \
   --train-problems data/pilot/train_problems.jsonl --out data/pilot/sft.jsonl
 ```
@@ -96,9 +100,11 @@ problem sets survive, inspect the data; do not silently lower the bar or launch 
 python train_sft.py --data data/pilot/sft.jsonl \
   --control-report results/control-2026-09-08/comparison.json \
   --out-dir checkpoints/sft-pilot
+python eval_budget.py --problem-file data/pilot/dev_problems.jsonl \
+  --budgets 512 1024 3600 --batch-size 32 --out results/base-pilot-dev.json
 python eval_budget.py --lora checkpoints/sft-pilot/final \
   --problem-file data/pilot/dev_problems.jsonl --budgets 512 1024 3600 \
-  --out results/sft-pilot-dev.json
+  --batch-size 32 --out results/sft-pilot-dev.json
 ```
 
 SFT preserves raw reasoning explicitly: these models' completed-message chat templates otherwise strip CoT.

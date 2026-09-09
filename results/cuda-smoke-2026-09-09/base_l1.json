@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+  "lora": null,
+  "budget_wording": "l1",
+  "manifest": "base_l1.manifest.json",
+  "samples": "base_l1.samples.jsonl",
+  "results": [
+    {
+      "dataset": "math500",
+      "budget": 512,
+      "n": 2,
+      "n_problems": 2,
+      "accuracy": 0.5,
+      "mean_tokens": 4976.5,
+      "median_tokens": 4976.5,
+      "mean_abs_deviation": 4464.5,
+      "mean_relative_error": 8.7197265625,
+      "within_20pct": 0,
+      "overshoot_rate": 1,
+      "mean_overshoot": 4464.5,
+      "truncation_rate": 0.5,
+      "think_closed_rate": 1.0,
+      "mean_reasoning_tokens": 4711.5
+    },
+    {
+      "dataset": "math500",
+      "budget": 1024,
+      "n": 2,
+      "n_problems": 2,
+      "accuracy": 1,
+      "mean_tokens": 3190,
+      "median_tokens": 3190.0,
+      "mean_abs_deviation": 2166,
+      "mean_relative_error": 2.115234375,
+      "within_20pct": 0,
+      "overshoot_rate": 1,
+      "mean_overshoot": 2166,
+      "truncation_rate": 0,
+      "think_closed_rate": 1.0,
+      "mean_reasoning_tokens": 2791
+    },
+    {
+      "dataset": "math500",
+      "budget": 3600,
+      "n": 2,
+      "n_problems": 2,
+      "accuracy": 1,
+      "mean_tokens": 4181,
+      "median_tokens": 4181.0,
+      "mean_abs_deviation": 2316,
+      "mean_relative_error": 0.6433333333333333,
+      "within_20pct": 0,
+      "overshoot_rate": 0.5,
+      "mean_overshoot": 1448.5,
+      "truncation_rate": 0,
+      "think_closed_rate": 1.0,
+      "mean_reasoning_tokens": 3778
+    }
+  ],
+  "paired_control": {
+    "math500": {
+      "n_pairs": 2,
+      "positive_endpoint_fraction": 0.5,
+      "monotonic_fraction": 0,
+      "mean_endpoint_slope": -0.257610103626943
+    }
+  }
+}

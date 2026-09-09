@@ -9,6 +9,10 @@ per-response evaluation evidence, and a supervised-conditioning pilot before fur
 The historical run notes and commands below describe earlier experiments; follow RECOVERY.md
 for new work. Token budgets currently measure the whole generated completion, not reasoning alone.
 
+The [50-problem reference comparison](results/control-2026-09-08/STATUS.md) passed on
+2026-09-09: released L1 tracks 512/1024/3600-token requests; run 3 still does not.
+This validates the evaluation path, not a new student model or a release.
+
 Reward: `r = 1[answer correct] − α·|N − tokens_used|` (LCPO-Exact, α=3e-4), correctness via `math-verify`.
 Both overshoot and undershoot are penalized; learning to condition on N is not guaranteed.
 `--length-reward max` retains our legacy additive overshoot penalty. It is **not** the published
@@ -61,7 +65,7 @@ Raw numbers: `results/demo-2026-08-28/demo.json`.
 
 What it did buy is efficiency: **MATH-500 2524 → 787 tokens (3.2x) for −2.0 accuracy points**, GSM8K 1239 → 457 (2.7x) for −5.2. Run 2 paid 8–13 points for less.
 
-The diagnostic is `kl` = **0.006**, five times *lower* than run 2's 0.03 at an identical LR — Exact's gradients partially cancel (high budgets say "write more", low say "write less"; they reconcile only if the policy attends to N). The optimizer was healthy: `frac_reward_zero_std` 0, `clipped_ratio` 0. Final `rewards/length_reward/mean` −0.199 ⇒ mean |n−N| ≈ 660 tokens. **The untested lever is the budget range, not `ALPHA`** — see below. Archived at `results/run-2026-08-24-exact/`; curves in W&B run `vt32er6f`.
+Reported `kl` was **0.006**, versus run 2's 0.03 at an identical LR; `frac_reward_zero_std` and `clipped_ratio` were both 0. These metrics do not establish why conditioning failed or prove that optimization was healthy. Final `rewards/length_reward/mean` −0.199 implies mean |n−N| ≈ 660 tokens. Archived at `results/run-2026-08-24-exact/`; curves in W&B run `vt32er6f`.
 
 ### Where this diverges from L1
 
@@ -75,9 +79,9 @@ The diagnostic is `kl` = **0.006**, five times *lower* than run 2's 0.03 at an i
 
 The budget range is the one filed as a *fix* after run 1: L1 straddles the model's natural ~2500-token length, this run sat entirely below it. A model that ignores N and emits a constant pays the mean absolute deviation of the budget distribution, `(b−a)/4` for `U(a,b)` — **450 tokens here against L1's 975**, so refusing to condition was 2.2x cheaper than in the paper. At α=3e-4 that is a 0.135 penalty against a correctness spread of 0.44; under L1's range the same constant strategy costs 0.293.
 
-The qualitative half matters more: with every budget below the natural length, **"just be shorter" satisfies every training example**, so a uniform habit is a complete solution rather than an approximation. Straddling is what makes N informative in both directions. Since the penalty for ignoring N is `α·(b−a)/4`, widening the range and raising α are the same knob — widening is free and matches the paper.
+This is a hypothesis about the raw reward, not an established diagnosis. Uniform shortening can improve reward when samples overshoot, but it does not solve the Exact objective. In a group whose completions all exceed N, the length reward is `αN − αn`; group centering cancels `αN`, leaving a preference for shorter completions independent of the requested budget. Widening the range and raising α are not interchangeable under group-normalized optimization. Sampling diversity, the starting policy, full fine-tuning versus LoRA, and response-group count also differ from L1.
 
-**Run 4 is speced out in [RUN4.md](RUN4.md)** — budget range first (one flag, nothing else); then α≈1e-3; then capacity (higher LoRA rank or full fine-tune); starting from DeepScaleR instead of the raw distill would also drop an RL stage this run was doing simultaneously with length control. Kill criterion: spread still under 1.3x at checkpoint 250, stop. This is a hypothesis with arithmetic behind it, not a finding — the experiment costs ~9 GPU-hours and has not been run.
+**The range-only Run 4 proposal in [RUN4.md](RUN4.md) is superseded by [RECOVERY.md](RECOVERY.md).** Verify the released reference control, then test supervised conditioning on verified traces before spending on another GRPO run.
 
 **2026-08-23 (LCPO-Max, 700 steps, 7.6h, $8.12) — partial success.** All three run-1 fixes worked: `kl` 6e-4 → 0.03, mean completion length 4096 → 670, `clipped_ratio` 0.97 → 0. Ceiling compliance is real — MATH-500 over-budget rate 87% → 3% at budget 1024, 53% → 0% at 2048. **But mean tokens is flat across budgets** (490/559/546/528 for 256/512/1024/2048): the model learned "always be short", not "condition on N", which is the degenerate solution of a max-only reward — nothing penalizes finishing early, so nothing pulls length *up* toward the budget. Collapse was complete by step 100. Accuracy cost: MATH-500 −8 to −13 pts, GSM8K −1 to −5. Training-time correctness did not reveal this (0.298 → 0.277, noise-dominated at 32 samples/step); only held-out eval did. Archived under `results/run-2026-08-23-max/` (code snapshot in `code/`).
 
@@ -87,23 +91,28 @@ The qualitative half matters more: with every budget below the natural length, *
 2. **Prompt and reward disagreed.** The prompt said "Think for **maximum** N tokens" while the reward was LCPO-**Exact** (`−α·|N − n|`), which pays the model to pad up to N. Now LCPO-Max by default, matching the prompt.
 3. **A third of the data pushed the wrong way.** Budgets were sampled 100–3600 against a natural length of ~2500, so high-budget examples rewarded writing *longer*. Now 200–2000, entirely below the natural length, with the 4096 completion cap left as headroom.
 
-## Known environment issue (vLLM 0.27 + Python 3.11)
+## Historical environment issue (vLLM 0.27 + Python 3.11)
 
 Export `VLLM_USE_FLASHINFER_SAMPLER=0` and `pip uninstall -y flashinfer-python` before any
 vLLM run. flashinfer 0.6.x fails to import on Python 3.11 (`array.array is not
 subscriptable`), but vLLM's `flashinfer_sampler_supported()` imports the backend
 unguarded, so simply removing the package trades one crash for a `ModuleNotFoundError`.
-The env var short-circuits before that import; both are needed.
+The env var short-circuits before that import; both are needed for that historical environment.
+The recovery workflow uses Python 3.12 and pinned CUDA dependencies; do not apply this workaround
+to the validated A100 environment, where FlashInfer works.
 
 ## Setup
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-pip install vllm          # GPU box only
+uv venv .venv --python 3.12
+uv pip install --python .venv/bin/python -r requirements.txt  # macOS
+# On Linux CUDA instead: bash setup_gpu.sh
 ```
 
-## Workflow
+## Historical training commands (not the recovery sequence)
+
+For new experiments, follow [RECOVERY.md](RECOVERY.md). The commands below describe the old
+direct-to-GRPO workflow and do not include the reference or SFT gates.
 
 ```bash
 python -m pytest tests/ -q                     # 11 reward unit tests
@@ -117,18 +126,11 @@ python plot_results.py                         # curves + markdown table for the
 bash export_gguf.sh checkpoints/lcpo-exact/checkpoint-1000 out/l1-qwen-1.5b
 ```
 
-On a rented GPU box, `bash setup_gpu.sh` does the install, runs the tests, and builds the
-dataset in one shot. It requires `HF_TOKEN` and `WANDB_API_KEY` in the environment.
-
-To do the whole thing from here — provision, train, fetch results, destroy the box:
-
-```bash
-export VAST_API_KEY=... HF_TOKEN=... WANDB_API_KEY=...
-bash rent_and_run.sh          # refuses offers above MAX_DPH (default $1.30/hr)
-```
-
-It auto-destroys the instance after pulling results down; pass `--keep` to leave it running.
-Needs a vast.ai account with credit loaded — the API key alone is not enough.
+On a rented GPU box, `bash setup_gpu.sh` installs the CUDA lock and runs tests. It does not
+prepare data or start training, and public-model evaluation needs no credentials.
+`rent_and_run.sh` is disabled: its historical SSH-linked teardown was unsafe for long runs.
+Provision with an explicit spending limit, run detached, retrieve artifacts, and then destroy
+only the temporary instance. Evaluation never automatically publishes a model.
 
 Resume an interrupted run with `--resume`. Training logs to W&B; watch `rewards/correctness_reward/mean` (should not decrease) and `rewards/length_reward/mean` (should rise toward 0 as the model learns to hit the budget). Note TRL names that metric after the reward function's `__name__`, so it is `length_reward_max` for LCPO-Max and `length_reward` for LCPO-Exact — a grep written for one silently matches nothing on the other. Also watch `frac_reward_zero_std`: if it stays near 1, every completion in a group scores identically, advantages are zero and GRPO learns nothing. And watch `kl` — if it is still ~1e-4 after a few hundred steps the policy is frozen and the run is already dead, whatever the reward curve looks like.
 
@@ -136,7 +138,11 @@ Resume an interrupted run with `--resume`. Training logs to W&B; watch `rewards/
 
 ## Eval
 
-`eval_budget.py` reports, per dataset × budget: accuracy, mean tokens used, `overshoot_rate` (fraction of problems exceeding the budget) and `mean_overshoot` (mean `max(0, tokens − budget)`). `mean_abs_deviation` is still logged so runs stay comparable to the LCPO-Exact archive. Datasets: MATH-500, GSM8K, AIME24; budgets {256, 512, 1024, 2048} — 3600 was dropped because it sits above the base model's natural ~2500 tokens, so nothing ever overshoots it.
+`eval_budget.py` records raw responses, generated token IDs, stopping reasons, accuracy,
+absolute/relative length error, truncation, and paired budget response. The current frozen
+comparison uses MATH-500 development problems and budgets {512, 1024, 3600}, with the same
+8192-token generation ceiling for every budget. The older {256, 512, 1024, 2048} results
+remain historical; they are not directly interchangeable with the current evaluation.
 
 Success for LCPO-Exact = `mean_tokens` rises monotonically with the budget and tracks the y=x line in `tokens_vs_budget.png` (this is the headline plot — it is the one thing run 2 failed), `mean_abs_deviation` well below base at every budget, and accuracy rising with budget. Accuracy at the top budget matching the base model would be a bonus, not a pass condition: this is LoRA r=32, not the full fine-tune the L1 paper reports.
 
