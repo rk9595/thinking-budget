@@ -16,8 +16,10 @@ recipe; it is not a faithful reproduction of the original full-finetuning experi
 - Dependency locks resolve for Python 3.12. `requirements.txt` is the local macOS lock;
   `requirements-gpu.txt` is the Linux x86-64 CUDA lock. Both installed successfully; the CUDA
   environment passed its dependency check and 24 unit tests. All 25 local tests also pass.
-- A temporary paid A100 was used with a $3 total spending cap. Teacher generation is underway;
-  no SFT, GRPO, model upload, or GGUF release has started in this recovery workflow.
+- A temporary paid A100 is being used with a $3 total spending cap. Two teacher draws yielded
+  102 verified three-budget problem sets (306 examples). The one-epoch SFT pilot completed
+  20 optimizer steps; matched evaluation on the separate 100-problem development set is underway.
+  No GRPO refinement, model upload, or GGUF release has started in this recovery workflow.
 
 ## 1. Install and validate
 
@@ -113,6 +115,9 @@ Each draw must cover its complete declared grid and use the same teacher revisio
 problem set, and sampling configuration apart from budgets/seeds. The SFT manifest preserves
 every source manifest. Training examples remain one verified response per problem/budget;
 retries are data collection, not additional independent evaluation evidence.
+The generated teacher traces, operational logs, filtered dataset, and checkpoint remain local
+artifacts (ignored by git); they are not a published dataset/model. Preserve them before ending
+the rental. Public result reports do not substitute for those training artifacts.
 
 ```bash
 python train_sft.py --data data/pilot/sft.jsonl \
