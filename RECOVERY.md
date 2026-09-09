@@ -96,6 +96,24 @@ Filtering rechecks answer correctness, requires natural termination and a closed
 and retains complete sets of three budgets within 25% of their targets. If fewer than 100 complete
 problem sets survive, inspect the data; do not silently lower the bar or launch a full job.
 
+The first 500-problem draw on 2026-09-09 produced only 64 complete accepted sets. A second
+draw at seed 43 was therefore requested at the bottleneck budgets 512 and 1024; the original
+3600-token samples are reused. Multiple draws can be pooled without relaxing the quality filter:
+
+```bash
+python eval_budget.py --model l3lab/L1-Qwen-1.5B-Exact \
+  --revision b1fa57f192f0b14bd033d0085faaa80cdc39694b \
+  --wording l1 --problem-file data/pilot/train_problems.jsonl \
+  --budgets 512 1024 --seeds 43 --batch-size 32 --out results/teacher-pilot-retry.json
+python prepare_pilot.py filter --teacher-eval results/teacher-pilot.json results/teacher-pilot-retry.json \
+  --train-problems data/pilot/train_problems.jsonl --out data/pilot/sft.jsonl
+```
+
+Each draw must cover its complete declared grid and use the same teacher revision, template,
+problem set, and sampling configuration apart from budgets/seeds. The SFT manifest preserves
+every source manifest. Training examples remain one verified response per problem/budget;
+retries are data collection, not additional independent evaluation evidence.
+
 ```bash
 python train_sft.py --data data/pilot/sft.jsonl \
   --control-report results/control-2026-09-08/comparison.json \

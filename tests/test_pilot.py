@@ -40,3 +40,15 @@ def test_sft_keeps_reasoning_that_full_chat_template_would_strip():
     example = render_examples([row], Tokenizer())[0]
     assert example["completion"] == "preserve reasoning</think>42<eos>"
     assert (example["prompt"]+example["completion"]).count("<think>") == 1
+
+
+def test_teacher_retries_fill_missing_budgets_without_relaxing_filter():
+    problems = [{"problem_id": "a", "problem": "q", "answer": "42"}]
+    draws = [{**problems[0], "budget": 512, "total_tokens": 512, "reasoning_tokens": 500,
+              "finish_reason": "stop", "text": "<think>work</think>\\boxed{0}", "seed": 42},
+             {**problems[0], "budget": 1024, "total_tokens": 1024, "reasoning_tokens": 1000,
+              "finish_reason": "stop", "text": "<think>work</think>\\boxed{42}", "seed": 42}]
+    assert not filter_teacher(draws, problems, [512, 1024], .25)
+    retry = {**draws[0], "seed": 43, "text": "<think>work</think>\\boxed{42}"}
+    assert len(filter_teacher(draws + [retry], problems, [512, 1024], .25)) == 2
+    assert not filter_teacher(draws + [{**retry, "total_tokens": 800}], problems, [512, 1024], .25)

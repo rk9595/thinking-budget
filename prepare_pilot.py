@@ -70,7 +70,8 @@ def main():
     prepare.add_argument("--dev-count", type=int, default=100)
     prepare.add_argument("--seed", type=int, default=29)
     filter_ap = sub.add_parser("filter")
-    filter_ap.add_argument("--teacher-eval", required=True, help="completed eval_budget.py summary JSON")
+    filter_ap.add_argument("--teacher-eval", nargs="+", required=True,
+                           help="one or more completed teacher summaries; draws may cover different budgets")
     filter_ap.add_argument("--train-problems", default="data/pilot/train_problems.jsonl")
     filter_ap.add_argument("--out", default="data/pilot/sft.jsonl")
     filter_ap.add_argument("--budgets", nargs="+", type=int, default=[512, 1024, 3600])
@@ -104,11 +105,24 @@ def main():
             ap.error("output already exists")
         if not 0 < args.tolerance < 1 or args.min_problems < 1:
             ap.error("tolerance must be in (0,1); min-problems must be positive")
-        doc = json.loads(Path(args.teacher_eval).read_text())
-        if doc["model"] != "l3lab/L1-Qwen-1.5B-Exact":
-            ap.error("expected the reference L1-Exact teacher")
-        records = filter_teacher(read_records(artifact_path(args.teacher_eval, doc["samples"])), read_records(args.train_problems),
-                                 args.budgets, args.tolerance)
+        from compare_results import validate_samples
+        samples, manifests = [], []
+        for path in args.teacher_eval:
+            doc = json.loads(Path(path).read_text())
+            if doc["model"] != "l3lab/L1-Qwen-1.5B-Exact" or doc.get("lora") is not None:
+                ap.error("expected the unadapted reference L1-Exact teacher")
+            manifest = json.loads(artifact_path(path, doc["manifest"]).read_text())
+            draw = read_records(artifact_path(path, doc["samples"]))
+            validate_samples(draw, manifest)
+            if manifests and any(manifest[k] != manifests[0][k] for k in
+                                 ["model_revision", "chat_template_sha256", "token_measure", "problem_set_sha256"]):
+                ap.error("teacher draws must match model revision, template, token measure, and problems")
+            if manifests and any(manifest["config"][k] != manifests[0]["config"][k] for k in
+                                 ["wording", "max_tokens", "temperature", "top_p", "batch_size"]):
+                ap.error("teacher draws must match sampling settings apart from seeds and budgets")
+            samples.extend(draw)
+            manifests.append(manifest)
+        records = filter_teacher(samples, read_records(args.train_problems), args.budgets, args.tolerance)
         count = len({r["problem_id"] for r in records})
         if count < args.min_problems:
             ap.error(f"only {count} complete correct budget sets; need {args.min_problems}. Inspect teacher outputs.")
@@ -116,8 +130,8 @@ def main():
         with output.open("x") as f:
             for row in records:
                 f.write(json.dumps(row, ensure_ascii=False)+"\n")
-        write_json(output.with_suffix(".manifest.json"), {"teacher_eval": args.teacher_eval,
-                   "teacher_manifest": json.loads(artifact_path(args.teacher_eval, doc["manifest"]).read_text()),
+        write_json(output.with_suffix(".manifest.json"), {"teacher_evaluations": args.teacher_eval,
+                   "teacher_manifests": manifests,
                    "sft_sha256": digest(records), "n_problems": count, "n_examples": len(records),
                    "budgets": args.budgets, "tolerance": args.tolerance})
         print(f"Accepted {count} problems / {len(records)} verified examples")
