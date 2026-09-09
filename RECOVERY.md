@@ -54,6 +54,7 @@ This evaluates three models in four arms, on the same 50 problems at 512/1024/36
 
 The extra base arm controls both wording and the different `<think>` prefill behavior.
 No budget-dependent hard cap or forced stopping is used: all budgets have 8192 completion-token headroom.
+The comparison uses batches of 32 on the A100; this setting is frozen in the plan and each manifest.
 The primary length measure is **total generated token IDs**, including EOS if the backend returns it.
 Reasoning and answer token counts are also recorded; missing `</think>` yields unknown reasoning length,
 not zero. This experiment does not claim to measure a reasoning-only budget.
