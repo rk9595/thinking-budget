@@ -105,12 +105,19 @@ python eval_budget.py --problem-file data/pilot/dev_problems.jsonl \
 python eval_budget.py --lora checkpoints/sft-pilot/final \
   --problem-file data/pilot/dev_problems.jsonl --budgets 512 1024 3600 \
   --batch-size 32 --out results/sft-pilot-dev.json
+python compare_pilot.py --base results/base-pilot-dev.json \
+  --candidate results/sft-pilot-dev.json --out results/sft-pilot-comparison.json
 ```
 
 SFT preserves raw reasoning explicitly: these models' completed-message chat templates otherwise strip CoT.
 Loss applies only to the completion. Oversize examples fail rather than silently losing the final answer.
 The pilot has one epoch, rank 32, LR 1e-4; these are proposed starting settings, not proven successful settings.
 Inspect paired budget response, accuracy, truncation, and repeated/padded text before continuing.
+`compare_pilot.py` requires matched model revisions, templates, samples, and generation settings.
+Its development gate reuses the reference-control checks and additionally requires high-budget
+accuracy to lose no more than 10 percentage points versus the matched base. These point-estimate
+thresholds screen a small pilot for GRPO, not a release; read the paired bootstrap intervals too.
+The thresholds were declared before the first SFT pilot's training and held-out generation.
 
 ## 4. Conditional GRPO refinement
 
