@@ -24,7 +24,7 @@ recipe; it is not a faithful reproduction of the original full-finetuning experi
 - The grading audit rejects unfinished reasoning even when `<think>` comes from the prompt.
   Original raw outputs are preserved alongside corrected copies. The reference still passes.
 - The temporary instance is verified deleted. A cleanup error exceeded the stated $3 limit:
-  provider charges total approximately $4.08 and available credit is $0. See the pilot report
+  provider charges total approximately $4.08. See the pilot report
   for the incident and fix. No new paid run, GRPO refinement, upload, or GGUF release is authorized.
 
 ## 1. Install and validate

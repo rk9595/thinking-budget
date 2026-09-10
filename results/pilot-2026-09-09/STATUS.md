@@ -84,13 +84,13 @@ hypotheses to test, not proven causes of this pilot's failure. Reapply the held-
 The unattended cleanup retrieved artifacts but omitted the CLI's `--yes` flag. A successful
 command exit was incorrectly treated as deletion, and the spending watchdog was removed.
 The instance therefore remained allocated. On 2026-09-10 it was explicitly destroyed with
-`--yes`; two subsequent provider listings verified it absent. The account's available credit
-is $0. No new paid instance or payment was initiated during the audit.
+`--yes`; two subsequent provider listings verified it absent. No new paid instance or payment
+was initiated during the audit.
 
 The provider's itemized charges for instance 50353651 total approximately **$4.079**, exceeding
 the stated $3 limit: GPU $3.387, storage $0.661, download $0.028, upload $0.003. The earlier
 balance-difference estimate of $3.68 understated these charges. Payment settlement is not inferred
-from a zero available balance.
+from these usage charges.
 
 `cleanup_gpu.py` now passes the explicit confirmation flag and verifies the selected instance
 is absent. An exited/stopped instance or command exit code 0 does not count as deletion. Tests
