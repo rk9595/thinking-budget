@@ -1,5 +1,10 @@
 # Reference-control experiment: passed on 2026-09-09
 
+Correctness was audited on 2026-09-10 without new generation. Use
+[`../control-2026-09-10-regraded/comparison.json`](../control-2026-09-10-regraded/comparison.json)
+for corrected accuracy: base-Exact at budget 3600 is 84%, not 86%. The reference still passes.
+The original generation results below are retained for provenance.
+
 The 50 MATH-500 development problems and three model revisions are frozen in this directory.
 There are four arms because the L1 reference uses different wording and a different chat template;
 each trained model has a matching base-model control. All 600 responses are saved with their raw

@@ -1,4 +1,4 @@
-# Verified-data SFT pilot
+# Verified-data SFT pilot: failed held-out gate
 
 ## Data collection
 
@@ -42,7 +42,57 @@ as its saved source hash records; it has not been silently relabeled as a rerun.
 
 ## Held-out evaluation
 
-Matched base/student generation on the separate 100-problem development set is underway,
+Both models completed all 300 generations on the separate 100-problem development set,
 using budgets 512/1024/3600, seed 42, batch 32, and the same 8192-token ceiling and native template.
-The pilot gate was declared in commit `ef83b8b` before training. Do not start GRPO or treat this
-as a successful budget model until the complete paired report and raw traces have been reviewed.
+Generation finished on 2026-09-09; all raw outputs and checkpoints were retrieved locally.
+
+The corrected report is [`regraded/comparison.json`](regraded/comparison.json).
+
+| Budget | Base tokens | SFT tokens | Base accuracy | SFT accuracy | Base clipped | SFT clipped |
+|---|---:|---:|---:|---:|---:|---:|
+| 512 | 5304 | 5604 | 46% | 33% | 36% | 57% |
+| 1024 | 5329 | 6002 | 48% | 31% | 39% | 62% |
+| 3600 | 5436 | 5894 | 46% | 33% | 39% | 61% |
+
+SFT endpoint slope is 0.094 versus the base's 0.043 (ideal 1); only 31% of problems have
+longer outputs at 3600 than at 512. Every budget's median SFT output hits the ceiling.
+The gate declared in `ef83b8b` fails. **Do not initialize GRPO from this adapter or publish it.**
+
+### Correctness audit on 2026-09-10
+
+The original grader could credit an intermediate answer in unfinished reasoning when the
+opening `<think>` was supplied by the prompt rather than generated. The fix uses the saved
+rendered prompt to require the closing delimiter. It changes 9 base grades and 53 SFT grades.
+Original raw evaluations remain in `../base-pilot-dev*` and `../sft-pilot-dev*`; audited copies
+retain `legacy_correct`, the original generation manifests, and source hashes. No new
+generation or threshold relaxation was used. The L1 reference still passes after the same audit.
+
+The original reported SFT accuracies (51%/48%/51%) must not be interpreted as valid final-answer
+accuracy. Corrected results show worse completion reliability as well as absent budget control.
+
+## Next experiment, not yet authorized or run
+
+Keep the failed adapter as evidence. Before another paid run, set a new budget and review the
+cleanup incident below. Test a larger, more diverse verified SFT dataset while preserving the
+existing 100-problem holdout. Audit termination and repeated/padded traces; compare budget-balanced
+loss with the current token-weighted objective. Although example counts were equal, teacher
+token shares were 10.1% / 19.8% / 70.0% across the budgets. Data scale and token weighting are
+hypotheses to test, not proven causes of this pilot's failure. Reapply the held-out gate before GRPO.
+
+## Rental cleanup incident
+
+The unattended cleanup retrieved artifacts but omitted the CLI's `--yes` flag. A successful
+command exit was incorrectly treated as deletion, and the spending watchdog was removed.
+The instance therefore remained allocated. On 2026-09-10 it was explicitly destroyed with
+`--yes`; two subsequent provider listings verified it absent. The account's available credit
+is $0. No new paid instance or payment was initiated during the audit.
+
+The provider's itemized charges for instance 50353651 total approximately **$4.079**, exceeding
+the stated $3 limit: GPU $3.387, storage $0.661, download $0.028, upload $0.003. The earlier
+balance-difference estimate of $3.68 understated these charges. Payment settlement is not inferred
+from a zero available balance.
+
+`cleanup_gpu.py` now passes the explicit confirmation flag and verifies the selected instance
+is absent. An exited/stopped instance or command exit code 0 does not count as deletion. Tests
+cover that failure mode. Keep spending safeguards active until provider-side deletion is verified;
+local monitoring is not a provider-enforced billing cap.

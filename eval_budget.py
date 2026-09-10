@@ -145,6 +145,7 @@ def main():
         if config["base_model_name_or_path"] != args.model:
             raise ValueError("adapter base does not match --model")
     manifest = {"schema_version": 2, "config": vars(args), "model_revision": revision,
+                "answer_grading": "prefilled_think_aware_v2",
                 "problem_set_sha256": digest(problems), "problems": problems,
                 "token_measure": "all generated token IDs, including EOS if returned",
                 "chat_template_sha256": digest(tok.chat_template),
@@ -185,7 +186,8 @@ def main():
                                "total_tokens": len(result.token_ids), "reasoning_tokens": reasoning,
                                "answer_tokens": answer, "finish_reason": result.finish_reason,
                                "stop_reason": result.stop_reason,
-                               "correct": is_correct(result.text, p["answer"])}
+                               "correct": is_correct(result.text, p["answer"],
+                                   prefilled_think=prompt.rstrip().endswith("<think>"))}
                         records.append(row)
                         raw.write(json.dumps(row, ensure_ascii=False) + "\n")
                     raw.flush()

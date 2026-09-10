@@ -38,6 +38,22 @@ def test_unfinished_explicit_thinking_is_not_an_answer():
     assert correctness_reward(["<think>Maybe \\boxed{42}"], answer=["42"]) == [0.0]
 
 
+def test_unfinished_prefilled_thinking_is_not_an_answer():
+    assert correctness_reward(["Maybe \\boxed{42}"], answer=["42"],
+                              prompts=["assistant<think>\n"]) == [0.0]
+    assert correctness_reward(["work</think>\\boxed{42}"], answer=["42"],
+                              prompts=["assistant<think>\n"]) == [1.0]
+
+
+def test_reward_uses_actual_chat_template_prefill(monkeypatch):
+    import rewards
+    from types import SimpleNamespace
+    monkeypatch.setattr(rewards, "_tokenizer", SimpleNamespace(
+        apply_chat_template=lambda *a, **kw: "assistant<think>\n"))
+    assert correctness_reward(["\\boxed{42}"], answer=["42"],
+                              prompts=[[{"role": "user", "content": "q"}]]) == [0.0]
+
+
 def test_batch_mixed():
     comps = [CHAT("\\boxed{1}"), CHAT("\\boxed{2}")]
     assert correctness_reward(comps, answer=["1", "3"]) == [1.0, 0.0]

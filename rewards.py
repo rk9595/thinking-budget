@@ -32,10 +32,12 @@ def _text(completion):
     return completion[-1]["content"]
 
 
-def is_correct(completion_text, gold_answer):
+def is_correct(completion_text, gold_answer, *, prefilled_think=False):
     from math_verify import parse, verify
 
     try:
+        if prefilled_think and "</think>" not in completion_text:
+            return False
         gold = parse(f"${gold_answer}$")
         # Do not grade an intermediate answer from inside a completed reasoning trace.
         final = completion_text.split("</think>", 1)[-1]
@@ -47,8 +49,13 @@ def is_correct(completion_text, gold_answer):
         return False
 
 
-def correctness_reward(completions, answer, **kwargs):
-    return [1.0 if is_correct(_text(c), a) else 0.0 for c, a in zip(completions, answer)]
+def correctness_reward(completions, answer, prompts=None, **kwargs):
+    prefixes = [""] * len(completions)
+    if prompts is not None:
+        prefixes = [p if isinstance(p, str) else _get_tokenizer().apply_chat_template(
+            p, tokenize=False, add_generation_prompt=True) for p in prompts]
+    return [1.0 if is_correct(_text(c), a, prefilled_think=p.rstrip().endswith("<think>")) else 0.0
+            for c, a, p in zip(completions, answer, prefixes)]
 
 
 def length_reward(completions, budget, completion_ids=None, **kwargs):

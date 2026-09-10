@@ -13,6 +13,11 @@ The [50-problem reference comparison](results/control-2026-09-08/STATUS.md) pass
 2026-09-09: released L1 tracks 512/1024/3600-token requests; run 3 still does not.
 This validates the evaluation path, not a new student model or a release.
 
+The [102-problem SFT pilot](results/pilot-2026-09-09/STATUS.md) completed training but failed
+held-out budget control and final-answer accuracy. GRPO is blocked on a better conditioning pilot.
+The 2026-09-10 grading audit fixes credit for unfinished, prefilled reasoning; original outputs
+are retained. The pilot report also records a rental cleanup error and the verified-deletion fix.
+
 Reward: `r = 1[answer correct] − α·|N − tokens_used|` (LCPO-Exact, α=3e-4), correctness via `math-verify`.
 Both overshoot and undershoot are penalized; learning to condition on N is not guaranteed.
 `--length-reward max` retains our legacy additive overshoot penalty. It is **not** the published

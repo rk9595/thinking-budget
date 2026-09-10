@@ -9,17 +9,23 @@ recipe; it is not a faithful reproduction of the original full-finetuning experi
 - CPU reward/evaluation checks and a real tiny-model GRPO pause/resume integration test are provided.
 - The 50-problem four-arm comparison **passed** on an A100 on 2026-09-09. Raw responses,
   manifests, paired statistics, and interpretation are in
-  [`results/control-2026-09-08/STATUS.md`](results/control-2026-09-08/STATUS.md).
+  [`results/control-2026-09-10-regraded/STATUS.md`](results/control-2026-09-10-regraded/STATUS.md).
   L1 averages 512/924/3578 tokens; run 3 stays at 923/887/962 for targets 512/1024/3600.
 - `prepare_pilot.py split` prepares 500 training and 100 separate development problems locally.
   Generated data lives under ignored `data/pilot/`; rerun the command on the GPU machine or copy it.
 - Dependency locks resolve for Python 3.12. `requirements.txt` is the local macOS lock;
   `requirements-gpu.txt` is the Linux x86-64 CUDA lock. Both installed successfully; the CUDA
-  environment passed its dependency check and 24 unit tests. All 25 local tests also pass.
-- A temporary paid A100 is being used with a $3 total spending cap. Two teacher draws yielded
-  102 verified three-budget problem sets (306 examples). The one-epoch SFT pilot completed
-  20 optimizer steps; matched evaluation on the separate 100-problem development set is underway.
-  No GRPO refinement, model upload, or GGUF release has started in this recovery workflow.
+  environment passed its dependency check and 24 unit tests. The expanded local suite includes
+  grading, non-destructive regrading, and provider-side cleanup verification regressions.
+- Two teacher draws yielded 102 verified three-budget sets (306 examples). SFT completed 20
+  optimizer steps but **failed** the full 100-problem held-out evaluation: mean lengths
+  5604/6002/5894, truncation 57%/62%/61%, corrected accuracy 33%/31%/33%.
+  [Pilot report and next experiment](results/pilot-2026-09-09/STATUS.md).
+- The grading audit rejects unfinished reasoning even when `<think>` comes from the prompt.
+  Original raw outputs are preserved alongside corrected copies. The reference still passes.
+- The temporary instance is verified deleted. A cleanup error exceeded the stated $3 limit:
+  provider charges total approximately $4.08 and available credit is $0. See the pilot report
+  for the incident and fix. No new paid run, GRPO refinement, upload, or GGUF release is authorized.
 
 ## 1. Install and validate
 
@@ -41,12 +47,21 @@ source .venv/bin/activate
 Do not run `rent_and_run.sh`: it is disabled because its legacy teardown can destroy a run
 on SSH disconnection. Provisioning and an explicit total spending limit must be settled before
 starting any paid job. Run long commands under tmux and copy artifacts before releasing the machine.
+After verifying backup completeness and checksums, use:
+
+```bash
+python cleanup_gpu.py --instance INSTANCE_ID --backup-dir /absolute/path/to/recovered/artifacts
+```
+
+This explicitly confirms deletion and checks that the selected instance is absent from the provider.
+Keep the watchdog active if verification fails. A stopped instance still incurs storage charges;
+a successful CLI exit is not proof of deletion. Local watchdogs are not provider-enforced billing caps.
 
 ## 2. Run the comparison
 
 ```bash
-python run_comparison.py --out-dir results/control-2026-09-08 --prepare-only
-python run_comparison.py --out-dir results/control-2026-09-08
+python run_comparison.py --out-dir results/control-next --prepare-only
+python run_comparison.py --out-dir results/control-next
 ```
 
 This evaluates three models in four arms, on the same 50 problems at 512/1024/3600 tokens:
@@ -73,6 +88,9 @@ it must not automatically trigger training or publication. This small developmen
 
 Completed arms may be reused when rerunning the same frozen plan. Partial arms retain raw evidence but
 currently require a new output directory to rerun; they are never silently overwritten.
+Plans using the older grader cannot be silently reused by the current runner. Existing generation
+can instead be audited locally with `regrade_eval.py --input OLD.json --out NEW.json`, then compared
+with `compare_results.py` or `compare_pilot.py`. Do not mix grading versions between paired arms.
 
 For an initial CUDA wiring check, use a separate plan with `--limit 2`; do not mistake this for the
 50-problem comparison. Keep the official model and tokenizer revisions frozen by the plan.
@@ -121,7 +139,7 @@ the rental. Public result reports do not substitute for those training artifacts
 
 ```bash
 python train_sft.py --data data/pilot/sft.jsonl \
-  --control-report results/control-2026-09-08/comparison.json \
+  --control-report results/control-2026-09-10-regraded/comparison.json \
   --out-dir checkpoints/sft-pilot
 python eval_budget.py --problem-file data/pilot/dev_problems.jsonl \
   --budgets 512 1024 3600 --batch-size 32 --out results/base-pilot-dev.json

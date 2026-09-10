@@ -39,6 +39,8 @@ def main():
         ap.error("output already exists; use a new report path")
     bdoc, bm, base = load_evaluation(args.base)
     cdoc, cm, candidate = load_evaluation(args.candidate)
+    if bm.get("answer_grading", "legacy_v1") != cm.get("answer_grading", "legacy_v1"):
+        ap.error("mismatched answer-grading versions")
     if bdoc["lora"] is not None or cdoc["lora"] is None or bdoc["model"] != cdoc["model"]:
         ap.error("expected an unadapted base and a LoRA on the same base model")
     for key in ["problem_set_sha256", "token_measure", "chat_template_sha256", "model_revision"]:

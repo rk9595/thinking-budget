@@ -183,6 +183,8 @@ def main():
         trainer = GRPOTrainer(model=model, reward_funcs=[rewards.correctness_reward, length_fn],
                               args=config, train_dataset=ds, peft_config=peft_config,
                               callbacks=[PauseAtStep()])
+        # Use the exact trainer tokenizer/template when detecting a reasoning prefill.
+        rewards._tokenizer = trainer.processing_class
         trainer.train(resume_from_checkpoint=args.resume)
         step = trainer.state.global_step
         checkpoint = (output / f"checkpoint-{step}").resolve()

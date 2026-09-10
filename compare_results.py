@@ -82,7 +82,8 @@ def main():
                  for name, doc in docs.items()}
     signatures = {tuple(json.dumps(m["config"][k], sort_keys=True) for k in
                         ["seeds", "budgets", "max_tokens", "temperature", "top_p", "batch_size"])
-                  + (m["problem_set_sha256"], m["token_measure"]) for m in manifests.values()}
+                  + (m["problem_set_sha256"], m["token_measure"],
+                     m.get("answer_grading", "legacy_v1")) for m in manifests.values()}
     if len(signatures) != 1:
         raise ValueError("evaluation settings or problem sets do not match")
     for a, b in [("base_exact", "run3_exact"), ("base_l1", "reference_l1")]:

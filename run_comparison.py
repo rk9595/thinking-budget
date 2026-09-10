@@ -32,6 +32,8 @@ def main():
         plan = json.loads(plan_path.read_text())
         if plan.get("protocol_version") != 2:
             ap.error("old comparison protocol; create a new plan directory")
+        if plan.get("answer_grading") != "prefilled_think_aware_v2":
+            ap.error("old grading protocol; regrade saved outputs locally or create a new plan directory")
         if plan["limit"] != args.limit or plan["seeds"] != args.seeds or plan["local_adapter"] != args.adapter:
             ap.error("existing plan has different settings; use a new directory")
         if plan.get("batch_size", 8) != args.batch_size:
@@ -43,7 +45,8 @@ def main():
         with problem_path.open("x") as f:
             for p in problems:
                 f.write(json.dumps(p, ensure_ascii=False)+"\n")
-        plan = {"protocol_version": 2, "limit": args.limit, "seeds": args.seeds, "local_adapter": args.adapter,
+        plan = {"protocol_version": 2, "answer_grading": "prefilled_think_aware_v2",
+                "limit": args.limit, "seeds": args.seeds, "local_adapter": args.adapter,
                 "budgets": [512, 1024, 3600], "max_tokens": 8192,
                 "batch_size": args.batch_size,
                 "revisions": revisions, "problem_set_sha256": digest(problems),
@@ -73,6 +76,7 @@ def main():
             manifest = json.loads(artifact_path(output, previous["manifest"]).read_text())
             cfg = manifest["config"]
             if (manifest["problem_set_sha256"] != plan["problem_set_sha256"]
+                    or manifest.get("answer_grading") != plan["answer_grading"]
                     or manifest["model_revision"] != plan["revisions"][arm["model"]]
                     or cfg["seeds"] != plan["seeds"] or cfg["wording"] != arm["wording"]
                     or cfg["budgets"] != plan["budgets"]
