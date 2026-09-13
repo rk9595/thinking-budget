@@ -20,6 +20,18 @@ RUN = "sanity-2026-09-13"
 REMOTE = "/workspace/thinking-budget"
 
 
+def provider_instances():
+    # The CLI follows pagination on the current v1 listing endpoint. The v0
+    # list URL in the provider's introductory documentation now returns 410.
+    result = subprocess.run(["uv", "tool", "run", "--from", "vastai==1.6.0",
+                             "vastai", "show", "instances", "--raw"],
+                            capture_output=True, text=True, check=True, timeout=60)
+    rows = json.loads(result.stdout)
+    if not isinstance(rows, list):
+        raise ValueError("unexpected instance listing")
+    return rows
+
+
 def api(key, path, method="GET", payload=None):
     request = urllib.request.Request("https://console.vast.ai/api/v0/" + path,
         data=None if payload is None else json.dumps(payload).encode(), method=method,
@@ -89,7 +101,7 @@ def watch(state_path):
     started = state["created_at"]
     while True:
         try:
-            rows = api(key, "instances/")["instances"]
+            rows = provider_instances()
             row = next((r for r in rows if int(r["id"]) == instance), None)
             if row is None:
                 write_json(state_path.with_suffix(".done.json"),
