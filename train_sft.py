@@ -6,6 +6,32 @@ from pathlib import Path
 from experiment import digest, environment, read_records, resolve_model, write_json
 
 
+def sequence_mean_loss(logits, labels):
+    """Equal weight for each completion, irrespective of its number of tokens."""
+    import torch.nn.functional as F
+    targets = labels[:, 1:].contiguous()
+    prediction = logits[:, :-1, :].contiguous().float()
+    losses = F.cross_entropy(prediction.reshape(-1, prediction.shape[-1]),
+                             targets.reshape(-1), ignore_index=-100, reduction="none")
+    mask = targets.ne(-100)
+    counts = mask.sum(dim=1)
+    if (counts == 0).any():
+        raise ValueError("every SFT example must have at least one completion token")
+    return (losses.view_as(targets).sum(dim=1) / counts).mean()
+
+
+def sequence_loss_callback(holder):
+    def loss(outputs, labels, num_items_in_batch=None):
+        trainer = holder["trainer"]
+        result = sequence_mean_loss(outputs.logits, labels)
+        # Custom-loss callbacks bypass Trainer's default accumulation division.
+        # Microbatch=1 is fixed here, including the smaller final accumulation group.
+        if trainer.model.training:
+            result = result / trainer.current_gradient_accumulation_steps
+        return result
+    return loss
+
+
 def render_examples(records, tokenizer):
     """Completed-message chat templates strip CoT; render the user prefix only."""
     examples = []
@@ -37,6 +63,8 @@ def main():
     ap.add_argument("--rank", type=int, default=32)
     ap.add_argument("--max-length", type=int, default=8192)
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--loss-weighting", choices=["token", "sequence"], default="token")
+    ap.add_argument("--save-strategy", choices=["steps", "no"], default="steps")
     args = ap.parse_args()
     report = json.loads(Path(args.control_report).read_text())
     if not report["reference_gate"]["reference_control_detected"]:
@@ -53,10 +81,16 @@ def main():
     import torch
     from datasets import Dataset
     from peft import LoraConfig
-    from transformers import AutoTokenizer
+    from transformers import AutoTokenizer, set_seed
     from trl import SFTConfig, SFTTrainer
     if not torch.cuda.is_available():
         ap.error("pilot training requires a CUDA GPU")
+    if args.epochs <= 0 or args.lr <= 0 or args.rank <= 0:
+        ap.error("epochs, learning rate, and rank must be positive")
+    import os
+    if int(os.environ.get("WORLD_SIZE", "1")) != 1:
+        ap.error("this pilot's loss-normalization protocol currently supports a single GPU only")
+    set_seed(args.seed)  # Seed before model/LoRA initialization, not just the data loader.
     model, revision = resolve_model(args.model, args.revision)
     tok = AutoTokenizer.from_pretrained(model, revision=revision)
     examples = render_examples(records, tok)
@@ -71,21 +105,28 @@ def main():
     cfg = SFTConfig(output_dir=str(out), num_train_epochs=args.epochs, learning_rate=args.lr,
                     per_device_train_batch_size=1, gradient_accumulation_steps=16,
                     max_length=args.max_length, packing=False, completion_only_loss=True,
+                    loss_type="nll",
                     bf16=True, gradient_checkpointing=True, seed=args.seed, data_seed=args.seed,
-                    logging_steps=1, save_steps=25, save_total_limit=2, report_to="none",
+                    logging_steps=1, save_steps=25, save_total_limit=2,
+                    save_strategy=args.save_strategy, report_to="none",
                     model_init_kwargs={"revision": revision, "dtype": "bfloat16"})
     write_json(out/"run_manifest.json", {"config": cfg.to_dict(), "args": vars(args),
                "model_revision": revision, "dataset_sha256": digest(records),
                "teacher_data": source, "control_report": report, "environment": environment()})
     write_json(out/"training_status.json", {"state": "running"})
     try:
+        holder = {}
         trainer = SFTTrainer(model=model, args=cfg, train_dataset=Dataset.from_list(examples),
+                             compute_loss_func=(sequence_loss_callback(holder)
+                                                if args.loss_weighting == "sequence" else None),
                              processing_class=tok, peft_config=LoraConfig(
                                  r=args.rank, lora_alpha=2*args.rank, target_modules="all-linear",
                                  task_type="CAUSAL_LM"))
+        holder["trainer"] = trainer
         trainer.train()
         trainer.save_model(str(out/"final"))
         tok.save_pretrained(out/"final")
+        trainer.state.save_to_json(str(out/"trainer_state.json"))
         write_json(out/"training_status.json", {"state": "completed",
                    "global_step": trainer.state.global_step, "adapter": str((out/"final").resolve())})
     except BaseException as exc:

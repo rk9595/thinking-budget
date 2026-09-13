@@ -25,7 +25,20 @@ recipe; it is not a faithful reproduction of the original full-finetuning experi
   Original raw outputs are preserved alongside corrected copies. The reference still passes.
 - The temporary instance is verified deleted. A cleanup error exceeded the stated $3 limit:
   provider charges total approximately $4.08. See the pilot report
-  for the incident and fix. No new paid run, GRPO refinement, upload, or GGUF release is authorized.
+  for the incident and fix.
+- On September 13, the user authorized a staged $10 recovery budget: up to $3 for the
+  small SFT learnability diagnostic, up to $5 for a larger verified-data SFT pilot only if
+  that diagnostic passes, and $2 reserved for overhead and cleanup. This does not authorize
+  GRPO, publication, or additional spending. The frozen diagnostic plan is
+  [`results/sanity-2026-09-13/plan.json`](results/sanity-2026-09-13/plan.json).
+  It compares token-weighted and equal-completion NLL from identical initial seeds on 24
+  training problems for 20 epochs. Twelve other verified-source problems are diagnostic
+  probes; the original 100-problem holdout is untouched. Passing training-set controls and
+  75% accuracy at each budget permits the larger pilot, not a release claim.
+  `paid_sanity.py` retrieves and hashes artifacts before verified destruction. Its separate
+  remote timeout stops compute using the instance-restricted key, but stopping alone does
+  not end storage charges. Provisioning has a 15-minute local timeout; job cleanup begins
+  at 80 minutes and remote compute stop is scheduled at 90 minutes from creation.
 
 ## 1. Install and validate
 
