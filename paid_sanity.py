@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -16,7 +17,9 @@ import urllib.request
 from cleanup_gpu import destroy_and_verify
 from experiment import write_json
 
-RUN = "sanity-2026-09-13"
+RUN = os.environ.get("TB_DIAGNOSTIC_RUN", "sanity-2026-09-13")
+if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*", RUN):
+    raise ValueError("diagnostic run must be one directory name")
 REMOTE = "/workspace/thinking-budget"
 
 
@@ -59,11 +62,11 @@ def backup_verified(root):
         for name, value in expected.items())
 
 
-def remote_job():
+def remote_job(runner="sanity_sft.py"):
     root = Path.cwd()
     code = 1
     try:
-        code = subprocess.call([sys.executable, "sanity_sft.py", "run"])
+        code = subprocess.call([sys.executable, runner, "run"])
     except KeyboardInterrupt:
         code = 130
     finally:
@@ -95,6 +98,8 @@ def remote_guard(instance, deadline):
 
 def watch(state_path):
     state = json.loads(state_path.read_text())
+    if state.get("run", RUN) != RUN:
+        raise ValueError("supervisor run differs from its state file")
     root = Path(state["local_root"])
     key = Path(state["key_path"]).read_text().strip()
     instance = state["instance"]
@@ -110,7 +115,7 @@ def watch(state_path):
                 print("Instance verified absent:", instance, flush=True)
                 return
             elapsed = time.time() - started
-            cutoff = elapsed >= 80 * 60
+            cutoff = elapsed >= state.get("cutoff_minutes", 80) * 60
             # Bound provisioning failures; no useful job artifacts exist yet.
             if elapsed >= 15 * 60 and not state_path.with_suffix(".ready").exists():
                 print("Provisioning deadline reached", flush=True)
@@ -153,9 +158,10 @@ def main():
     parser.add_argument("--instance", type=int)
     parser.add_argument("--deadline", type=float)
     parser.add_argument("--state", type=Path)
+    parser.add_argument("--runner", choices=["sanity_sft.py", "decode_sanity.py"], default="sanity_sft.py")
     args = parser.parse_args()
     if args.action == "remote-job":
-        raise SystemExit(remote_job())
+        raise SystemExit(remote_job(args.runner))
     if args.action == "remote-guard":
         if not args.instance or not args.deadline:
             parser.error("remote guard requires instance and absolute deadline")

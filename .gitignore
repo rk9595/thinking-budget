@@ -14,3 +14,4 @@ data/
 results/teacher-pilot*
 results/*pilot*.workflow.log
 results/sanity-*/workflow.log
+results/decode-*/workflow.log
