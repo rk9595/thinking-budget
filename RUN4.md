@@ -1,5 +1,8 @@
 # Run 4 — the experiment that was never run
 
+> Superseded on 2026-09-08 by [RECOVERY.md](RECOVERY.md). The historical plan below is retained
+> for context. Do not use its process-kill/pipeline instructions or its old cost estimates.
+
 **Status: not started. Blocked on vast.ai credit ($0.00 as of 2026-08-28).**
 
 Runs 1–3 produced a 3.2x compression and no budget dial. This is the plan for the one

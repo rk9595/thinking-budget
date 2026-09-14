@@ -1,0 +1,405 @@
+{
+  "schema_version": 1,
+  "arms": {
+    "base_exact": {
+      "results": [
+        {
+          "dataset": "math500",
+          "budget": 512,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.8,
+          "mean_tokens": 3291.32,
+          "median_tokens": 2566.0,
+          "mean_abs_deviation": 2786.48,
+          "mean_relative_error": 5.44234375,
+          "within_20pct": 0,
+          "overshoot_rate": 0.98,
+          "mean_overshoot": 2782.9,
+          "truncation_rate": 0.12,
+          "think_closed_rate": 0.9,
+          "mean_reasoning_tokens": 2347.688888888889
+        },
+        {
+          "dataset": "math500",
+          "budget": 1024,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.84,
+          "mean_tokens": 3014.72,
+          "median_tokens": 2358.5,
+          "mean_abs_deviation": 2021.32,
+          "mean_relative_error": 1.9739453125,
+          "within_20pct": 0.1,
+          "overshoot_rate": 0.96,
+          "mean_overshoot": 2006.02,
+          "truncation_rate": 0.1,
+          "think_closed_rate": 0.92,
+          "mean_reasoning_tokens": 2162.1304347826085
+        },
+        {
+          "dataset": "math500",
+          "budget": 3600,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.86,
+          "mean_tokens": 3240.7,
+          "median_tokens": 2189.0,
+          "mean_abs_deviation": 1966.46,
+          "mean_relative_error": 0.5462388888888889,
+          "within_20pct": 0.16,
+          "overshoot_rate": 0.3,
+          "mean_overshoot": 803.58,
+          "truncation_rate": 0.12,
+          "think_closed_rate": 0.88,
+          "mean_reasoning_tokens": 2195.318181818182
+        }
+      ],
+      "paired_control": {
+        "math500": {
+          "n_pairs": 50,
+          "positive_endpoint_fraction": 0.48,
+          "monotonic_fraction": 0.24,
+          "mean_endpoint_slope": -0.016392487046632126
+        }
+      }
+    },
+    "run3_exact": {
+      "results": [
+        {
+          "dataset": "math500",
+          "budget": 512,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.7,
+          "mean_tokens": 923.34,
+          "median_tokens": 783.0,
+          "mean_abs_deviation": 450.3,
+          "mean_relative_error": 0.8794921875,
+          "within_20pct": 0.32,
+          "overshoot_rate": 0.76,
+          "mean_overshoot": 430.82,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 415.78
+        },
+        {
+          "dataset": "math500",
+          "budget": 1024,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.68,
+          "mean_tokens": 886.64,
+          "median_tokens": 740.0,
+          "mean_abs_deviation": 419.48,
+          "mean_relative_error": 0.4096484375,
+          "within_20pct": 0.18,
+          "overshoot_rate": 0.32,
+          "mean_overshoot": 141.06,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 397.16
+        },
+        {
+          "dataset": "math500",
+          "budget": 3600,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.66,
+          "mean_tokens": 962.24,
+          "median_tokens": 852.0,
+          "mean_abs_deviation": 2713.28,
+          "mean_relative_error": 0.7536888888888889,
+          "within_20pct": 0,
+          "overshoot_rate": 0.02,
+          "mean_overshoot": 37.76,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 459.12
+        }
+      ],
+      "paired_control": {
+        "math500": {
+          "n_pairs": 50,
+          "positive_endpoint_fraction": 0.54,
+          "monotonic_fraction": 0.22,
+          "mean_endpoint_slope": 0.012597150259067358
+        }
+      }
+    },
+    "base_l1": {
+      "results": [
+        {
+          "dataset": "math500",
+          "budget": 512,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.8,
+          "mean_tokens": 3635.42,
+          "median_tokens": 2922.0,
+          "mean_abs_deviation": 3135.3,
+          "mean_relative_error": 6.1236328125,
+          "within_20pct": 0.02,
+          "overshoot_rate": 0.96,
+          "mean_overshoot": 3129.36,
+          "truncation_rate": 0.12,
+          "think_closed_rate": 0.88,
+          "mean_reasoning_tokens": 2581.8636363636365
+        },
+        {
+          "dataset": "math500",
+          "budget": 1024,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.86,
+          "mean_tokens": 3545.78,
+          "median_tokens": 2971.5,
+          "mean_abs_deviation": 2578.66,
+          "mean_relative_error": 2.51822265625,
+          "within_20pct": 0.1,
+          "overshoot_rate": 0.9,
+          "mean_overshoot": 2550.22,
+          "truncation_rate": 0.1,
+          "think_closed_rate": 0.9,
+          "mean_reasoning_tokens": 2620.4
+        },
+        {
+          "dataset": "math500",
+          "budget": 3600,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.78,
+          "mean_tokens": 3500.84,
+          "median_tokens": 2710.5,
+          "mean_abs_deviation": 1965.92,
+          "mean_relative_error": 0.5460888888888888,
+          "within_20pct": 0.18,
+          "overshoot_rate": 0.28,
+          "mean_overshoot": 933.38,
+          "truncation_rate": 0.16,
+          "think_closed_rate": 0.86,
+          "mean_reasoning_tokens": 2324.4883720930234
+        }
+      ],
+      "paired_control": {
+        "math500": {
+          "n_pairs": 50,
+          "positive_endpoint_fraction": 0.42,
+          "monotonic_fraction": 0.28,
+          "mean_endpoint_slope": -0.04358160621761658
+        }
+      }
+    },
+    "reference_l1": {
+      "results": [
+        {
+          "dataset": "math500",
+          "budget": 512,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.76,
+          "mean_tokens": 512.16,
+          "median_tokens": 479.0,
+          "mean_abs_deviation": 134.24,
+          "mean_relative_error": 0.2621875,
+          "within_20pct": 0.52,
+          "overshoot_rate": 0.4,
+          "mean_overshoot": 67.2,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 469.42
+        },
+        {
+          "dataset": "math500",
+          "budget": 1024,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.78,
+          "mean_tokens": 924.26,
+          "median_tokens": 957.5,
+          "mean_abs_deviation": 164.26,
+          "mean_relative_error": 0.16041015625,
+          "within_20pct": 0.72,
+          "overshoot_rate": 0.28,
+          "mean_overshoot": 32.26,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 769.22
+        },
+        {
+          "dataset": "math500",
+          "budget": 3600,
+          "n": 50,
+          "n_problems": 50,
+          "accuracy": 0.88,
+          "mean_tokens": 3577.82,
+          "median_tokens": 3501.5,
+          "mean_abs_deviation": 241.86,
+          "mean_relative_error": 0.06718333333333333,
+          "within_20pct": 0.98,
+          "overshoot_rate": 0.24,
+          "mean_overshoot": 109.84,
+          "truncation_rate": 0.02,
+          "think_closed_rate": 0.98,
+          "mean_reasoning_tokens": 3158.734693877551
+        }
+      ],
+      "paired_control": {
+        "math500": {
+          "n_pairs": 50,
+          "positive_endpoint_fraction": 1,
+          "monotonic_fraction": 0.98,
+          "mean_endpoint_slope": 0.9927655440414508
+        }
+      }
+    }
+  },
+  "run3_vs_base": [
+    {
+      "dataset": "math500",
+      "budget": 512,
+      "metric": "correct",
+      "n_problems": 50,
+      "mean_delta": -0.1,
+      "bootstrap_95pct_ci": [
+        -0.24,
+        0.04
+      ]
+    },
+    {
+      "dataset": "math500",
+      "budget": 512,
+      "metric": "total_tokens",
+      "n_problems": 50,
+      "mean_delta": -2367.98,
+      "bootstrap_95pct_ci": [
+        -2991.08,
+        -1814.68
+      ]
+    },
+    {
+      "dataset": "math500",
+      "budget": 1024,
+      "metric": "correct",
+      "n_problems": 50,
+      "mean_delta": -0.16,
+      "bootstrap_95pct_ci": [
+        -0.3,
+        -0.04
+      ]
+    },
+    {
+      "dataset": "math500",
+      "budget": 1024,
+      "metric": "total_tokens",
+      "n_problems": 50,
+      "mean_delta": -2128.08,
+      "bootstrap_95pct_ci": [
+        -2793.92,
+        -1576.02
+      ]
+    },
+    {
+      "dataset": "math500",
+      "budget": 3600,
+      "metric": "correct",
+      "n_problems": 50,
+      "mean_delta": -0.2,
+      "bootstrap_95pct_ci": [
+        -0.34,
+        -0.06
+      ]
+    },
+    {
+      "dataset": "math500",
+      "budget": 3600,
+      "metric": "total_tokens",
+      "n_problems": 50,
+      "mean_delta": -2278.46,
+      "bootstrap_95pct_ci": [
+        -2919.16,
+        -1760
+      ]
+    }
+  ],
+  "reference_vs_base": [
+    {
+      "dataset": "math500",
+      "budget": 512,
+      "metric": "correct",
+      "n_problems": 50,
+      "mean_delta": -0.04,
+      "bootstrap_95pct_ci": [
+        -0.16,
+        0.08
+      ]
+    },
+    {
+      "dataset": "math500",
+      "budget": 512,
+      "metric": "total_tokens",
+      "n_problems": 50,
+      "mean_delta": -3123.26,
+      "bootstrap_95pct_ci": [
+        -3853.08,
+        -2444.96
+      ]
+    },
+    {
+      "dataset": "math500",
+      "budget": 1024,
+      "metric": "correct",
+      "n_problems": 50,
+      "mean_delta": -0.08,
+      "bootstrap_95pct_ci": [
+        -0.2,
+        0.04
+      ]
+    },
+    {
+      "dataset": "math500",
+      "budget": 1024,
+      "metric": "total_tokens",
+      "n_problems": 50,
+      "mean_delta": -2621.52,
+      "bootstrap_95pct_ci": [
+        -3308.68,
+        -2003.98
+      ]
+    },
+    {
+      "dataset": "math500",
+      "budget": 3600,
+      "metric": "correct",
+      "n_problems": 50,
+      "mean_delta": 0.1,
+      "bootstrap_95pct_ci": [
+        -0.02,
+        0.22
+      ]
+    },
+    {
+      "dataset": "math500",
+      "budget": 3600,
+      "metric": "total_tokens",
+      "n_problems": 50,
+      "mean_delta": 76.98,
+      "bootstrap_95pct_ci": [
+        -618.58,
+        716.76
+      ]
+    }
+  ],
+  "reference_gate": {
+    "reference_control_detected": true,
+    "checks": {
+      "length_error_under_35pct_each_budget": true,
+      "truncation_under_10pct_each_budget": true,
+      "positive_response_on_75pct_of_pairs": true,
+      "slope_between_half_and_one_and_half": true,
+      "slope_exceeds_base_by_point_three": true,
+      "some_correct_answers_each_budget": true
+    },
+    "note": "Development diagnostic only; thresholds fixed before generation. Not release approval."
+  }
+}

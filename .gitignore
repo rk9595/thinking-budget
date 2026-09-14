@@ -9,3 +9,9 @@ checkpoints/
 
 # regenerate with prepare_data.py
 data/
+
+# Teacher training traces and operational logs are preserved locally, not published.
+results/teacher-pilot*
+results/*pilot*.workflow.log
+results/sanity-*/workflow.log
+results/decode-*/workflow.log

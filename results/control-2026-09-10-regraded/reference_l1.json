@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "model": "l3lab/L1-Qwen-1.5B-Exact",
+  "lora": null,
+  "budget_wording": "l1",
+  "manifest": "reference_l1.manifest.json",
+  "samples": "reference_l1.samples.jsonl",
+  "results": [
+    {
+      "dataset": "math500",
+      "budget": 512,
+      "n": 50,
+      "n_problems": 50,
+      "accuracy": 0.76,
+      "mean_tokens": 512.16,
+      "median_tokens": 479.0,
+      "mean_abs_deviation": 134.24,
+      "mean_relative_error": 0.2621875,
+      "within_20pct": 0.52,
+      "overshoot_rate": 0.4,
+      "mean_overshoot": 67.2,
+      "truncation_rate": 0,
+      "think_closed_rate": 1.0,
+      "mean_reasoning_tokens": 469.42
+    },
+    {
+      "dataset": "math500",
+      "budget": 1024,
+      "n": 50,
+      "n_problems": 50,
+      "accuracy": 0.78,
+      "mean_tokens": 924.26,
+      "median_tokens": 957.5,
+      "mean_abs_deviation": 164.26,
+      "mean_relative_error": 0.16041015625,
+      "within_20pct": 0.72,
+      "overshoot_rate": 0.28,
+      "mean_overshoot": 32.26,
+      "truncation_rate": 0,
+      "think_closed_rate": 1.0,
+      "mean_reasoning_tokens": 769.22
+    },
+    {
+      "dataset": "math500",
+      "budget": 3600,
+      "n": 50,
+      "n_problems": 50,
+      "accuracy": 0.88,
+      "mean_tokens": 3577.82,
+      "median_tokens": 3501.5,
+      "mean_abs_deviation": 241.86,
+      "mean_relative_error": 0.06718333333333333,
+      "within_20pct": 0.98,
+      "overshoot_rate": 0.24,
+      "mean_overshoot": 109.84,
+      "truncation_rate": 0.02,
+      "think_closed_rate": 0.98,
+      "mean_reasoning_tokens": 3158.734693877551
+    }
+  ],
+  "paired_control": {
+    "math500": {
+      "n_pairs": 50,
+      "positive_endpoint_fraction": 1,
+      "monotonic_fraction": 0.98,
+      "mean_endpoint_slope": 0.9927655440414508
+    }
+  }
+}

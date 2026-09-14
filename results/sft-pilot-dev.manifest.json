@@ -1,0 +1,680 @@
+{
+  "schema_version": 2,
+  "config": {
+    "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+    "revision": "ad9f0ae0864d7fbcd1cd905e3c6c5b069cc8b562",
+    "chat_template_model": null,
+    "chat_template_revision": null,
+    "lora": "checkpoints/sft-pilot/final",
+    "datasets": [
+      "math500",
+      "gsm8k"
+    ],
+    "problem_file": "data/pilot/dev_problems.jsonl",
+    "budgets": [
+      512,
+      1024,
+      3600
+    ],
+    "seeds": [
+      42
+    ],
+    "selection_seed": 17,
+    "wording": "exact",
+    "limit": 50,
+    "max_tokens": 8192,
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "gpu_memory": 0.85,
+    "batch_size": 32,
+    "out": "results/sft-pilot-dev.json"
+  },
+  "model_revision": "ad9f0ae0864d7fbcd1cd905e3c6c5b069cc8b562",
+  "problem_set_sha256": "2607c418151a758c8b7132768ed203ba8ce1e254d10428e599b7852d680ef401",
+  "problems": [
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "e5b044c2e72349a8c3b89215996b80e456d75fd3060a523b1ebd34a7e355dc40",
+      "problem": "Find $x$ if $\\log_9(2x-7) = \\dfrac{3}{2}$.",
+      "answer": "17"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "b4721599ee82ae98b4acbe34a4f85624de2c1121cfeb7dbf30b296a881216153",
+      "problem": "The natural domain of the function \\( y = f\\left(\\frac{2x}{3x^2 + 1}\\right) \\) is \\(\\left[\\frac{1}{4}, a\\right]\\). Find the value of \\( a \\).",
+      "answer": "\\frac{4}{3}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "17fb0260107d764ec8908f8812002299cdc8ce18aeec7cfcbf1fbcd74b096a0b",
+      "problem": "Anna flips an unfair coin 10 times. The coin has a $\\frac{1}{3}$ probability of coming up heads and a $\\frac{2}{3}$ probability of coming up tails. What is the probability that she flips exactly 7 tails?",
+      "answer": "\\frac{5120}{19683}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "56bf80f1e2043a0df11ec87dea3dede45697ba8db1b2d329664e71f604a73611",
+      "problem": "In a $4 \\times 4$ grid, place candies according to the following requirements: (1) Each cell must contain candies; (2) In adjacent cells, the left cell has 1 fewer candy than the right cell and the upper cell has 2 fewer candies than the lower cell; (3) The bottom-right cell contains 20 candies. How many candies are there in total on the grid? (Adjacent cells are those that share a common edge)",
+      "answer": "248"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "3c6920c2503ca484a9f36efa14897933acdc81d737f7de200907d641adeaa756",
+      "problem": "An equilateral triangle and a square have the same perimeter of 12 inches. What is the ratio of the side length of the triangle to the side length of the square? Express your answer as a common fraction.",
+      "answer": "\\frac{4}{3}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "6f10b3d7ad1a2467ee0c03d5158cf209f3768cc62a71333836c0a787f70ae46f",
+      "problem": "Find the smallest integer  $n$  such that an  $n\\times n$  square can be partitioned into  $40\\times 40$  and  $49\\times 49$  squares, with both types of squares present in the partition, if\r\na)  $40|n$ ; b)  $49|n$ ; c)  $n\\in \\mathbb N$ .",
+      "answer": "1960"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "fe2d20f45f07084b3cf7186f66ce95959e1a21c3669984b1da62328217325707",
+      "problem": "Let $n$ be the least positive integer for which $149^n-2^n$ is divisible by $3^3\\cdot5^5\\cdot7^7.$ Find the number of positive integer divisors of $n.$",
+      "answer": "270"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "46ca506e203063c7333604f0dc1faa7d97fd6cf36585ae05445202adac7f2aaa",
+      "problem": "The function $f$ defined by $f(x)= \\frac{ax+b}{cx+d}$, where $a$,$b$,$c$ and $d$ are nonzero real numbers, has the properties $f(19)=19$, $f(97)=97$ and $f(f(x))=x$ for all values except $\\frac{-d}{c}$. Find the unique number that is not in the range of $f$.",
+      "answer": "58"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "654d6482d42625b55758fd7bf7971ca6dff31709b7ca995af3e12606f5b6b503",
+      "problem": "In some cases, it is not necessary to calculate the result to remove the absolute value. For example: $|6+7|=6+7$, $|6-7|=7-6$, $|7-6|=7-6$, $|-6-7|=6+7.\\left(1\\right)$ According to the above rule, express the following expressions in the form without absolute value symbols: <br/>①$|\\frac{7}{17}-\\frac{7}{18}|=$______；<br/>②$|\\pi -3.15|=$______；<br/>$(2)$ Calculate using a simple method: $|\\frac{1}{3}-\\frac{1}{2}|+|\\frac{1}{4}-\\frac{1}{3}|+|\\frac{1}{5}-\\frac{1}{4}|+…+|\\frac{1}{2022}-\\frac{1}{2021}|$.",
+      "answer": "\\frac{505}{1011}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "4bb21763904a4d7f3ebcf6d5892b90d79fb6f065ae1995f712a1b59ea199ba7b",
+      "problem": "How many rows of Pascal's Triangle contain the number $43$?",
+      "answer": "1"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "5ba5c44b4fdeb48522aa460999e140d017eb6149953795d723a19a300dc8567a",
+      "problem": "What is the radius of the circle inscribed in triangle $ABC$ if $AB = AC=7$ and $BC=6$? Express your answer in simplest radical form.",
+      "answer": "\\frac{3\\sqrt{10}}{5}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "f19d6a73636c2ba4e3cea160b338e326c79a91836a9ae18e898730ffb1b17baf",
+      "problem": "It is known that there is a four-person team consisting of boys A and B and girls C and D participating in a quiz activity organized by a TV station. The activity consists of four rounds. Let the probabilities for the boys to pass rounds one to four be $\\frac{5}{6}, \\frac{4}{5}, \\frac{3}{4}, \\frac{2}{3}$, respectively, and the probabilities for the girls to pass rounds one to four be $\\frac{4}{5}, \\frac{3}{4}, $\\frac{2}{3}, \\frac{1}{2}$, respectively.\n(1) Find the probability that a boy passes all four rounds;\n(2) Let $\\xi$ represent the number of people in the four-person team who pass all four rounds. Find the distribution and the expectation of the random variable $\\xi$.",
+      "answer": "\\frac{16}{15}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "d98ee4d985c064d767e94813333984e6f314a6f3e697fcd5d47c8c19014e38fd",
+      "problem": "Find all values of \\( x \\) for which the smaller of the numbers \\( \\frac{1}{x} \\) and \\( \\sin x \\) is greater than \\( \\frac{1}{2} \\). In the answer, provide the total length of the resulting intervals on the number line, rounding to the nearest hundredth if necessary.",
+      "answer": "2.09"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "1964e6a340756a666a4222664cbc4f9f2a7d66765bc55b3c0e6658fde696b2ac",
+      "problem": "Evaluate the infinite series $\\sum_{k = 1}^\\infty \\frac{k^2}{2^k}.$",
+      "answer": "6"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "e24a88e0a5f6361c0d6b05b24a8a6d0538c16cb30f7104ba173cb752cea13e7c",
+      "problem": "The distance from city $A$ to city $B$ is $999$ km. Along the highway leading from $A$ to $B$, there are kilometer markers indicating the distances from the marker to $A$ and $B$ as shown:\n\n![](https://via.placeholder.com/1236x83.png)\n\nHow many of these markers use only two different digits to indicate both distances?",
+      "answer": "40"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "59e6c9fb66293d1237d076f34e78e9a20e5d700826e2a771c83f0802c10d8e32",
+      "problem": "Four scores belong to Alex and the other three to Morgan: 78, 82, 90, 95, 98, 102, 105. Alex's mean score is 91.5. What is Morgan's mean score?",
+      "answer": "94.67"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "ccdbee3fa68fb671efd0a73633c283f4777d27737f5cfde95d0543b0e47c7bd6",
+      "problem": "Spinners $A$ and $B$ are spun. On each spinner, the arrow is equally likely to land on each number. What is the probability that the product of the two spinners' numbers is even?  Express your answer as a common fraction. [asy]\n/* AMC8 2004 #21 Problem */\ndraw(circle((0,0), 2));\ndraw(circle((6,0), 2));\ndraw((-2,0)--(2,0));\ndraw((0,-2)--(0,2));\npath p=(0,0)--(0,2);\ndraw(shift(6,0)*p);\ndraw(shift(6,0)*rotate(120)*p);\ndraw(shift(6,0)*rotate(240)*p);\nlabel(scale(0.6)*\"1\", (-1,1));\nlabel(scale(0.6)*\"2\", (1,1));\nlabel(scale(0.6)*\"3\", (1,-1));\nlabel(scale(0.6)*\"4\", (-1,-1));\nlabel(scale(0.6)*\"1\", (5,.75));\nlabel(scale(0.6)*\"2\", (7,.75));\nlabel(scale(0.6)*\"3\", (6,-1));\ndraw((0,0)--(1.5,.5), EndArrow);\ndraw(shift(6,0)*rotate(45)*((0,0)--(1.5,.5)), EndArrow);\n[/asy]",
+      "answer": "\\frac{2}{3}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "1ee41c9a452cd1699e20df1c4b5515c6258749160db01b9af8d509a7e29870c5",
+      "problem": "Consider a polynomial  $P(x) \\in \\mathbb{R}[x]$ , with degree  $2023$ , such that  $P(\\sin^2(x))+P(\\cos^2(x)) =1$  for all  $x \\in \\mathbb{R}$ . If the sum of all roots of  $P$  is equal to  $\\dfrac{p}{q}$  with  $p, q$  coprime, then what is the product  $pq$ ?",
+      "answer": "4046"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "7711a86234052bb7ddbc46720e948026baa9ef17c6279eefa1cb6a253b71bbc1",
+      "problem": "A bag contains four pieces of paper, each labeled with one of the digits $1$, $2$, $3$ or $4$, with no repeats. Three of these pieces are drawn, one at a time without replacement, to construct a three-digit number. What is the probability that the three-digit number is a multiple of $3$?",
+      "answer": "\\frac{1}{2}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "c3e96d728ba0ca7cb776799802b55ba298b644865d1a7cbf89231098cedab062",
+      "problem": "Find the area of the circle described by the equation $x^2 - 4x + y^2 - 8y + 12 = 0$ that lies above the line $y = 3$.",
+      "answer": "4\\pi"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "c72cdeb325575cfea84d7e040b4f1b68ad8231875816783c185362f3070f1cbe",
+      "problem": "Six trees are equally spaced along one side of a straight road. The distance from the first tree to the fourth is 60 feet. What is the distance in feet between the first and last trees?",
+      "answer": "100"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "bc6c95aa92adad4ff3a8dd20cb7712d6e1de60404ac324bd8236be4743df6a31",
+      "problem": "The isosceles trapezoid shown has side lengths as labeled. How long is segment AC? [asy]\nunitsize(1.5mm);\ndefaultpen(linewidth(.7pt)+fontsize(10pt));\ndotfactor=3;\n\npair A=(0,0), B=(21,0), C=(15,8), D=(6,8);\npair[] dots={A,B,C,D};\n\ndraw(A--B--C--D--cycle);\ndot(dots);\nlabel(\"A\",A,SW);\nlabel(\"B\",B,SE);\nlabel(\"C\",C,NE);\nlabel(\"D\",D,NW);\nlabel(\"9\",midpoint(C--D),N);\nlabel(\"10\",midpoint(D--A),NW);\nlabel(\"21\",midpoint(A--B),S);\nlabel(\"10\",midpoint(B--C),NE);\n[/asy]",
+      "answer": "17"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "66a2d5f0a78c11b0f3467d5321539e4f1ac9cb2bc581724dde4fca1bd566b8dc",
+      "problem": "Boris was given a Connect Four game set for his birthday, but his color-blindness makes it hard to play the game. Still, he enjoys the shapes he can make by dropping checkers into the set. If the number of shapes possible modulo (horizontal) flips about the vertical axis of symmetry is expressed as $9(1+2+\\cdots+n)$, find $n$.",
+      "answer": "729"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "2b6bb8dce271cc162cc6c3ec7dd35984ea358ce26c2859c7d1f92d39704937a1",
+      "problem": "In a certain city, vehicle license plates are numbered consecutively from \"10000\" to \"99999\". How many license plates out of these 90,000 have the digit 9 appearing at least once and where the sum of the digits is a multiple of 9?",
+      "answer": "4168"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "40c111e5525bbba95af19afb8d8fa57ce976a32eca7f3f335d2f27b38e06efb2",
+      "problem": "Lil Wayne, the rain god, determines the weather. If Lil Wayne makes it rain on any given day, the probability that he makes it rain the next day is $75 \\%$. If Lil Wayne doesn't make it rain on one day, the probability that he makes it rain the next day is $25 \\%$. He decides not to make it rain today. Find the smallest positive integer $n$ such that the probability that Lil Wayne makes it rain $n$ days from today is greater than $49.9 \\%$.",
+      "answer": "9"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "376a0750d9fd29c114543e44bc2d66876e20166ef71c2819c6e1901c3ff6e7dd",
+      "problem": "If $f(x)=\\frac{x(x-1)}{2}$, then $f(x+2)$ equals:",
+      "answer": "\\frac{(x+2)f(x+1)}{x}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "ce0b942af161eccb308413d9e36aa6282894fca98602e33eb96791018759d3d8",
+      "problem": "What is the base 4 representation of the base 2 number $101010101_2$?",
+      "answer": "11111_4"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "fcd7a8d249b75621b1c4d0d4b3269495e47b9a846113342fa9cd6155a1155f16",
+      "problem": "A sector with a central angle of 135° has an area of $S_1$, and the total surface area of the cone formed by it is $S_2$. Find the value of $\\frac{S_{1}}{S_{2}}$.",
+      "answer": "\\frac{8}{11}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "da5cace019dcb15ed566b3eb0f94a299d7bd27ebae76060cd7d5c74d68e84ca7",
+      "problem": "Find the set of $x$-values satisfying the inequality $|\\frac{5-x}{3}|<2$. [The symbol $|a|$ means $+a$ if $a$ is positive, \n$-a$ if $a$ is negative,$0$ if $a$ is zero. The notation $1<a<2$ means that a can have any value between $1$ and $2$, excluding $1$ and $2$. ]",
+      "answer": "-1 < x < 11"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "34beb823c4e752dcffbbebfc78885ce80347bd413deffa8f77ec1d69a420d83f",
+      "problem": "Let  $l$  some line, that is not parallel to the coordinate axes. Find minimal  $d$  that always exists point  $A$  with integer coordinates, and distance from  $A$  to  $l$  is   $\\leq d$ ",
+      "answer": "\\frac{1}{2\\sqrt{2}}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "a8e86cdfef24eb8b48cf2ada7a791fd655554ee52c28a58678467e26472aa032",
+      "problem": "Evaluate $(2-w)(2-w^2)\\cdots(2-w^{10})$ where $w=e^{2\\pi i/11}.$",
+      "answer": "2047"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "8ea3169d7ddcb46238ea718c877cdfc224dfca0ba6938e8e47516c215152b188",
+      "problem": "What is the area enclosed by the region defined by the equation $x^2+y^2+12x+16y=0$?",
+      "answer": "100\\pi"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "8899687112645029da85b716bde46de6f0b745d46d182443b24513fc2087ec9c",
+      "problem": "Let $a$, $b$, $c$, and $d$ be positive integers with $a < 3b$, $b < 3c$, and $c < 4d$. Additionally, suppose $b + d = 200$. The largest possible value for $a$ is:\nA) 438\nB) 440\nC) 445\nD) 449\nE) 455",
+      "answer": "449"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "05b45b786cd8a3ec81a48fb2389163cd06e18ef5c7cf5a8503a8959230c99518",
+      "problem": "Find the infinite sum of \\(\\frac{1^{3}}{3^{1}}+\\frac{2^{3}}{3^{2}}+\\frac{3^{3}}{3^{3}}+\\frac{4^{3}}{3^{4}}+\\cdots\\).\n\n求 \\(\\frac{1^{3}}{3^{1}}+\\frac{2^{3}}{3^{2}}+\\frac{3^{3}}{3^{3}}+\\frac{4^{3}}{3^{4}}+\\cdots\\) 無限項之和。",
+      "answer": "\\frac{33}{8}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "b8c2bf14cb2d1e22be175333394e44ade92a755b430ddbb94fc0afe445ed2543",
+      "problem": "In right triangle $ABC$ with $\\angle A = 90^\\circ$, we have $AB = 6$ and $BC = 10$.  Find $\\cos C$.",
+      "answer": "\\frac45"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "0fe5b13af0b4f4c42c966a3835bdd8d47800b926cedbbc511ce57fde666a9e5d",
+      "problem": "Calculate $\\sqrt[4]{\\sqrt{\\frac{32}{10000}}}$.",
+      "answer": "\\frac{\\sqrt[8]{2}}{\\sqrt{5}}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "e6578cbb58bffda99ecc10efe8f39b531686fd664d71c1f68d36befa72ce579c",
+      "problem": "How many integers $x$ satisfy the equation $(x^2-x-1)^{x+2}=1?$",
+      "answer": "4"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "e52d8a440e9fa5c74b69eab46e102c83e2a3e0dafceb7f5bcfef6d19f1af9bc8",
+      "problem": "Translate the graph of $y= \\sqrt {2}\\sin (2x+ \\frac {\\pi}{3})$ to the right by $\\phi(0 < \\phi < \\pi)$ units to obtain the graph of the function $y=2\\sin x(\\sin x-\\cos x)-1$. Then, $\\phi=$ ______.",
+      "answer": "\\frac {13\\pi}{24}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "340b0041193940afb656b79d58a72eed1494f36a877af298b5926ce52845a311",
+      "problem": "A $2\\times 3$ rectangle and a $3\\times 4$ rectangle are contained within a square without overlapping at any interior point, and the sides of the square are parallel to the sides of the two given rectangles. What is the smallest possible area of the square?",
+      "answer": "25"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "efa9f61df8f40321504afb7b9afc9d50566b8cd7b65d7c95f796f959ff971248",
+      "problem": "Let b be a real number randomly selected from the interval $[-17,17]$. Then, m and n are two relatively prime positive integers such that m/n is the probability that the equation $x^4+25b^2=(4b^2-10b)x^2$ has $\\textit{at least}$ two distinct real solutions. Find the value of $m+n$.\n",
+      "answer": "63"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "58bc1e65af67482c1e1f027c6afa95d3feed459270319a5dcb6acd66c610cd88",
+      "problem": "If $a$, $b$, and $c$ are digits and $0.abc$ can be expressed as $\\frac{1}{y}$ where $y$ is an integer such that $0<y\\le9$, then what is the largest possible value of $a+b+c$?",
+      "answer": "8"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "37fef790438c841b4c68dda271ac878beab9920e870fc92c59de1b41f6cb793c",
+      "problem": "Let $f(x) = |3\\{x\\} - 1.5|$, where $\\{x\\}$ denotes the fractional part of $x$. Find the smallest positive integer $n$ such that the equation \\[nf(xf(x)) = 2x\\] has at least $1000$ real solutions.",
+      "answer": "250"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "3b3f44ca5fcd850fd5aa2e77e60be5b50b484ca76fc80e243364cac04d275ca5",
+      "problem": "If $3n=9+9+9$, what is the value of $n$?",
+      "answer": "9"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "655309e7e51a3a2534f408daa1b08a95a921946a1f31007b93cd6d1d9d815954",
+      "problem": "In the geometric sequence $\\{a_n\\}$, it is given that $a_1 + a_4 + a_7 = 2$, and $a_3 + a_6 + a_9 = 18$. Find the sum of the first 9 terms, $S_9$, of the sequence $\\{a_n\\}$.",
+      "answer": "26"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "e12f2dd791eac1c554a5bcdb5811c6a1e934b50b05c8cd62d8dab6540e5327eb",
+      "problem": "Calculate the volume in cubic centimeters of a truncated cone formed by cutting a smaller cone from a larger cone. The larger cone has a diameter of 8 cm at the base and a height of 10 cm. The smaller cone, which is cut from the top, has a diameter of 4 cm and a height of 4 cm. Express your answer in terms of \\(\\pi\\).",
+      "answer": "48\\pi"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "117105471d4bde2a2e255fc7dd2ddb0f5b9af68bb0bf53d9ec8f48b2f3e750c0",
+      "problem": "If \\(x = \\frac{1}{3}\\) and \\(y = 3\\), find the value of \\(\\frac{1}{4}x^3y^8\\).",
+      "answer": "60.75"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "332bbec39aac30a9c84410a3e3d3664904f4573faa5181da57266b459621fefe",
+      "problem": "For any positive integer $n$, let \\langle n\\rangle denote the closest integer to \\sqrt{n}.  Evaluate\n\\[\\sum_{n=1}^\\infty \\frac{2^{\\langle n\\rangle}+2^{-\\langle n\\rangle}}{2^n}.\\]",
+      "answer": "3"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "bd5fa097e962b8b58a2c6acca035f30a14c50c2720a1f268a138e9c5452efc2f",
+      "problem": "In an isosceles triangle \\( ABC \\), the bisectors \\( AD, BE, CF \\) are drawn.\n\nFind \\( BC \\), given that \\( AB = AC = 1 \\), and the vertex \\( A \\) lies on the circle passing through the points \\( D, E, \\) and \\( F \\).",
+      "answer": "\\frac{\\sqrt{17} - 1}{2}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "505ba2481583e6592c961a3cafb4c28e938aa766b440a0b11ec143ae1ed6d493",
+      "problem": "On the shore of a circular island (viewed from above) are the cities $A$, $B$, $C$, and $D$. The straight asphalt road $AC$ divides the island into two equal halves. The straight asphalt road $BD$ is shorter than the road $AC$ and intersects it. The cyclist's speed on any asphalt road is 15 km/h. The island also has straight dirt roads $AB$, $BC$, $CD$, and $AD$, where the cyclist's speed on any dirt road is the same. The cyclist travels from point $B$ to each of the points $A$, $C$, and $D$ along a straight road in 2 hours. Find the area enclosed by the quadrilateral $ABCD$.",
+      "answer": "450"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "0da22851cb44e971ff3cabdd5f90b6732aada57f727f76c060bed103ce205f6e",
+      "problem": "One hundred bricks, each measuring $3''\\times 8''\\times 15''$, are stacked to form a tower. Each brick can contribute $3''$, $8''$, or $15''$ to the height of the tower. How many different tower heights can be achieved using all one hundred bricks?",
+      "answer": "1201"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "fded5ee6645668c9fc8cf02ec1c7cf35e07149ff8abc658f5a6d51094f080242",
+      "problem": "There are three islands A, B, and C at sea. It is measured that the distance between islands A and B is 10n miles, $\\angle BAC=60^\\circ$, and $\\angle ABC=75^\\circ$. The distance between islands B and C is \\_\\_\\_\\_\\_\\_ n miles.",
+      "answer": "5\\sqrt{6}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "e628c94233ead99d3e21f2dc7914b6157343f482638bd751d0db874290d4cac1",
+      "problem": "It takes 15 men working steadily 4 days to dig the foundation for a new apartment.  How many days would it have taken 25 men working at the same rate to dig the foundation?  Express your answer as a decimal to the nearest tenth.",
+      "answer": "2.4"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "6a988d1d390ad11acfcb4ee5998849ba6ae3ac71f0500994c73269bf8d3e2bb7",
+      "problem": "\nWhen I saw Eleonora, I found her very pretty. After a brief trivial conversation, I told her my age and asked how old she was. She answered:\n\n- When you were as old as I am now, you were three times older than me. And when I will be three times older than I am now, together our ages will sum up to exactly a century.\n\nHow old is this capricious lady?",
+      "answer": "15"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "a3443d6ea03c83f19f7fcc1dd6fcb3aa5c736bce0db3374a1fd74677019c41bf",
+      "problem": "In triangle $ABC$, the sides opposite to the angles $A$, $B$, and $C$ are labeled as $a$, $b$, and $c$ respectively. Given $a=5, B= \\frac {\\pi}{3},$ and $\\cos A= \\frac {11}{14}$, find the area $S$ of the triangle $ABC$.",
+      "answer": "10 \\sqrt {3}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "296509feb427670cbd3a9dfe7285543f9406f7391baa50dd36bc95ad93d946f0",
+      "problem": "There are four cards, each with a number on both sides. The first card has 0 and 1, the other three cards have 2 and 3, 4 and 5, and 7 and 8 respectively. If any three cards are selected and arranged in a row, how many different three-digit numbers can be formed?",
+      "answer": "168"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "c59e56af884b8aafdefc688cc38835ffd510255d224d0daca4cea18886f0f1fb",
+      "problem": "Given $\\cos\\alpha =\\frac{\\sqrt{5}}{5}$ and $\\sin\\beta =\\frac{3\\sqrt{10}}{10}$, with $0 < \\alpha$, $\\beta < \\frac{\\pi}{2}$, determine the value of $\\alpha +\\beta$.",
+      "answer": "\\frac{3\\pi}{4}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "25ba5e37f171497bfe9e42f2339eead8a74ea51bca5323ed15db1b287d3cb76b",
+      "problem": "Divers extracted a certain number of pearls, not exceeding 1000. The distribution of the pearls happens as follows: each diver in turn approaches the heap of pearls and takes either exactly half or exactly one-third of the remaining pearls. After all divers have taken their share, the remainder of the pearls is offered to the sea god. What is the maximum number of divers that could have participated in the pearl extraction?",
+      "answer": "12"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "8567402fcea8c822bd48672187ae57798b79699dc95010457a4a306975d5753d",
+      "problem": "Alice places a coin, heads up, on a table then turns off the light and leaves the room. Bill enters the room with 2 coins and flips them onto the table and leaves. Carl enters the room, in the dark, and removes a coin at random. Alice reenters the room, turns on the light and notices that both coins are heads. What is the probability that the coin Carl removed was also heads?",
+      "answer": "3/5"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "21e819d46b30e99be29fe261d42a3da57b44d83698976b7ef4bea862f4263943",
+      "problem": "Determine how many prime dates occurred in 2008, a leap year. A \"prime date\" is when both the month and the day are prime numbers.",
+      "answer": "53"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "6373153583dc7734016f8d5a0d26afeb17c16e75508b829a4cb968b95944e249",
+      "problem": "For environmental protection, Wuyang Mineral Water recycles empty bottles. Consumers can exchange 4 empty bottles for 1 bottle of mineral water (if there are fewer than 4 empty bottles, they cannot be exchanged). Huacheng Middle School bought 1999 bottles of Wuyang brand mineral water. If they exchange the empty bottles for new bottles of water as much as possible, then the teachers and students of Huacheng Middle School can drink a total of     bottles of mineral water; conversely, if they can drink a total of 3126 bottles of mineral water, then they originally bought     bottles of mineral water.",
+      "answer": "2345"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "7d7cfeb3eea8af12038cbdb87eabf1618ffc51181946c984d20fa4f7fea4d626",
+      "problem": "Find $A$ and $B$ such that\n\\[\\frac{5x+2}{x^2-7x-30}=\\frac{A}{x-10}+\\frac{B}{x+3}.\\]Write your answer in the form $(A,B)$.",
+      "answer": "(4,1)"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "bfb8be33227ac36c302759175add137b82035b4f3c88061b79d8e3efc21f2c9e",
+      "problem": "Each of the integers 226 and 318 has digits whose product is 24. How many three-digit positive integers have digits whose product is 24?",
+      "answer": "21"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "831f1d35b767b4d00e7802dc7a69da55427966be386758ac63dfbb7f13fa4700",
+      "problem": "The base of the quadrilateral prism \\( A B C D A_{1} B_{1} C_{1} D_{1} \\) is a rhombus \\( A B C D \\) with \\( B D = 12 \\) and \\( \\angle B A C = 60^{\\circ} \\). A sphere passes through the vertices \\( D, A, B, B_{1}, C_{1}, D_{1} \\).\n\na) Find the area of the circle obtained in the cross section of the sphere by the plane passing through points \\( A_{1}, B_{1} \\), and \\( C_{1} \\).\n\nb) Find the angle \\( A_{1} C B \\).\n\nc) Given that the radius of the sphere is 8, find the volume of the prism.",
+      "answer": "192\\sqrt{3}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "dd305424739abd308605fb379b297033a61bdc5f21224097a924693a9d5d2a71",
+      "problem": "Let $O$ be the origin, and let $(a,b,c)$ be a fixed point.  A plane passes through $(a,b,c)$ and intersects the $x$-axis, $y$-axis, and $z$-axis at $A,$ $B,$ and $C,$ respectively, all distinct from $O.$  Let $(p,q,r)$ be the center of the sphere passing through $A,$ $B,$ $C,$ and $O.$  Find\n\\[\\frac{a}{p} + \\frac{b}{q} + \\frac{c}{r}.\\]",
+      "answer": "2"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "51a6c68c3ef69b80aa522a36892754a2e7b3fc0e2f2a4f0304c1f10c59e2959a",
+      "problem": "Find the curve defined by the equation\n\\[r = \\frac{1}{\\sin \\theta - \\cos \\theta}.\\](A) Line\n(B) Circle\n(C) Parabola\n(D) Ellipse\n(E) Hyperbola\n\nEnter the letter of the correct option.",
+      "answer": "\\text{(A)}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "9f6e6f8db9f6b0db7cfe0ede828785a4836e40262ad8ef8f5833ef0b77875e3a",
+      "problem": "The smallest possible value of $m$ for which Casper can buy exactly $10$ pieces of strawberry candy, $18$ pieces of lemon candy, and $20$ pieces of cherry candy, given that each piece of orange candy costs $15$ cents.",
+      "answer": "12"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "7b92603d4a47b83d2ed43ed79a185faabcfe7a65b7e10095c480d05f3579c801",
+      "problem": "On the board, the number 27 is written. Every minute, the number is erased from the board and replaced with the product of its digits increased by 12. For example, after one minute, the number on the board will be $2 \\cdot 7 + 12 = 26$. What number will be on the board after an hour?",
+      "answer": "14"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "cbe2266278dd3c331688ecf2c5ff214fc636bea4302d5a99784cc35a70bff120",
+      "problem": "Find the number of distinct numbers in the list\n\\[\\left\\lfloor \\frac{1^2}{1000} \\right\\rfloor, \\ \\left\\lfloor \\frac{2^2}{1000} \\right\\rfloor, \\ \\left\\lfloor \\frac{3^2}{1000} \\right\\rfloor, \\ \\dots, \\ \\left\\lfloor \\frac{1000^2}{1000} \\right\\rfloor.\\]",
+      "answer": "751"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "bb658d53b00ff50dd5ef4942afe2923c6f0d3acb19d8c05bb7f2aa643c156657",
+      "problem": "Given that \\\\(\\alpha\\\\) and \\\\(\\beta\\\\) are acute angles, and \\\\(\\cos \\alpha= \\frac{\\sqrt{5}}{5}\\\\), \\\\(\\sin (\\alpha+\\beta)= \\frac{3}{5}\\\\), find the value of \\\\(\\cos \\beta\\\\.",
+      "answer": "\\frac{2\\sqrt{5}}{25}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "505eca255ff1e7696d66755e0dc9506faa6c2ad268a7c6021694072c82b6ca9c",
+      "problem": "Among the positive integers less than $10^{4}$, how many positive integers $n$ are there such that $2^{n} - n^{2}$ is divisible by 7?",
+      "answer": "2857"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "eae757f427952e3d6fcb5cdbc0c6a3aea363db17afb75ecf45fe18c9cd6e93fa",
+      "problem": "A robot has 6 modules, each needing a base and a cap attached sequentially. In how many different orders can the robot attach its bases and caps, assuming that, on each module, the base must be attached before the cap?\nA) $6! \\cdot 2^6$\nB) $(6!)^2$\nC) $12!$\nD) $\\frac{12!}{2^6}$\nE) $2^{12} \\cdot 6!$",
+      "answer": "\\frac{12!}{2^6}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "5c12b019e3389d02b997b1bb761b5b0408f837844db0546696e08971b7279bc3",
+      "problem": "The perimeter of quadrilateral PQRS, made from two similar right-angled triangles PQR and PRS, is given that the length of PQ is 3, the length of QR is 4, and ∠PRQ = ∠PSR. Find the perimeter of PQRS.",
+      "answer": "22"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "20f708be7e37f2a4f99311ae5abf9280567c67efdf602ab45fd8c050dc4c2340",
+      "problem": "A parabola with equation $y=x^2+bx+c$ passes through the points $(-1,-11)$ and $(3,17)$. What is $c$?",
+      "answer": "-7"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "4d8ecdc77da52245d09309068f6feb5bf02ff17a0144ac5807e9ef266cc95bf1",
+      "problem": "A large $5 \\times 5 \\times 5$ cube is formed using 125 small $1 \\times 1 \\times 1$ cubes. There are three central columns, each passing through the small cube at the very centre of the large cube: one from top to bottom, one from front to back, and one from left to right. All of the small cubes that make up these three columns are removed. What is the surface area of the resulting solid?",
+      "answer": "192"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "1c131268bae84c8343deb580f7f4c32c8c301fb00244bf9dbf8f500a65df71fc",
+      "problem": "Given the function $f(x)=e^{x}$, $g(x)=-x^{2}+2x+b(b\\in\\mathbb{R})$, denote $h(x)=f(x)- \\frac {1}{f(x)}$  \n(I) Determine the parity of $h(x)$ and write down the monotonic interval of $h(x)$, no proof required;  \n(II) For any $x\\in[1,2]$, there exist $x_{1}$, $x_{2}\\in[1,2]$ such that $f(x)\\leqslant f(x_{1})$, $g(x)\\leqslant g(x_{2})$. If $f(x_{1})=g(x_{2})$, find the value of the real number $b$.",
+      "answer": "e^{2}-1"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "71a31d1cc5b54354aeb865d3948f159804aeb121296b7fc650143fc85268d973",
+      "problem": "Find the units digit of $n$ given that $mn = 21^6$ and $m$ has a units digit of 7.",
+      "answer": "3"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "b77828f13262531c6f16800bbc73a6f05fe4b6cd3ffb06ab164621c4b2978dc3",
+      "problem": "Given $tan({θ+\\frac{π}{4}})=2tanθ-7$, determine the value of $\\sin 2\\theta$.",
+      "answer": "\\frac{4}{5}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "669db8770802f042312172d5ab0ef3bb44fd3b67ae2196b667bc7b72ad7c19c1",
+      "problem": "The pages of a book are numbered $1_{}^{}$ through $n_{}^{}$. When the page numbers of the book were added, one of the page numbers was mistakenly added twice, resulting in an incorrect sum of $1986_{}^{}$. What was the number of the page that was added twice?",
+      "answer": "33"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "3a938801f2c4a46f3ff3c25a1fbd3734cc211adea0213de3faee29a1c03ae19f",
+      "problem": "Vasya and Petya are participating in a school sports-entertainment game. They only have one pair of roller skates between the two of them, and need to traverse a distance of 3 km as quickly as possible. They start simultaneously, with one running and the other roller-skating. At any moment, the one on roller skates can leave them for the other and continue running without them. This exchange can occur as many times as desired. Find the minimum time for both friends to complete the distance (which is determined by who finishes last), given that Vasya's running and roller skating speeds are 4 km/h and 8 km/h respectively, while Petya's speeds are 5 km/h and 10 km/h. Assume that no time is lost during the exchange of roller skates.",
+      "answer": "0.5"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "95cfda9d23012dc6ffe8551ac8f267406fa0836a625116d43b340cab919480d9",
+      "problem": "Given real numbers $a_1$, $a_2$, $a_3$ are not all zero, and positive numbers $x$, $y$ satisfy $x+y=2$. Let the maximum value of $$\\frac {xa_{1}a_{2}+ya_{2}a_{3}}{a_{1}^{2}+a_{2}^{2}+a_{3}^{2}}$$ be $M=f(x,y)$, then the minimum value of $M$ is \\_\\_\\_\\_\\_\\_.",
+      "answer": "\\frac { \\sqrt {2}}{2}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "2efa027297f497d76e42f86d9f84b3a30559192af3bcca16857fb50bd4d6ce1e",
+      "problem": "The real numbers \\(a, b, c\\) satisfy the following system of equations:\n\n$$\n\\left\\{\\begin{array}{l}\n\\frac{a b}{a+b}=4 \\\\\n\\frac{b c}{b+c}=5 \\\\\n\\frac{c a}{c+a}=7\n\\end{array}\\right.\n$$\n\nFind the value of the expression \\(\\frac{a b c}{a b + b c + c a}\\).",
+      "answer": "280/83"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "df9d9efb9061e5684558d0658370ec06e2127f8a01db8976f9f4bdf2ee451aeb",
+      "problem": "Given that $a$, $b$, and $c$ represent the sides opposite to angles $A$, $B$, and $C$ respectively in $\\triangle ABC$, and the altitude on side $BC$ is $\\frac{a}{2}$. Determine the maximum value of $\\frac{c}{b}$.",
+      "answer": "\\sqrt{2} + 1"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "8c493521d65adca25ba5f8c6ec87b1889ad8c29e2d1acd992affb7e01ac109a9",
+      "problem": "Call a lattice point visible if the line segment connecting the point and the origin does not pass through another lattice point. Given a positive integer \\(k\\), denote by \\(S_{k}\\) the set of all visible lattice points \\((x, y)\\) such that \\(x^{2}+y^{2}=k^{2}\\). Let \\(D\\) denote the set of all positive divisors of \\(2021 \\cdot 2025\\). Compute the sum\n$$\n\\sum_{d \\in D}\\left|S_{d}\\right|\n$$\n\nHere, a lattice point is a point \\((x, y)\\) on the plane where both \\(x\\) and \\(y\\) are integers, and \\(|A|\\) denotes the number of elements of the set \\(A\\).",
+      "answer": "20"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "6d533c2257c26ab9acd50afaf5d64135c1d100b48419905b3e3ad68908797c8a",
+      "problem": "Calculate the double integral\n\n$$\n\\iint_{D}\\left(54 x^{2} y^{2}+150 x^{4} y^{4}\\right) d x d y\n$$\n\nwhere the region \\(D\\) is bounded by the lines \\(x=1, y=x^{3}\\), and \\(y=-\\sqrt{x}\\).",
+      "answer": "11"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "8bdf8374131e2d8ef12da625b5ecde4cb7c3afba8885a87f20077be58e456794",
+      "problem": "Add 47.2189 to 34.0076 and round to the nearest hundredth.",
+      "answer": "81.23"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "e459ade73ef2da8546b00f059242d5c89760ebe3433738b9cd980426bbc165a2",
+      "problem": "Suppose $f(x)$ is a rational function such that $3f\\left(\\dfrac{1}{x}\\right)+\\dfrac{2f(x)}{x}=x^2$ for $x\\neq 0$.  Find $f(-2)$.",
+      "answer": "\\frac{67}{20}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "1b71c9d93a5cd9bca267a1ff6bd2fdb7a6e9cc58e67b4c8da171a990b74870a2",
+      "problem": "Parallelogram $PQRS$ has vertices $P(4,4)$, $Q(-2,-2)$, $R(-8,-2)$, and $S(-2,4)$. If a point is chosen at random from the region defined by the parallelogram, what is the probability that the point lies below or on the line $y = -1$? Express your answer as a common fraction.",
+      "answer": "\\frac{1}{6}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "1d9f235a46c49e4a55c5f7fdc6a091f8fa455800c0b2d486adbebd520f21eae6",
+      "problem": "What is the sum of all the solutions of $x = \\left|2x-|60-2x|\\right|$?",
+      "answer": "92"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "99ef07438d12c212e2655f702d3a924c70dd59a9330fca77f7f95da810865470",
+      "problem": "For what value of $n$ is the five-digit number $\\underline{7n933}$ divisible by 33? (Note: the underlining is meant to indicate that the number should be interpreted as a five-digit number whose ten thousands digit is 7, whose thousands digit is $n$, and so on).",
+      "answer": "5"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "ae76a87c0a894b2ea75ed6779cf3abd8aaa3e093f58a865e6af5468e7ff7d61c",
+      "problem": "Find the smallest natural number \\( n \\) for which \\( (n+1)(n+2)(n+3)(n+4) \\) is divisible by 1000.",
+      "answer": "121"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "324310005a3c28f5bd6e1eddc16dd550ade963eb99b66b61bb6052525485f9c3",
+      "problem": "A certain senior high school has a total of 3200 students, with 1000 students each in the second and third grades. A stratified sampling method is used to draw a sample of size 160. The number of first-grade students that should be drawn is ______ .",
+      "answer": "60"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "c535662fb12d2cb2a29a1ce6735eb5a40b999c88e9133ce0f6d72feec0f7c0d3",
+      "problem": "In the picture, there is a grid consisting of 25 small equilateral triangles. How many rhombuses can be made from two adjacent small triangles?",
+      "answer": "30"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "a1feed0bd96435f76d1d1f95c8f8c8e585395f46b35836045bffb7885d66b9c9",
+      "problem": "Given a quadratic function $f(x) = x^2 + mx + n$.\n1. If $f(x)$ is an even function and its minimum value is 1, find the expression for $f(x)$.\n2. Based on (1), for the function $g(x) = \\frac{6x}{f(x)}$, solve the inequality $g(2^x) > 2^x$ for $x$.\n3. Let $h(x) = |f(x)|$ and assume that for $x \\in [-1, 1]$, the maximum value of $h(x)$ is $M$, such that $M \\geq k$ holds true for any real numbers $m$ and $n$. Find the maximum value of $k$.",
+      "answer": "\\frac{1}{2}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "72099637237ff9cb72b2fd908f89f07465febdc4b619b4500741ff314abfbc0a",
+      "problem": "$\\triangle PQR$ is similar to $\\triangle XYZ$. What is the number of centimeters in the length of $\\overline{YZ}$? Express your answer as a decimal to the nearest tenth.\n\n[asy]\ndraw((0,0)--(10,-2)--(8,6)--cycle);\nlabel(\"10cm\",(6,3),NW);\nlabel(\"7cm\",(10.2,2.5),NE);\ndraw((15,0)--(23,-1.8)--(22,4.5)--cycle);\nlabel(\"$P$\",(10,-2),E);\nlabel(\"4cm\",(21.2,1.3),NE);\nlabel(\"$Q$\",(8,6),N);\nlabel(\"$R$\",(0,0),SW);\nlabel(\"$X$\",(23,-1.8),E);\nlabel(\"$Y$\",(22,4.5),NW);\nlabel(\"$Z$\",(15,0),SW);\n[/asy]",
+      "answer": "5.7"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "bfd1124a59bc90aed5da7f760587b9bfeb6385baf3e47afa088093f2e1be68fb",
+      "problem": "What is $2.43-1.2$?",
+      "answer": "1.23"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "454dd214b63cda6d9e1d2d977837729f8c71239dae752225a7c5fa630e4ccdda",
+      "problem": "Define the sequence of positive integers $\\left\\{a_{n}\\right\\}$ as follows. Let $a_{1}=1, a_{2}=3$, and for each $n>2$, let $a_{n}$ be the result of expressing $a_{n-1}$ in base $n-1$, then reading the resulting numeral in base $n$, then adding 2 (in base $n$). For example, $a_{2}=3_{10}=11_{2}$, so $a_{3}=11_{3}+2_{3}=6_{10}$. Express $a_{2013}$ in base ten.",
+      "answer": "23097"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "9e752c08b34e121a941ab91f0bb6ca4293c9918f0cbaaa03f0b1c58517ce06ca",
+      "problem": "A number $n$ is $b a d$ if there exists some integer $c$ for which $x^{x} \\equiv c(\\bmod n)$ has no integer solutions for $x$. Find the number of bad integers between 2 and 42 inclusive.",
+      "answer": "25"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "ea7a5f1718482c38a8fb660e654e3ddb079df1d7b4bb747a0e73f1a1521c3d1d",
+      "problem": "The numbers \\(a\\) and \\(b\\) are such that \\(|a| \\neq |b|\\) and \\(\\frac{a+b}{a-b} + \\frac{a-b}{a+b} = 6\\). Find the value of the expression \\(\\frac{a^{3} + b^{3}}{a^{3} - b^{3}} + \\frac{a^{3} - b^{3}}{a^{3} + b^{3}}\\).",
+      "answer": "\\frac{18}{7}"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "2819641301f32084336c122c84650a7581ef1501358c29e3e8477818240eaa9e",
+      "problem": "The area of one lateral face of a right pyramid with an equilateral triangular base is 75 square meters. If the slant height is 30 meters, what is the length of the side of its base, in meters?",
+      "answer": "5"
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "problem_id": "9b8dd81f39f066bcb00c5ceb430350d28b80e08aac075120b2959f7cb4c37fec",
+      "problem": "Given four one-inch squares are placed with their bases on a line. The second square from the left is lifted out and rotated 30 degrees before reinserting it such that it just touches the adjacent square on its right. Determine the distance in inches from point B, the highest point of the rotated square, to the line on which the bases of the original squares were placed.",
+      "answer": "\\frac{2 + \\sqrt{3}}{4}"
+    }
+  ],
+  "token_measure": "all generated token IDs, including EOS if returned",
+  "chat_template_sha256": "417c5b998999125f84cd81a4642f4c4bddb0be7006067c1e3b27db330dd7b5d4",
+  "chat_template_revision": "ad9f0ae0864d7fbcd1cd905e3c6c5b069cc8b562",
+  "environment": {
+    "created_at": "2026-09-09T15:15:22.055339+00:00",
+    "versions": {
+      "torch": "2.13.0+cu130",
+      "transformers": "5.12.1",
+      "trl": "1.12.0",
+      "vllm": "0.27.1",
+      "peft": "0.20.0",
+      "datasets": "5.0.1",
+      "math-verify": "0.9.0"
+    },
+    "git_commit": "fd296a869a0bb28c867c6aa941317dad002effc3",
+    "tracked_diff_sha256": "ce2f1207e82e5b431123ff1ee2a79a6c6b7759d31e0e125ba8db7ebfc125f452",
+    "source_sha256": {
+      "compare_results.py": "832318bda5fc1505bf85079896427ecb5902a32547a46ac1d0262a63ac986ca2",
+      "eval_budget.py": "8e8e934269d543ae93a0c24a0e871b7da492c1279f7a1bad127a9254ba7a3137",
+      "experiment.py": "35f16625d3a1464b20ac79b863df740a4138bdadf75276bf4df7654a18ba72b5",
+      "export_gguf.sh": "3b13037e2884b50b5d1e54cbf9a1bb72568a6ab8f8f5502d984258725d8e72a7",
+      "gpu_monitor.py": "4ef9a9449289a127486ecf5b254a15e96fd9ab94facddbf8fef7a5029033d094",
+      "pipeline.sh": "d49ac21291a9d1e00192ff01683cc2a2a1d55503538b07d690407dfe1f50f2db",
+      "plot_inference.py": "3d08a5f40c8cbd4e710e9ba5940250c56510bcbf306d48921f70fa0bcf80efbe",
+      "plot_progress.py": "9f6fa0aeb037282ece8563acad15e0ba7e0fa243c528eb84294ade5a0d8356cf",
+      "plot_results.py": "c9235312d4b0781ff3aad0bc0bee9d11dc2e46a0339d7e2f092caf65d5125fa7",
+      "prepare_data.py": "7a45f2f4bef35e75850b5181481bbe2d919c28620e28c7bfdaf8ca250c4f7f5d",
+      "prepare_pilot.py": "39ff60b7d2687387acf6f2ee07ff5630736f5993523d734350f9a28c335b86bc",
+      "profile_inference.py": "39b6aa8db7f574d0908d930d59ec78a7dbd2010ffd9e2d1696edbc1909141b61",
+      "rent_and_run.sh": "bcaf6c250f4f44d1b2ac2d5c8b7327b88963c5c65d9fa2afd1e62558ff33f3e8",
+      "requirements-gpu.in": "4ac43e45ed497948b500d17dad7e818684f208dcb448ab6a012e9d78d6af6bce",
+      "requirements-gpu.txt": "10d1f97daf8b7b6651583c67b5d82a2f739e13cce88582e513a8e8894266a986",
+      "requirements.in": "e26f5b786f5aa7edaf26272b94db17db0d6cc63661be9937b18fd26173d7855e",
+      "requirements.txt": "ed4345da7ea6f209ec2bb9be61ebfbbd55d06a16a75942a97a49197dbad3b6d0",
+      "rewards.py": "25a272cc7b58906f8f1ced553d90c7ec63b22aba5151e657f3e8c09be976f0c7",
+      "run_comparison.py": "2feb2787489744a310f3f941d5de1d18115bb47a01393ed3702b364bc42f7251",
+      "setup_gpu.sh": "19ad7fbb6c661620eda827e1a9246a92fc2db0efae629a3260b9af5a1d246374",
+      "status.sh": "4b646c233f85c6099516140e3986f6b94b3c152e37557cd492da070d22d7f6dd",
+      "train_grpo.py": "4dea102875cc1b8780ee8527b36d8c5cada843e4927889a4d597c598df5a49da",
+      "train_sft.py": "cba3476a4b2a6480cdf6a20748b46b3d7c9af25a363d9e99386524bbd5996107",
+      "upload_hf.py": "16c31cfd49a65c8fad473ec6bff104cae2d467e3c5527c13fbafc6816a42ee7e"
+    }
+  },
+  "adapter_sha256": "423fb945e9574184db797db888abddc20f728b936951b9eb5ab2cc981eb41313"
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+  "lora": null,
+  "budget_wording": "exact",
+  "manifest": "base-pilot-dev.manifest.json",
+  "samples": "base-pilot-dev.samples.jsonl",
+  "results": [
+    {
+      "dataset": "deepscaler_pilot",
+      "budget": 512,
+      "n": 100,
+      "n_problems": 100,
+      "accuracy": 0.46,
+      "mean_tokens": 5304.4,
+      "median_tokens": 5697.0,
+      "mean_abs_deviation": 4807,
+      "mean_relative_error": 9.388671875,
+      "within_20pct": 0.03,
+      "overshoot_rate": 0.97,
+      "mean_overshoot": 4799.7,
+      "truncation_rate": 0.36,
+      "think_closed_rate": 0.65,
+      "mean_reasoning_tokens": 3296.353846153846
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "budget": 1024,
+      "n": 100,
+      "n_problems": 100,
+      "accuracy": 0.48,
+      "mean_tokens": 5328.71,
+      "median_tokens": 5573.5,
+      "mean_abs_deviation": 4372.49,
+      "mean_relative_error": 4.270009765625,
+      "within_20pct": 0.03,
+      "overshoot_rate": 0.94,
+      "mean_overshoot": 4338.6,
+      "truncation_rate": 0.39,
+      "think_closed_rate": 0.63,
+      "mean_reasoning_tokens": 3133.063492063492
+    },
+    {
+      "dataset": "deepscaler_pilot",
+      "budget": 3600,
+      "n": 100,
+      "n_problems": 100,
+      "accuracy": 0.46,
+      "mean_tokens": 5435.85,
+      "median_tokens": 5980.0,
+      "mean_abs_deviation": 2857.15,
+      "mean_relative_error": 0.7936527777777778,
+      "within_20pct": 0.16,
+      "overshoot_rate": 0.68,
+      "mean_overshoot": 2346.5,
+      "truncation_rate": 0.39,
+      "think_closed_rate": 0.62,
+      "mean_reasoning_tokens": 3280.3709677419356
+    }
+  ],
+  "paired_control": {
+    "deepscaler_pilot": {
+      "n_pairs": 100,
+      "positive_endpoint_fraction": 0.38,
+      "monotonic_fraction": 0.34,
+      "mean_endpoint_slope": 0.04256800518134715
+    }
+  }
+}

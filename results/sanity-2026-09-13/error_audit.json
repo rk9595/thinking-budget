@@ -1,0 +1,670 @@
+{
+  "note": "Post-hoc diagnostic only. Outliers remain in all metrics and original gates remain unchanged.",
+  "arms": {
+    "base": [
+      {
+        "dataset": "sanity_probe",
+        "budget": 512,
+        "n": 12,
+        "mean_absolute_relative_error": 6.948079427083333,
+        "median_absolute_relative_error": 5.0380859375,
+        "largest_two_share_of_absolute_error": 0.35981166108365153,
+        "closed_think_count": 10,
+        "clipped_count": 2,
+        "outliers": [
+          {
+            "problem_id": "512b25c7cbd3e368b0cd6d716c616961b92212816a7fa0e8293e25113c0c4fda",
+            "problem": "The area of two parallel plane sections of a sphere are $9 \\pi$ and $16 \\pi$. The distance between the planes is given. What is the surface area of the sphere?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "\nSimilarly, from R² = 16 + h₂²:\n\nh₂ = (d - 7/d)/2\n\nh₂² = [(d - 7/d)/2]^2 = (d² - 14 + 49/d²)/4\n\nSo, R² = 16 + (d² - 14 + 49/d²)/4\n\nSo, both expressions equal R², so:\n\n9 + (d² + 14 + 49/d²)/4 = 16 + (d² - 14 + 49/d²)/4\n\nMultiply both sides by 4:\n\n36 + d² + 14 + 49/d² = 64 + d² - 14 + 49/d²\n\nSimplify:\n\nLeft side: 36 + 14 + d² + 49/d² = 50 + d² + 49/d²\n\nRight side: 64 - 14 + d² + 49/d² = 50 + d² + 49"
+          },
+          {
+            "problem_id": "7cf052a6b05e33667e7b05ac319c02b5f93d485c80af35f74fd5129d8c1338cc",
+            "problem": "A triangle with angles \\( A, B, C \\) satisfies the following conditions:\n\\[\n\\frac{\\sin A + \\sin B + \\sin C}{\\cos A + \\cos B + \\cos C} = \\frac{12}{7},\n\\]\nand\n\\[\n\\sin A \\sin B \\sin C = \\frac{12}{25}.\n\\]\n\nGiven that \\( \\sin C \\) takes on three possible values \\( s_1, s_2 \\), and \\( s_3 \\), find the value of \\( 100 s_1 s_2 s_3 \\).",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": ".\n\nAnd Q = 1 + 4 t = 1 + 4*(1/10) = 1 + 2/5 = 7/5.\n\nSo, cos A + cos B + cos C = 7/5.\n\nSo, now, we have that cos A + cos B + cos C = 7/5.\n\nBut in a triangle, the maximum value of cos A + cos B + cos C is 3/2, which occurs in an equilateral triangle. So, 7/5 = 1.4 is less than 3/2, so it's possible.\n\nSo, now, we have:\n\ncos A + cos B + cos C = 7/5,\n\nand sin A sin B sin C = 12/25,\n\nand sin(A/2) sin(B/"
+          },
+          {
+            "problem_id": "3b0d00adff47ee0645000f998b7379feef50e92fed461dfe46b3930e33620d75",
+            "problem": "A large rectangle has side lengths of $(x+7)$ and $(x+5)$. In the large rectangle, there is a rectangular hole with side lengths of $(2x-3)$ and $(x-2)$. What is the area of the large rectangle (not including the area of the hole)? Express your answer as a polynomial in $x$.",
+            "total_tokens": 6124,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "ract the area of the hole from the area of the large rectangle:\n   \\[\n   (x^2 + 12x + 35) - (2x^2 - 7x + 6)\n   \\]\n   Distribute the negative sign and combine like terms:\n   \\[\n   x^2 + 12x + 35 - 2x^2 + 7x - 6\n   \\]\n   Combine the like terms:\n   \\[\n   (x^2 - 2x^2) + (12x + 7x) + (35 - 6) = -x^2 + 19x + 29\n   \\]\n\nThus, the area of the large rectangle without the hole is \\(\\boxed{-x^2 + 19x + 29}\\)."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_probe",
+        "budget": 1024,
+        "n": 12,
+        "mean_absolute_relative_error": 3.2250162760416665,
+        "median_absolute_relative_error": 2.3759765625,
+        "largest_two_share_of_absolute_error": 0.3617552802240783,
+        "closed_think_count": 9,
+        "clipped_count": 3,
+        "outliers": [
+          {
+            "problem_id": "3d5ec1b9e322ddfec681d9ded3365902c7a337b4b4c6f1d5d503b4ffd18c2e4b",
+            "problem": "Given $\\lg 2=0.3010$ and $\\lg 3=0.4771$, at which decimal place does the first non-zero digit of $\\left(\\frac{6}{25}\\right)^{100}$ occur?\n(Shanghai Middle School Mathematics Competition, 1984)",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "when multiplied by 10^{-70}, it's 1.02330000 × 10^{-62}. So, in decimal form, this is 0.000000...102330000..., where the first non-zero digit is 1 at the 63rd decimal place? Wait, no, that seems conflicting.\n\nWait, 10^{-70} is 0.000...1 with 70 zeros, but 102330000 × 10^{-70} is 102330000 × 10^{-70} = 102330000 / 10^{70} = 1.02330000 × 10^{-62}, which is 0.000...102330000... with 62 decimal places"
+          },
+          {
+            "problem_id": "512b25c7cbd3e368b0cd6d716c616961b92212816a7fa0e8293e25113c0c4fda",
+            "problem": "The area of two parallel plane sections of a sphere are $9 \\pi$ and $16 \\pi$. The distance between the planes is given. What is the surface area of the sphere?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "- 50 ± 4 √{(R² - 9)(R² - 16)}]/2.\n\nSimplify numerator:\n\n= [4 R² - 50]/2 ± [4 √{(R² - 9)(R² - 16)}]/2.\n\n= 2 R² - 25 ± 2 √{(R² - 9)(R² - 16)}.\n\nBut x = d², so:\n\nd² = 2 R² - 25 ± 2 √{(R² - 9)(R² - 16)}.\n\nWait, but this is similar to what we had earlier. So, it's going in circles.\n\nHmm, perhaps I need to find another way.\n\nWait, maybe instead of assuming the distance is given, the problem is expecting"
+          },
+          {
+            "problem_id": "7cf052a6b05e33667e7b05ac319c02b5f93d485c80af35f74fd5129d8c1338cc",
+            "problem": "A triangle with angles \\( A, B, C \\) satisfies the following conditions:\n\\[\n\\frac{\\sin A + \\sin B + \\sin C}{\\cos A + \\cos B + \\cos C} = \\frac{12}{7},\n\\]\nand\n\\[\n\\sin A \\sin B \\sin C = \\frac{12}{25}.\n\\]\n\nGiven that \\( \\sin C \\) takes on three possible values \\( s_1, s_2 \\), and \\( s_3 \\), find the value of \\( 100 s_1 s_2 s_3 \\).",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": " must also be zero for the equation to hold.\n\nBut numerator is \\( - (7 \\sin C - 12 \\cos C ) \\). So, set numerator to zero:\n\n\\( 7 \\sin C - 12 \\cos C = 0 \\)\n\nSo, \\( 7 \\sin C = 12 \\cos C \\), which implies \\( \\tan C = \\frac{12}{7} \\).\n\nSo, \\( \\tan C = \\frac{12}{7} \\), which implies that \\( C = \\arctan \\left( \\frac{12}{7} \\right ) \\) or \\( C = \\pi + \\arctan \\left( \\frac{12}{7} \\right ) \\). But since \\("
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_probe",
+        "budget": 3600,
+        "n": 12,
+        "mean_absolute_relative_error": 0.6503935185185186,
+        "median_absolute_relative_error": 0.4605555555555556,
+        "largest_two_share_of_absolute_error": 0.3268676371142827,
+        "closed_think_count": 9,
+        "clipped_count": 3,
+        "outliers": [
+          {
+            "problem_id": "3d5ec1b9e322ddfec681d9ded3365902c7a337b4b4c6f1d5d503b4ffd18c2e4b",
+            "problem": "Given $\\lg 2=0.3010$ and $\\lg 3=0.4771$, at which decimal place does the first non-zero digit of $\\left(\\frac{6}{25}\\right)^{100}$ occur?\n(Shanghai Middle School Mathematics Competition, 1984)",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "rhaps, by considering the exponents of 2 and 5 in the prime factorization of the number.\n\nGiven that:\n\n\\[\n\\left(\\frac{6}{25}\\right)^{100} = \\frac{6^{100}}{25^{100}} = \\frac{2^{100} \\times 3^{100}}{5^{200}} = 2^{100} \\times 3^{100} \\times 5^{-200}\n\\]\n\nNow, to express this as a decimal, we can think of the number as:\n\n\\[\n(2^{100} \\times 3^{100}) \\times 5^{-200} = (2^{100} \\times 3^{100}) \\times (5^{"
+          },
+          {
+            "problem_id": "f40e574c0967fd9649809ba46e827afb07e8bbb91065c1adb99fa1234c91f43c",
+            "problem": "Given that $a$ is a multiple of $1428$, find the greatest common divisor of $a^2+9a+24$ and $a+4$.",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "\\) is even, else not.\n\nTherefore, the GCD is:\n\n- If \\(k\\) is even: \\(\\gcd(a + 4, 8) = 4\\) because \\(a + 4 = 4(m + 1) = 4(357k + 1)\\), which is 4 times an odd number (since 357k is even when \\(k\\) is even, so 357k + 1 is odd). Therefore, GCD is 4.\n\n- If \\(k\\) is odd: \\(a + 4 = 4(357k + 1)\\), which is 4 times an even number (since 357k is odd when \\(k\\) is odd, so 357k + 1 is even). Therefore, \\(a +"
+          },
+          {
+            "problem_id": "7cf052a6b05e33667e7b05ac319c02b5f93d485c80af35f74fd5129d8c1338cc",
+            "problem": "A triangle with angles \\( A, B, C \\) satisfies the following conditions:\n\\[\n\\frac{\\sin A + \\sin B + \\sin C}{\\cos A + \\cos B + \\cos C} = \\frac{12}{7},\n\\]\nand\n\\[\n\\sin A \\sin B \\sin C = \\frac{12}{25}.\n\\]\n\nGiven that \\( \\sin C \\) takes on three possible values \\( s_1, s_2 \\), and \\( s_3 \\), find the value of \\( 100 s_1 s_2 s_3 \\).",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "rac{r}{2 R} \\) is incorrect.\n\nWait, let me check.\n\nWait, in a triangle, \\( \\sin A = \\frac{a}{2 R} \\), so \\( \\sin A \\sin B \\sin C = \\frac{a b c}{8 R^3} \\).\n\nBut also, \\( a b c = 4 R^2 (s - a)(s - b)(s - c) \\), so:\n\n\\( \\sin A \\sin B \\sin C = \\frac{4 R^2 (s - a)(s - b)(s - c)}{8 R^3} = \\frac{(s - a)(s - b)(s - c)}{2 R^2} \\).\n\nBut \\( (s - a)(s - b)(s - c) = \\frac{r s}{2 R} \\), as per the formula.\n\nSo,"
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_train",
+        "budget": 512,
+        "n": 24,
+        "mean_absolute_relative_error": 6.725016276041667,
+        "median_absolute_relative_error": 5.611328125,
+        "largest_two_share_of_absolute_error": 0.1858731560923073,
+        "closed_think_count": 21,
+        "clipped_count": 3,
+        "outliers": [
+          {
+            "problem_id": "5c2595311d7914508fbc4a76a2da86e37f59b550fe9e67f51e389ed88c1b8bfe",
+            "problem": "Place each of the digits 3, 4, 5, and 6 in exactly one square to make the smallest possible product. Arrange the digits such that two numbers are formed and multiplied. How should the digits be placed, and what is the minimum product?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "ait, but earlier, I thought 35 and 46 were forming 1610, but I also thought of 34 and 56=1904.\n\nWait, so 1610 is indeed smaller.\n\nWait, but wait, is there any other pair with a lower product?\n\nWait, let me think: 35 and 46=1610.\n\nIs 1610 the smallest possible?\n\nWait, another thought: 34 and 65=2210.\n\n35 and 46=1610.\n\n36 and 54=1944.\n\n43 and 56=2408.\n\n53 and 64=3392.\n\n54 and 63=3402.\n\n63 and 54=340"
+          },
+          {
+            "problem_id": "44e187d47a364d37c6f2a36686d1bec916e4c39b1f47474d6934b6d735fad46c",
+            "problem": "There are 40 identical looking coins, among which 3 are counterfeit - they weigh the same and are lighter than the genuine coins (the genuine coins also weigh the same). How can you use three weighings on a balance scale without weights to select 16 genuine coins?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "I can find a group of coins that is definitely heavier than another group, then I can know that group has more genuine coins.\n\nWait, for example, if I take a subset of coins and weigh them against another subset, and one side is heavier, then that side has more genuine coins.\n\nBut since I don't have a reference, it's hard.\n\nWait, another idea: Since I have 3 counterfeit coins, and I need to find 1"
+          },
+          {
+            "problem_id": "8ca81c5cc65ac8909114ba5c6ed8a92c239e505a5632f98331cc3d06e6222807",
+            "problem": "A kindergarten received cards for learning to read: some are labeled \"МА\", and the rest are labeled \"НЯ\".\n\nEach child took three cards and started to form words from them. It turned out that 20 children could form the word \"МАМА\" from their cards, 30 children could form the word \"НЯНЯ\", and 40 children could form the word \"МАНЯ\". How many children have all three cards the same?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "osed, or my interpretation is wrong.\n\nWait, maybe I need to think differently.\n\nLet me consider that each word is formed by the combination of the cards, regardless of their labels.\n\nSo, \"MA\" could be two letters, and \"NAY\" could be three letters. So, \"MANAY\" is a five-letter word, which would require 1*2 + 2*3=8 letters, which is not possible.\n\nWait, maybe \"MANAY\" is formed by one \"MA\" and two \"N"
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_train",
+        "budget": 1024,
+        "n": 24,
+        "mean_absolute_relative_error": 2.8986409505208335,
+        "median_absolute_relative_error": 1.83642578125,
+        "largest_two_share_of_absolute_error": 0.2012437356991451,
+        "closed_think_count": 22,
+        "clipped_count": 2,
+        "outliers": [
+          {
+            "problem_id": "44e187d47a364d37c6f2a36686d1bec916e4c39b1f47474d6934b6d735fad46c",
+            "problem": "There are 40 identical looking coins, among which 3 are counterfeit - they weigh the same and are lighter than the genuine coins (the genuine coins also weigh the same). How can you use three weighings on a balance scale without weights to select 16 genuine coins?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "m left are genuine (since they have only 1 counterfeit), and the 10 from right have 2 counterfeit.\n\nTherefore, I can take the 10 from left as genuine, and then from the remaining 3 from the right, I can take 3 more genuine coins.\n\nBut 10 + 3 = 13, which is less than 16.\n\nAlternatively, if the right side is lighter, then the 10 from right have 2 counterfeit, so 8 genuine, and the 10 from left have "
+          },
+          {
+            "problem_id": "8ca81c5cc65ac8909114ba5c6ed8a92c239e505a5632f98331cc3d06e6222807",
+            "problem": "A kindergarten received cards for learning to read: some are labeled \"МА\", and the rest are labeled \"НЯ\".\n\nEach child took three cards and started to form words from them. It turned out that 20 children could form the word \"МАМА\" from their cards, 30 children could form the word \"НЯНЯ\", and 40 children could form the word \"МАНЯ\". How many children have all three cards the same?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "e \"Y\").\n\nWait, but the problem doesn't mention \"Y\", so maybe the cards are only \"MA\" and \"NЯ\". So, each \"NЯ\" card has one \"N\" and one \"Y\".\n\nSo, total \"M\"s: m\n\nTotal \"A\"s: m\n\nTotal \"N\"s: n\n\nTotal \"Y\"s: n\n\nNow, to form \"MAMA\", a child needs two \"M\"s and two \"A\"s. So, they must have at least two \"MA\" cards. Similarly, to form \"НЯНЯ\", a child needs two \"N\"s and two \"A\"s, so they must have at least two"
+          },
+          {
+            "problem_id": "5c2595311d7914508fbc4a76a2da86e37f59b550fe9e67f51e389ed88c1b8bfe",
+            "problem": "Place each of the digits 3, 4, 5, and 6 in exactly one square to make the smallest possible product. Arrange the digits such that two numbers are formed and multiplied. How should the digits be placed, and what is the minimum product?",
+            "total_tokens": 7747,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": " = 1610\n3. 36 * 45 = 1620\n4. 43 * 56 = 2408\n5. 45 * 36 = 1620\n6. 46 * 35 = 1610\n7. 53 * 46 = 2438\n8. 54 * 36 = 1944\n9. 56 * 34 = 1904\n10. 63 * 45 = 2835\n11. 64 * 35 = 2240\n12. 65 * 34 = 2210\n\nAmong these products, the smallest valid product is 1610, which is achieved by the combinations 35 and 46 or 46 and 35.\n\nThus, the smallest possible product is \\boxed{1610}, achieved by the numbers 35 and 46."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_train",
+        "budget": 3600,
+        "n": 24,
+        "mean_absolute_relative_error": 0.5161689814814815,
+        "median_absolute_relative_error": 0.5,
+        "largest_two_share_of_absolute_error": 0.2059331345157746,
+        "closed_think_count": 22,
+        "clipped_count": 2,
+        "outliers": [
+          {
+            "problem_id": "44e187d47a364d37c6f2a36686d1bec916e4c39b1f47474d6934b6d735fad46c",
+            "problem": "There are 40 identical looking coins, among which 3 are counterfeit - they weigh the same and are lighter than the genuine coins (the genuine coins also weigh the same). How can you use three weighings on a balance scale without weights to select 16 genuine coins?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "hter, but I don't know their weight, I can't be sure.\n\nWait, no, actually, if I weigh 16 coins against 16 coins from the 32 genuine, they should balance. So, the third weighing is unnecessary, because I can just take 16 from the 32 as genuine.\n\nWait, no, actually, I can't just assume they're genuine because I might have taken some counterfeit coins. So, that's not a reliable method.\n\nWait, this is"
+          },
+          {
+            "problem_id": "8ca81c5cc65ac8909114ba5c6ed8a92c239e505a5632f98331cc3d06e6222807",
+            "problem": "A kindergarten received cards for learning to read: some are labeled \"МА\", and the rest are labeled \"НЯ\".\n\nEach child took three cards and started to form words from them. It turned out that 20 children could form the word \"МАМА\" from their cards, 30 children could form the word \"НЯНЯ\", and 40 children could form the word \"МАНЯ\". How many children have all three cards the same?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "\n\nWait, but we need to find the number of children who have all three cards the same, which is d. From d=30 - b.\n\nBut we don't know b. Wait, but from equation 3: c + d=40, and c=10 + b, d=30 - b, so 10 + b +30 - b=40, which checks out.\n\nBut we don't have another equation to find b.\n\nWait, maybe the total number of M's, A's, and N's can help.\n\nTotal M's: 3a + 2c + d\n\nFrom a=20 - b, c=10 + b, d=30 -"
+          },
+          {
+            "problem_id": "5c2595311d7914508fbc4a76a2da86e37f59b550fe9e67f51e389ed88c1b8bfe",
+            "problem": "Place each of the digits 3, 4, 5, and 6 in exactly one square to make the smallest possible product. Arrange the digits such that two numbers are formed and multiplied. How should the digits be placed, and what is the minimum product?",
+            "total_tokens": 748,
+            "correct": false,
+            "finish_reason": "stop",
+            "ending_excerpt": "2. **Form the Numbers:**\n   - Consider two combinations:\n     - **63 and 54**\n     - **64 and 53**\n\n3. **Calculate the Products:**\n   - **63 × 54 = 3422**\n   - **64 × 53 = 3392**\n\n4. **Determine the Smallest Product:**\n   - **64 × 53 = 3392** is the smaller product.\n\n5. **Final Arrangement:**\n   - Form the numbers **64** and **53**.\n   - **64 × 53 = 3392**\n\n**Answer:**\n\n\\boxed{64 \\times 53 = 3392}"
+          }
+        ]
+      }
+    ],
+    "token": [
+      {
+        "dataset": "sanity_probe",
+        "budget": 512,
+        "n": 12,
+        "mean_absolute_relative_error": 0.5577799479166666,
+        "median_absolute_relative_error": 0.27734375,
+        "largest_two_share_of_absolute_error": 0.6685147359206303,
+        "closed_think_count": 12,
+        "clipped_count": 0,
+        "outliers": [
+          {
+            "problem_id": "7cf052a6b05e33667e7b05ac319c02b5f93d485c80af35f74fd5129d8c1338cc",
+            "problem": "A triangle with angles \\( A, B, C \\) satisfies the following conditions:\n\\[\n\\frac{\\sin A + \\sin B + \\sin C}{\\cos A + \\cos B + \\cos C} = \\frac{12}{7},\n\\]\nand\n\\[\n\\sin A \\sin B \\sin C = \\frac{12}{25}.\n\\]\n\nGiven that \\( \\sin C \\) takes on three possible values \\( s_1, s_2 \\), and \\( s_3 \\), find the value of \\( 100 s_1 s_2 s_3 \\).",
+            "total_tokens": 2371,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": ").\n\nWe know that \\(\\sin A \\sin B \\sin C = \\frac{12}{25}\\). Considering the product of the sines and the given ratio, we infer that the product of the three possible values of \\(\\sin C\\) is \\(\\frac{12}{25}\\).\n\nThus, the product \\(s_1 s_2 s_3 = \\frac{12}{25}\\). Therefore, we need to find \\(100 \\times \\frac{12}{25}\\):\n\n\\[\n100 \\times \\frac{12}{25} = 48\n\\]\n\nHence, the final answer is:\n\n\\[\n\\boxed{48}\n\\]"
+          },
+          {
+            "problem_id": "0f670bf24fc2be79a0ea005322575ab1fc773432ef752a13d4bddc8b2dd1cd4c",
+            "problem": "The parabolas $y = (x - 2)^2$ and $x + 6 = (y - 2)^2$ intersect at four points $(x_1, y_1), (x_2, y_2), (x_3, y_3), (x_4, y_4)$. Find\n\\[\nx_1 + x_2 + x_3 + x_4 + y_1 + y_2 + y_3 + y_4.\n\\]",
+            "total_tokens": 944,
+            "correct": false,
+            "finish_reason": "stop",
+            "ending_excerpt": "m is 8 + 0 = 8.\n\nWait, but I think I might have made a mistake in calculating sum y_i. Let me check again.\n\nSum y_i = sum (x_i^2 - 4x_i + 4) = sum x_i^2 - 4 sum x_i + 8.\n\nWe have sum x_i^2 = 24, sum x_i = 8, so sum y_i = 24 - 4*8 + 8 = 24 - 32 + 8 = 0.\n\nTherefore, the total sum is 8 + 0 = 8.\n\nSo, the answer is 8.\n</think>\n\nThe sum of all x and y coordinates of the intersection points is \\boxed{8}."
+          },
+          {
+            "problem_id": "ee9544287a170afe3c19e6126b0ed07dff1560f252c2bb543c844bf88a4f1e5a",
+            "problem": "Patrick and Anderson are having a snowball fight. Patrick throws a snowball at Anderson which is shaped like a sphere with a radius of 10 centimeters. Anderson catches the snowball and uses the snow from the snowball to construct snowballs with radii of 4 centimeters. Given that the total volume of the snowballs that Anderson constructs cannot exceed the volume of the snowball that Patrick threw, how many snowballs can Anderson construct?",
+            "total_tokens": 327,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": " number_of_snowballs = V_large / V_small.\n\nSimplifying this, the (4/3)π canc out, leaving (10³) / (4³) = 1000 / 64 = 15.625. Since Anderson can't make a fraction of a snowball, he can make 15 snowballs.\n\nWait, but the problem says the total volume cannot exceed the big one. So, 15 is the maximum number he can make without exceeding the volume.\n</think>\n\nAnderson can construct \\boxed{15} snowballs."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_probe",
+        "budget": 1024,
+        "n": 12,
+        "mean_absolute_relative_error": 0.4788411458333333,
+        "median_absolute_relative_error": 0.328125,
+        "largest_two_share_of_absolute_error": 0.5421481985044188,
+        "closed_think_count": 12,
+        "clipped_count": 0,
+        "outliers": [
+          {
+            "problem_id": "f40e574c0967fd9649809ba46e827afb07e8bbb91065c1adb99fa1234c91f43c",
+            "problem": "Given that $a$ is a multiple of $1428$, find the greatest common divisor of $a^2+9a+24$ and $a+4$.",
+            "total_tokens": 3076,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "y \\(a + 4\\):\n   - The quotient is \\(a + 5\\) and the remainder is 4.\n\nThus, \\(f(a) \\mod g(a) = 4\\). Therefore, we need to find \\(\\gcd(g(a), 4)\\):\n\n\\[\n\\gcd(a + 4, 4)\n\\]\n\nSince \\(a\\) is a multiple of 1428, \\(a\\) is divisible by 4. Therefore, \\(a + 4\\) is also divisible by 4. Hence, the GCD of \\(a + 4\\) and 4 is 4.\n\nThus, the greatest common divisor of \\(a^2 + 9a + 24\\) and \\(a + 4\\) is \\(\\boxed{4}\\)."
+          },
+          {
+            "problem_id": "7cf052a6b05e33667e7b05ac319c02b5f93d485c80af35f74fd5129d8c1338cc",
+            "problem": "A triangle with angles \\( A, B, C \\) satisfies the following conditions:\n\\[\n\\frac{\\sin A + \\sin B + \\sin C}{\\cos A + \\cos B + \\cos C} = \\frac{12}{7},\n\\]\nand\n\\[\n\\sin A \\sin B \\sin C = \\frac{12}{25}.\n\\]\n\nGiven that \\( \\sin C \\) takes on three possible values \\( s_1, s_2 \\), and \\( s_3 \\), find the value of \\( 100 s_1 s_2 s_3 \\).",
+            "total_tokens": 2162,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": " angles in a triangle is given, and since the problem states that \\(\\sin C\\) takes on three possible values, we consider the product of these values.\n\nThe product of the sines of the angles in a triangle is given as \\(12/25\\). Therefore, the product \\(s_1 s_2 s_3 = 12/25\\). Thus, we need to find \\(100 \\times (12/25)\\):\n\n\\[\n100 \\times \\frac{12}{25} = 48\n\\]\n\nThus, the final answer is \\(\\boxed{48}\\)."
+          },
+          {
+            "problem_id": "3da6fcb78940be7840e3ce319f87cc8b1922a8325ae8dccb4d46e2115547f139",
+            "problem": "Matilda has a summer job delivering newspapers. She earns \\$6.00 an hour plus \\$0.25 per newspaper delivered. Matilda delivers 30 newspapers per hour. How much money will she earn during a 3-hour shift?",
+            "total_tokens": 610,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "xt{dollars}\n     \\]\n   - Over a 3-hour shift:\n     \\[\n     7.50 \\, \\text{dollars/hour} \\times 3 \\, \\text{hours} = 22.50 \\, \\text{dollars}\n     \\]\n\n3. **Total Earnings:**\n   - Adding base earnings and earnings from deliveries:\n     \\[\n     18 \\, \\text{dollars} + 22.50 \\, \\text{dollars} = 40.50 \\, \\text{dollars}\n     \\]\n\nTherefore, Matilda will earn \\(\\boxed{40.50}\\) dollars during her 3-hour shift."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_probe",
+        "budget": 3600,
+        "n": 12,
+        "mean_absolute_relative_error": 0.26131944444444444,
+        "median_absolute_relative_error": 0.1323611111111111,
+        "largest_two_share_of_absolute_error": 0.4419346266276907,
+        "closed_think_count": 12,
+        "clipped_count": 0,
+        "outliers": [
+          {
+            "problem_id": "ee9544287a170afe3c19e6126b0ed07dff1560f252c2bb543c844bf88a4f1e5a",
+            "problem": "Patrick and Anderson are having a snowball fight. Patrick throws a snowball at Anderson which is shaped like a sphere with a radius of 10 centimeters. Anderson catches the snowball and uses the snow from the snowball to construct snowballs with radii of 4 centimeters. Given that the total volume of the snowballs that Anderson constructs cannot exceed the volume of the snowball that Patrick threw, how many snowballs can Anderson construct?",
+            "total_tokens": 852,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "s the answer.\n\nSo, the final answer is 15.\n</think>\n\nTo determine how many snowballs Anderson can construct, we compare the volumes. The volume of Patrick's snowball is \\( \\frac{4000}{3}\\pi \\) and each small snowball has a volume of \\( \\frac{256}{3}\\pi \\). Dividing these gives \\( \\frac{4000}{256} = 15.625 \\). Since Anderson can't make a fraction of a snowball, the maximum number is 15.\n\n\\boxed{15}"
+          },
+          {
+            "problem_id": "e981ba0346cb4c66b49183202083f3c82ad7b1f654c2aba26f78a981ccd0baac",
+            "problem": "What is the inverse of $f(x)=4-5x$?",
+            "total_tokens": 1359,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": ":\n\n1. Start with the function \\( y = 4 - 5x \\).\n2. Solve for \\( x \\) in terms of \\( y \\):\n   \\[\n   y = 4 - 5x\n   \\]\n   Subtract 4 from both sides:\n   \\[\n   y - 4 = -5x\n   \\]\n   Divide by -5:\n   \\[\n   x = \\frac{4 - y}{5}\n   \\]\n3. Swap \\( x \\) and \\( y \\) to get the inverse function:\n   \\[\n   f^{-1}(x) = \\frac{4 - x}{5}\n   \\]\n\nThus, the inverse of \\( f(x) = 4 - 5x \\) is \\(\\boxed{\\dfrac{4 - x}{5}}\\)."
+          },
+          {
+            "problem_id": "e5f315bd5e5db23bbc77899012e087d2f0c90d3d6aa9b58cc9b444898bfd5815",
+            "problem": "Brad has a cylindrical barrel with radius 10 inches and height 15 inches.  He wants to fill it from a well, using a bucket in the shape of a hemisphere with a radius of 10 inches. How many trips must Brad make to the well in order to fill the barrel?",
+            "total_tokens": 2194,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "ext{ cubic inches}\n\\]\n\nTo find the number of trips Brad must make to fill the barrel, we divide the volume of the barrel by the volume of the bucket:\n\n\\[\n\\text{Number of trips} = \\frac{1500\\pi}{\\frac{2000}{3}\\pi} = \\frac{1500 \\times 3}{2000} = \\frac{4500}{2000} = 2.25\n\\]\n\nSince Brad cannot make a fraction of a trip, he must make 3 trips.\n\nTherefore, the number of trips Brad must make is \\boxed{3}."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_train",
+        "budget": 512,
+        "n": 24,
+        "mean_absolute_relative_error": 0.2645670572916667,
+        "median_absolute_relative_error": 0.1142578125,
+        "largest_two_share_of_absolute_error": 0.5828975699784682,
+        "closed_think_count": 24,
+        "clipped_count": 0,
+        "outliers": [
+          {
+            "problem_id": "18add353216cfdbf87e44b7f224958c70f8ba694c3b4d01e9717d69f48ef6cdf",
+            "problem": "A rectangle has a perimeter of 80 cm and each side has an integer length. How many non-congruent rectangles meet these criteria?",
+            "total_tokens": 2072,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "r of pairs of integers \\((l, w)\\) such that \\( l + w = 40 \\) and \\( l \\geq w \\). This means we need to consider pairs where \\( w \\) ranges from 1 to 20.\n\nEach pair \\((l, w)\\) is unique and represents a different rectangle. Therefore, the number of non-congruent rectangles is the number of integers \\( w \\) from 1 to 20, which is 20.\n\nThus, the number of non-congruent rectangles is:\n\\[\n\\boxed{20}\n\\]"
+          },
+          {
+            "problem_id": "bcd36f1a8736c3f6c0072a6e9e728400909f5fdc17f00086b308e83672643d23",
+            "problem": "Determine the minimum possible value of the sum\n\\[\\frac{a}{2b} + \\frac{b}{4c} + \\frac{c}{8a},\\]where $a,$ $b,$ and $c$ are positive real numbers.",
+            "total_tokens": 847,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "bit complicated, but essentially, if we set all terms equal, we can solve for the ratios of \\(a\\), \\(b\\), and \\(c\\). But since we are only asked for the minimum value, and we have already derived that the minimum is \\(\\frac{3}{4}\\) using AM-GM, I think that's the answer.\n\nSo, the minimum possible value is \\(\\frac{3}{4}\\).\n</think>\n\nThe minimum possible value of the sum is \\(\\boxed{\\dfrac{3}{4}}\\)."
+          },
+          {
+            "problem_id": "e1ada90e7f9bf1be00e79c9ebc58af50df40d3318fe186923b7bdcc90b145c8b",
+            "problem": "If $\\sqrt{2+\\sqrt x}=3$, what is $x?$",
+            "total_tokens": 304,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "(x) = 9 - 2, which is 7. So, sqrt(x) = 7.\n\nBut I need to find x, not sqrt(x). So, I can square both sides again. (sqrt(x))^2 = 7^2, which means x = 49.\n\nWait, let me check if that's correct. If x is 49, then sqrt(x) is 7. Then, 2 + 7 is 9. sqrt(9) is 3, which matches the original equation. So, yes, x is 49.\n\nI think that's it. So, the answer is 49.\n</think>\n\nThe value of \\( x \\) is \\(\\boxed{49}\\)."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_train",
+        "budget": 1024,
+        "n": 24,
+        "mean_absolute_relative_error": 0.5930582682291666,
+        "median_absolute_relative_error": 0.103515625,
+        "largest_two_share_of_absolute_error": 0.5958833619210978,
+        "closed_think_count": 24,
+        "clipped_count": 0,
+        "outliers": [
+          {
+            "problem_id": "5c2595311d7914508fbc4a76a2da86e37f59b550fe9e67f51e389ed88c1b8bfe",
+            "problem": "Place each of the digits 3, 4, 5, and 6 in exactly one square to make the smallest possible product. Arrange the digits such that two numbers are formed and multiplied. How should the digits be placed, and what is the minimum product?",
+            "total_tokens": 7630,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "he products**:\n   - 35 * 46 = 1610\n   - 36 * 45 = 1620\n   - 34 * 56 = 1904\n   - 54 * 36 = 1944\n   - 56 * 34 = 1904\n   - 45 * 36 = 1620\n\n3. **Determine the smallest product**: Among all the calculated products, the smallest product is 1610, which is obtained from the combination of 35 and 46.\n\nTherefore, the smallest product is \\boxed{1610}, formed by placing the digits 3, 5, 4, and 6 as 35 and 46."
+          },
+          {
+            "problem_id": "bd1eaeeec818406fd9b970cf78a08a3287e18ad47ddc1b6847e1c998553a9572",
+            "problem": "If $\\overrightarrow{a} = (2, 3)$, $\\overrightarrow{b} = (-4, 7)$, and $\\overrightarrow{a} + \\overrightarrow{c} = 0$, then the projection of $\\overrightarrow{c}$ in the direction of $\\overrightarrow{b}$ is \\_\\_\\_\\_\\_\\_.",
+            "total_tokens": 3103,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": ". Calculate the magnitude of \\(\\overrightarrow{b}\\):\n   \\[\n   |\\overrightarrow{b}| = \\sqrt{(-4)^2 + 7^2} = \\sqrt{16 + 49} = \\sqrt{65}\n   \\]\n\n5. Therefore, the projection is:\n   \\[\n   \\text{Projection} = \\frac{-13}{\\sqrt{65}} = -\\frac{13}{\\sqrt{65}} = -\\frac{\\sqrt{65}}{5}\n   \\]\n\nThe projection of \\(\\overrightarrow{c}\\) in the direction of \\(\\overrightarrow{b}\\) is \\(\\boxed{-\\dfrac{\\sqrt{65}}{5}}\\)."
+          },
+          {
+            "problem_id": "18add353216cfdbf87e44b7f224958c70f8ba694c3b4d01e9717d69f48ef6cdf",
+            "problem": "A rectangle has a perimeter of 80 cm and each side has an integer length. How many non-congruent rectangles meet these criteria?",
+            "total_tokens": 2594,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "\\) and \\( w \\) are positive integers and \\( l + w = 40 \\).\n3. The possible values for \\( w \\) range from 1 to 20, as \\( l \\) must be at least \\( w \\). Each value of \\( w \\) from 1 to 20 gives a unique pair \\((l, w)\\) where \\( l = 40 - w \\).\n4. Therefore, the number of non-congruent rectangles is the number of such pairs, which is 20.\n\nThus, the number of non-congruent rectangles is \\(\\boxed{20}\\)."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_train",
+        "budget": 3600,
+        "n": 24,
+        "mean_absolute_relative_error": 0.2483912037037037,
+        "median_absolute_relative_error": 0.16208333333333333,
+        "largest_two_share_of_absolute_error": 0.4279390522342854,
+        "closed_think_count": 22,
+        "clipped_count": 2,
+        "outliers": [
+          {
+            "problem_id": "8ca81c5cc65ac8909114ba5c6ed8a92c239e505a5632f98331cc3d06e6222807",
+            "problem": "A kindergarten received cards for learning to read: some are labeled \"МА\", and the rest are labeled \"НЯ\".\n\nEach child took three cards and started to form words from them. It turned out that 20 children could form the word \"МАМА\" from their cards, 30 children could form the word \"НЯНЯ\", and 40 children could form the word \"МАНЯ\". How many children have all three cards the same?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "re two \"M\"s and one \"A\", but since there are no \"A\" cards, perhaps this is not possible. Similarly for the other words.\n\n perhaps the problem is that the words are formed by three cards, so \"MAMA\" would require two \"M\"s and one \"A\", but since there are no \"A\" cards, perhaps this is not possible. Similarly for the other words.\n\n perhaps the problem is that the words are formed by three cards, so \"M"
+          },
+          {
+            "problem_id": "c808af406fd59a3dc5a83438e021512e00131fe725b86c498304331943f82b67",
+            "problem": "Alex and Katy play a game on an \\(8 \\times 8\\) grid made of 64 unit cells. They take turns to play, with Alex going first. On Alex's turn, he writes 'A' in an empty cell. On Katy's turn, she writes 'K' in two empty cells that share an edge. The game ends when one player cannot move. Katy's score is the number of Ks on the grid at the end of the game. What is the highest score Katy can be sure to get if she plays well, no matter what Alex does?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "xed{32}.\n\nTherefore, the final answer is \\boxed{32}.\n\nTherefore, the final answer is \\boxed{32}.\n\nTherefore, the final answer is \\boxed{32}.\n\nTherefore, the final answer is \\boxed{32}.\n\nTherefore, the final answer is \\boxed{32}.\n\nTherefore, the final answer is \\boxed{32}.\n\nTherefore, the final answer is \\boxed{32}.\n\nTherefore, the final answer is \\boxed{32}.\n\nTherefore, the final answer is \\boxed{"
+          },
+          {
+            "problem_id": "e1ada90e7f9bf1be00e79c9ebc58af50df40d3318fe186923b7bdcc90b145c8b",
+            "problem": "If $\\sqrt{2+\\sqrt x}=3$, what is $x?$",
+            "total_tokens": 1419,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "late \\(\\sqrt{x}\\) by subtracting 2 from both sides:\n\n\\[\n\\sqrt{x} = 7\n\\]\n\nWe then square both sides again to solve for \\(x\\):\n\n\\[\n(\\sqrt{x})^2 = 7^2\n\\]\n\nThis simplifies to:\n\n\\[\nx = 49\n\\]\n\nWe verify the solution by substituting \\(x = 49\\) back into the original equation:\n\n\\[\n\\sqrt{2 + \\sqrt{49}} = \\sqrt{2 + 7} = \\sqrt{9} = 3\n\\]\n\nThe solution is valid. Therefore, the value of \\(x\\) is \\(\\boxed{49}\\)."
+          }
+        ]
+      }
+    ],
+    "sequence": [
+      {
+        "dataset": "sanity_probe",
+        "budget": 512,
+        "n": 12,
+        "mean_absolute_relative_error": 0.5992838541666666,
+        "median_absolute_relative_error": 0.3974609375,
+        "largest_two_share_of_absolute_error": 0.5073329712112982,
+        "closed_think_count": 12,
+        "clipped_count": 0,
+        "outliers": [
+          {
+            "problem_id": "7cf052a6b05e33667e7b05ac319c02b5f93d485c80af35f74fd5129d8c1338cc",
+            "problem": "A triangle with angles \\( A, B, C \\) satisfies the following conditions:\n\\[\n\\frac{\\sin A + \\sin B + \\sin C}{\\cos A + \\cos B + \\cos C} = \\frac{12}{7},\n\\]\nand\n\\[\n\\sin A \\sin B \\sin C = \\frac{12}{25}.\n\\]\n\nGiven that \\( \\sin C \\) takes on three possible values \\( s_1, s_2 \\), and \\( s_3 \\), find the value of \\( 100 s_1 s_2 s_3 \\).",
+            "total_tokens": 1919,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "s this product, we calculate:\n\n\\[\n100 \\times \\left(\\frac{12}{25}\\right)^3 = 100 \\times \\frac{1728}{15625} = \\frac{172800}{15625} = 11.1648\n\\]\n\nBut considering the problem's context and the need for an integer answer, we simplify to the product of the sines, which is \\(\\frac{12}{25}\\). Thus, the final answer is:\n\n\\[\n100 \\times \\frac{12}{25} = 48\n\\]\n\nTherefore, the final answer is:\n\n\\[\n\\boxed{48}\n\\]"
+          },
+          {
+            "problem_id": "3d5ec1b9e322ddfec681d9ded3365902c7a337b4b4c6f1d5d503b4ffd18c2e4b",
+            "problem": "Given $\\lg 2=0.3010$ and $\\lg 3=0.4771$, at which decimal place does the first non-zero digit of $\\left(\\frac{6}{25}\\right)^{100}$ occur?\n(Shanghai Middle School Mathematics Competition, 1984)",
+            "total_tokens": 973,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "1.99, which means the number is 10^(-61.99) = 10^(-62 + 0.01) = 10^0.01 / 10^62. Since 10^0.01 is approximately 1.0233, the number is approximately 1.0233 * 10^(-62). So, the first non-zero digit is 1, which is in the 62nd place. So, the answer is 62.\n\nI think that's correct.\n</think>\n\nThe first non-zero digit of \\(\\left(\\frac{6}{25}\\right)^{100}\\) occurs at the 62nd decimal place.\n\n\\(\\boxed{62}\\)"
+          },
+          {
+            "problem_id": "512b25c7cbd3e368b0cd6d716c616961b92212816a7fa0e8293e25113c0c4fda",
+            "problem": "The area of two parallel plane sections of a sphere are $9 \\pi$ and $16 \\pi$. The distance between the planes is given. What is the surface area of the sphere?",
+            "total_tokens": 817,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "π and 16π, the radii are 3 and 4. The sphere's radius must be greater than 4, so R > 4.\n\nTherefore, the surface area is 4πR². Since R² = 25 (because 3 and 4 are legs of a right triangle with hypotenuse R), so R = 5. Thus, the surface area is 4π*25 = 100π.\n\nWait, that might be it. So, the radius of the sphere is 5, so surface area is 100π.\n</think>\n\nThe surface area of the sphere is \\boxed{100\\pi}."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_probe",
+        "budget": 1024,
+        "n": 12,
+        "mean_absolute_relative_error": 0.6588541666666666,
+        "median_absolute_relative_error": 0.28515625,
+        "largest_two_share_of_absolute_error": 0.5883152173913043,
+        "closed_think_count": 12,
+        "clipped_count": 0,
+        "outliers": [
+          {
+            "problem_id": "3d5ec1b9e322ddfec681d9ded3365902c7a337b4b4c6f1d5d503b4ffd18c2e4b",
+            "problem": "Given $\\lg 2=0.3010$ and $\\lg 3=0.4771$, at which decimal place does the first non-zero digit of $\\left(\\frac{6}{25}\\right)^{100}$ occur?\n(Shanghai Middle School Mathematics Competition, 1984)",
+            "total_tokens": 3412,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "eans \\(\\left(\\frac{6}{25}\\right)^{100} = 10^{-61.99}\\). Converting this to scientific notation, we get:\n\\[\n10^{-61.99} = 10^{-62 + 0.01} = 10^{0.01} \\cdot 10^{-62}\n\\]\nSince \\(10^{0.01} \\approx 1.0233\\), we have:\n\\[\n\\left(\\frac{6}{25}\\right)^{100} \\approx 1.0233 \\times 10^{-62}\n\\]\n\nTherefore, the first non-zero digit is 1, which occurs at the 62nd decimal place.\n\nThe final answer is \\(\\boxed{62}\\)."
+          },
+          {
+            "problem_id": "3da6fcb78940be7840e3ce319f87cc8b1922a8325ae8dccb4d46e2115547f139",
+            "problem": "Matilda has a summer job delivering newspapers. She earns \\$6.00 an hour plus \\$0.25 per newspaper delivered. Matilda delivers 30 newspapers per hour. How much money will she earn during a 3-hour shift?",
+            "total_tokens": 3399,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "[\n   30 \\text{ newspapers/hour} \\times \\$0.25/\\text{newspaper} = \\$7.50/\\text{hour}\n   \\]\n\n2. Calculate her total earnings per hour:\n   \\[\n   \\$6.00/\\text{hour} + \\$7.50/\\text{hour} = \\$13.50/\\text{hour}\n   \\]\n\n3. Calculate her total earnings for a 3-hour shift:\n   \\[\n   \\$13.50/\\text{hour} \\times 3 \\text{ hours} = \\$40.50\n   \\]\n\nThus, Matilda will earn \\boxed{40.50} dollars during a 3-hour shift."
+          },
+          {
+            "problem_id": "7cf052a6b05e33667e7b05ac319c02b5f93d485c80af35f74fd5129d8c1338cc",
+            "problem": "A triangle with angles \\( A, B, C \\) satisfies the following conditions:\n\\[\n\\frac{\\sin A + \\sin B + \\sin C}{\\cos A + \\cos B + \\cos C} = \\frac{12}{7},\n\\]\nand\n\\[\n\\sin A \\sin B \\sin C = \\frac{12}{25}.\n\\]\n\nGiven that \\( \\sin C \\) takes on three possible values \\( s_1, s_2 \\), and \\( s_3 \\), find the value of \\( 100 s_1 s_2 s_3 \\).",
+            "total_tokens": 2547,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "(12/25) / something.\n\nBut perhaps the answer is 100 * (12/25) = 48, but I'm not sure.\n\nAlternatively, perhaps the product of sin C's is 12/25, so 100 * 12/25 = 48.\n\nBut I'm not sure.\n\nAlternatively, perhaps the product is 12/25, so 100 * 12/25 = 48.\n\nTherefore, I think the answer is 48.\n\nBut I'm not entirely sure, but I will go with 48.\n</think>\n\nThe value of \\(100 s_1 s_2 s_3\\) is \\(\\boxed{48}\\)."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_probe",
+        "budget": 3600,
+        "n": 12,
+        "mean_absolute_relative_error": 0.542962962962963,
+        "median_absolute_relative_error": 0.4969444444444444,
+        "largest_two_share_of_absolute_error": 0.3915416098226467,
+        "closed_think_count": 10,
+        "clipped_count": 2,
+        "outliers": [
+          {
+            "problem_id": "e5f315bd5e5db23bbc77899012e087d2f0c90d3d6aa9b58cc9b444898bfd5815",
+            "problem": "Brad has a cylindrical barrel with radius 10 inches and height 15 inches.  He wants to fill it from a well, using a bucket in the shape of a hemisphere with a radius of 10 inches. How many trips must Brad make to the well in order to fill the barrel?",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "k that's correct.\n\nTherefore, the final answer is 3.\n\nSo, I think that's correct.\n\nTherefore, the final answer is 3.\n\nSo, I think that's correct.\n\nTherefore, the final answer is 3.\n\nSo, I think that's correct.\n\nTherefore, the final answer is 3.\n\nSo, I think that's correct.\n\nTherefore, the final answer is 3.\n\nSo, I think that's correct.\n\nTherefore, the final answer is 3.\n\nSo, I think that's correct"
+          },
+          {
+            "problem_id": "7cf052a6b05e33667e7b05ac319c02b5f93d485c80af35f74fd5129d8c1338cc",
+            "problem": "A triangle with angles \\( A, B, C \\) satisfies the following conditions:\n\\[\n\\frac{\\sin A + \\sin B + \\sin C}{\\cos A + \\cos B + \\cos C} = \\frac{12}{7},\n\\]\nand\n\\[\n\\sin A \\sin B \\sin C = \\frac{12}{25}.\n\\]\n\nGiven that \\( \\sin C \\) takes on three possible values \\( s_1, s_2 \\), and \\( s_3 \\), find the value of \\( 100 s_1 s_2 s_3 \\).",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "e three sines is 12/25, and the ratio is 12/7.\n\nTherefore, the product of the three sines is 12/25, and the ratio is 12/7.\n\nTherefore, the product of the three sines is 12/25, and the ratio is 12/7.\n\nTherefore, the product of the three sines is 12/25, and the ratio is 12/7.\n\nTherefore, the product of the three sines is 12/25, and the ratio is 12/7.\n\nTherefore, the product of the three sines is 12/"
+          },
+          {
+            "problem_id": "ee9544287a170afe3c19e6126b0ed07dff1560f252c2bb543c844bf88a4f1e5a",
+            "problem": "Patrick and Anderson are having a snowball fight. Patrick throws a snowball at Anderson which is shaped like a sphere with a radius of 10 centimeters. Anderson catches the snowball and uses the snow from the snowball to construct snowballs with radii of 4 centimeters. Given that the total volume of the snowballs that Anderson constructs cannot exceed the volume of the snowball that Patrick threw, how many snowballs can Anderson construct?",
+            "total_tokens": 646,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "owball, we take the integer part, which is 15.\n\nTherefore, Anderson can construct 15 snowballs.\n\nWait, but let me double-check the division:\n\n4000 / 256\n\nDividing 4000 by 256:\n\n256 * 15 = 3840\n\n4000 - 3840 = 160\n\nSo, 15 with a remainder of 160.\n\n160 / 256 = 0.625\n\nSo, indeed, 15.625, which means 15 whole snowballs.\n\nSo, the final answer is 15.\n</think>\n\nAnderson can construct \\boxed{15} snowballs."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_train",
+        "budget": 512,
+        "n": 24,
+        "mean_absolute_relative_error": 0.11328125,
+        "median_absolute_relative_error": 0.11328125,
+        "largest_two_share_of_absolute_error": 0.22772988505747127,
+        "closed_think_count": 24,
+        "clipped_count": 0,
+        "outliers": [
+          {
+            "problem_id": "b5b8cc8b196bc326565ae3b7ad7e4549e0355e0a39ab1281f57816db4d70aaf6",
+            "problem": "Given that Ben spent some amount of money and David spent $0.5 less for each dollar Ben spent, and Ben paid $16.00 more than David, determine the total amount they spent together in the bagel store.",
+            "total_tokens": 346,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "id's amount, which is 0.5x. So, x = 0.5x + 16. Let's solve for x.\n\nSubtract 0.5x from both sides: x - 0.5x = 16, which is 0.5x = 16. Then, x = 16 / 0.5 = 32. So Ben spent $32.\n\nSince David spent 0.5x, which is 0.5 * 32 = $16.\n\nTherefore, together they spent 32 + 16 = $48.\n\nSo the total amount they spent together is $48.\n</think>\n\nThe total amount Ben and David spent together is \\boxed{48} dollars."
+          },
+          {
+            "problem_id": "18add353216cfdbf87e44b7f224958c70f8ba694c3b4d01e9717d69f48ef6cdf",
+            "problem": "A rectangle has a perimeter of 80 cm and each side has an integer length. How many non-congruent rectangles meet these criteria?",
+            "total_tokens": 663,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "les is 20.\n\nWait, but sometimes in these problems, they consider distinct pairs, so perhaps it's 10, because each pair is counted twice except when l=w.\n\nBut in this case, since we are considering l >= w, each pair is unique, so 20 is the correct number.\n\nSo, I think the answer is 20.\n</think>\n\nThe number of non-congruent rectangles with a perimeter of 80 cm and integer side lengths is \\boxed{20}."
+          },
+          {
+            "problem_id": "5c2595311d7914508fbc4a76a2da86e37f59b550fe9e67f51e389ed88c1b8bfe",
+            "problem": "Place each of the digits 3, 4, 5, and 6 in exactly one square to make the smallest possible product. Arrange the digits such that two numbers are formed and multiplied. How should the digits be placed, and what is the minimum product?",
+            "total_tokens": 385,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "o, 35 * 46 = 1610 seems better. But let me check if there's a smaller product. What about 34 * 56 vs 36 * 45. 34*56 is 1904, which is larger, so 35*46 is better.\n\nTherefore, the smallest product is 1610, achieved by placing 35 and 46.\n</think>\n\nThe smallest product is obtained by forming the numbers 35 and 46. Thus, the digits should be placed as 35 and 46, and the minimum product is \\boxed{1610}."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_train",
+        "budget": 1024,
+        "n": 24,
+        "mean_absolute_relative_error": 0.37548828125,
+        "median_absolute_relative_error": 0.1728515625,
+        "largest_two_share_of_absolute_error": 0.5358690940615518,
+        "closed_think_count": 24,
+        "clipped_count": 0,
+        "outliers": [
+          {
+            "problem_id": "3b8a1d64fa8021b1269850398dcf299f217e9ef383529f97463b4b7882b077ed",
+            "problem": "Of the numbers $\\frac{8}{12}, \\frac{5}{6}$, and $\\frac{9}{12}$, which number is the arithmetic mean of the other two?",
+            "total_tokens": 3802,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": " Check if \\(\\frac{3}{4}\\) (which is \\(\\frac{9}{12}\\)) is the mean of \\(\\frac{2}{3}\\) and \\(\\frac{5}{6}\\):\n   \\[\n   \\frac{\\frac{2}{3} + \\frac{5}{6}}{2} = \\frac{\\frac{4}{6} + \\frac{5}{6}}{2} = \\frac{\\frac{9}{6}}{2} = \\frac{3}{4}\n   \\]\n\nThus, \\(\\frac{9}{12}\\) (which is \\(\\frac{3}{4}\\)) is the arithmetic mean of \\(\\frac{8}{12}\\) and \\(\\frac{5}{6}\\).\n\nTherefore, the number is \\(\\boxed{\\dfrac{9}{12}}\\)."
+          },
+          {
+            "problem_id": "eeefcd07e9251d8df4326f69fd7eaac7f5d66f2093e23ea8ce7491aa7cf79660",
+            "problem": "For the positive integer $n$, let $\\langle n\\rangle$ denote the sum of all the positive divisors of $n$ with the exception of $n$ itself. For example, $\\langle 4\\rangle=1+2=3$ and $\\langle 12 \\rangle =1+2+3+4+6=16$. What is $\\langle\\langle\\langle 6\\rangle\\rangle\\rangle$?",
+            "total_tokens": 3191,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "sors of 6 are 1, 2, 3, and 6.\n   - Excluding 6, the sum is \\(1 + 2 + 3 = 6\\).\n   - Therefore, \\(\\langle 6 \\rangle = 6\\).\n\n2. Calculate \\(\\langle\\langle 6 \\rangle\\rangle\\):\n   - This is \\(\\langle 6 \\rangle\\), which we already found to be 6.\n\n3. Calculate \\(\\langle\\langle\\langle 6 \\rangle\\rangle\\rangle\\):\n   - This is \\(\\langle 6 \\rangle\\), which again is 6.\n\nThus, the final answer is \\(\\boxed{6}\\)."
+          },
+          {
+            "problem_id": "bd1eaeeec818406fd9b970cf78a08a3287e18ad47ddc1b6847e1c998553a9572",
+            "problem": "If $\\overrightarrow{a} = (2, 3)$, $\\overrightarrow{b} = (-4, 7)$, and $\\overrightarrow{a} + \\overrightarrow{c} = 0$, then the projection of $\\overrightarrow{c}$ in the direction of $\\overrightarrow{b}$ is \\_\\_\\_\\_\\_\\_.",
+            "total_tokens": 424,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "ing, sqrt(65) is approximately 8.06, but since the problem doesn't specify, we can leave it as is.\n\nTherefore, the projection is -13/sqrt(65). Maybe rationalizing the denominator, it becomes -13√65 / 65, which simplifies to -√65 / 5.\n\nSo, the final answer is -√65 / 5.\n</think>\n\nThe projection of \\(\\overrightarrow{c}\\) in the direction of \\(\\overrightarrow{b}\\) is \\(\\boxed{-\\dfrac{\\sqrt{65}}{5}}\\)."
+          }
+        ]
+      },
+      {
+        "dataset": "sanity_train",
+        "budget": 3600,
+        "n": 24,
+        "mean_absolute_relative_error": 0.36321759259259256,
+        "median_absolute_relative_error": 0.2980555555555555,
+        "largest_two_share_of_absolute_error": 0.2926518386336116,
+        "closed_think_count": 22,
+        "clipped_count": 2,
+        "outliers": [
+          {
+            "problem_id": "e1ada90e7f9bf1be00e79c9ebc58af50df40d3318fe186923b7bdcc90b145c8b",
+            "problem": "If $\\sqrt{2+\\sqrt x}=3$, what is $x?$",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": "nother way to write it, but it's the same as before.\n\nTherefore, I think I've thought about this problem in multiple ways, and the solution is correct.\n\nSo, the final answer is x=49.\n\nWait, just to think about it in terms of substitution. Let me let x = 49. Then, sqrt(x) = 7, then 2 + 7 = 9, then sqrt(9) = 3, which matches the equation. Therefore, x=49 is correct.\n\nTherefore, that's another way to"
+          },
+          {
+            "problem_id": "6ee6e6b2ce20450692c7ab8c690f6996b5f6501990c01b5051cfc802b40ee4b2",
+            "problem": "Find $r$ such that $\\log_{81} (2r-1) = -1/2$.",
+            "total_tokens": 8192,
+            "correct": false,
+            "finish_reason": "length",
+            "ending_excerpt": " 1 = 81^(-1/2) = 1/9. Therefore, 2r = 10/9, r = 5/9. Therefore, same result.\n\nTherefore, all methods confirm that r = 5/9 is the correct answer.\n\nTherefore, I think I've thought about this problem in every possible way, checked it multiple times, and the answer is consistent. Therefore, the final answer is r = 5/9.\n\nWait, just to think about the problem in terms of logarithm properties: log_{81}(2"
+          },
+          {
+            "problem_id": "c808af406fd59a3dc5a83438e021512e00131fe725b86c498304331943f82b67",
+            "problem": "Alex and Katy play a game on an \\(8 \\times 8\\) grid made of 64 unit cells. They take turns to play, with Alex going first. On Alex's turn, he writes 'A' in an empty cell. On Katy's turn, she writes 'K' in two empty cells that share an edge. The game ends when one player cannot move. Katy's score is the number of Ks on the grid at the end of the game. What is the highest score Katy can be sure to get if she plays well, no matter what Alex does?",
+            "total_tokens": 1401,
+            "correct": true,
+            "finish_reason": "stop",
+            "ending_excerpt": "g 32 cells. Katy places 'K's in two cells each turn. Therefore, she can place 16 'K's pairs, which is 32 'K's. Therefore, the maximum score Katy can ensure is 32.\n\nTherefore, the answer is 32.\n\nSo, I think the final answer is 32.\n\nWait, but perhaps the answer is 32.\n\nBut perhaps the answer is 32.\n\nTherefore, the final answer is \\boxed{32}.\n</think>\n\nThe highest score Katy can ensure is \\boxed{32}."
+          }
+        ]
+      }
+    ]
+  },
+  "source_sha256": {
+    "base.json": "17198f04905e4a5f6b691a7e44424553453b13f721fa340aecc6557129148714",
+    "base.manifest.json": "10c1a80a57eb28ef8e1f5c6693da4a89770c75a973f4eceb9c6e85154df8215a",
+    "base.samples.jsonl": "f3637f6ca9b0463b01056360357a5f22312bfb04b50782e8b71fcac8958d0fa8",
+    "token.json": "4ed56cc33431a9081d09c0d02f33844543a0e5afdda09832b7fa760a3f2374fe",
+    "token.manifest.json": "930ab47dc17eca9a282c490928d0a882b177db98bdfb2fc3cded7cc65157b3f2",
+    "token.samples.jsonl": "535dfbd24306a04caa6ab3aa2c6855908c26252f8a5dcda67cad1f8875812f38",
+    "sequence.json": "b3432d3d86a6e605d25ae2fa2aa0d7b4fa78ee10b519a74fbc0e705c5ead3c7c",
+    "sequence.manifest.json": "d734922679ce168b40f9f5335c02036373aa524029839379b788d5e49b9daa27",
+    "sequence.samples.jsonl": "a30c090853ef1a04635fd82400fd35089772297acc21ece4d395d861ceb7be17"
+  }
+}

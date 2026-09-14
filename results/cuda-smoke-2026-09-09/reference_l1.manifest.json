@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "config": {
+    "model": "l3lab/L1-Qwen-1.5B-Exact",
+    "revision": "b1fa57f192f0b14bd033d0085faaa80cdc39694b",
+    "chat_template_model": "l3lab/L1-Qwen-1.5B-Exact",
+    "chat_template_revision": "b1fa57f192f0b14bd033d0085faaa80cdc39694b",
+    "lora": null,
+    "datasets": [
+      "math500",
+      "gsm8k"
+    ],
+    "problem_file": "/workspace/thinking-budget/results/cuda-smoke-2026-09-09/problems.jsonl",
+    "budgets": [
+      512,
+      1024,
+      3600
+    ],
+    "seeds": [
+      42
+    ],
+    "selection_seed": 17,
+    "wording": "l1",
+    "limit": 50,
+    "max_tokens": 8192,
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "gpu_memory": 0.85,
+    "batch_size": 8,
+    "out": "/workspace/thinking-budget/results/cuda-smoke-2026-09-09/reference_l1.json"
+  },
+  "model_revision": "b1fa57f192f0b14bd033d0085faaa80cdc39694b",
+  "problem_set_sha256": "2c4b68a8c549a55ff1806529bd94f55642a7d3b9c127c11a2ad20712b29f8921",
+  "problems": [
+    {
+      "dataset": "math500",
+      "problem_id": "49dde5fe8765ec9a694f373f090e978febf11a18dc7247fa1b36c65a63a49356",
+      "source_index": 498,
+      "problem": "A sequence $(a_n)$ is defined as follows:\n\\[a_{i + 1} = \\frac{1}{1 - a_i}\\]for $i \\ge 1.$  If $a_3 = a_1,$ compute $(a_9)^9.$",
+      "answer": "-1"
+    },
+    {
+      "dataset": "math500",
+      "problem_id": "8b3cca4ebf1b3942085f1075fcb2886cdbcbeee05fc0f1a96bf1fffbf5ddbb1e",
+      "source_index": 318,
+      "problem": "Write the expression \\[\\frac{4+6a}{5}-\\frac{1+3a}{4}\\] as a single fraction.",
+      "answer": "\\frac{11+9a}{20}"
+    }
+  ],
+  "token_measure": "all generated token IDs, including EOS if returned",
+  "chat_template_sha256": "51fde193d3c30371685fb1106961aef61a216b3f02f37baac6b3e1fb1fc3dc16",
+  "chat_template_revision": "b1fa57f192f0b14bd033d0085faaa80cdc39694b",
+  "environment": {
+    "created_at": "2026-09-09T06:39:51.612652+00:00",
+    "versions": {
+      "torch": "2.13.0+cu130",
+      "transformers": "5.12.1",
+      "trl": "1.12.0",
+      "vllm": "0.27.1",
+      "peft": "0.20.0",
+      "datasets": "5.0.1",
+      "math-verify": "0.9.0"
+    },
+    "git_commit": "37d7d5cdbdfa3389323998f61b67aba34485f3bb",
+    "tracked_diff_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+    "source_sha256": {
+      "compare_results.py": "b08facde166a7d0e0eb7eb9c13e168acd8e259bc6ce23e7fb933b8109adc8408",
+      "eval_budget.py": "8e8e934269d543ae93a0c24a0e871b7da492c1279f7a1bad127a9254ba7a3137",
+      "experiment.py": "35f16625d3a1464b20ac79b863df740a4138bdadf75276bf4df7654a18ba72b5",
+      "export_gguf.sh": "3b13037e2884b50b5d1e54cbf9a1bb72568a6ab8f8f5502d984258725d8e72a7",
+      "gpu_monitor.py": "4ef9a9449289a127486ecf5b254a15e96fd9ab94facddbf8fef7a5029033d094",
+      "pipeline.sh": "d49ac21291a9d1e00192ff01683cc2a2a1d55503538b07d690407dfe1f50f2db",
+      "plot_inference.py": "3d08a5f40c8cbd4e710e9ba5940250c56510bcbf306d48921f70fa0bcf80efbe",
+      "plot_progress.py": "9f6fa0aeb037282ece8563acad15e0ba7e0fa243c528eb84294ade5a0d8356cf",
+      "plot_results.py": "c9235312d4b0781ff3aad0bc0bee9d11dc2e46a0339d7e2f092caf65d5125fa7",
+      "prepare_data.py": "7a45f2f4bef35e75850b5181481bbe2d919c28620e28c7bfdaf8ca250c4f7f5d",
+      "prepare_pilot.py": "23d22ee6856a014a597b6dddb12dd1b85cc0c66b46ee9f71d97532de6cc6ee9a",
+      "profile_inference.py": "39b6aa8db7f574d0908d930d59ec78a7dbd2010ffd9e2d1696edbc1909141b61",
+      "rent_and_run.sh": "bcaf6c250f4f44d1b2ac2d5c8b7327b88963c5c65d9fa2afd1e62558ff33f3e8",
+      "requirements-gpu.in": "4ac43e45ed497948b500d17dad7e818684f208dcb448ab6a012e9d78d6af6bce",
+      "requirements-gpu.txt": "10d1f97daf8b7b6651583c67b5d82a2f739e13cce88582e513a8e8894266a986",
+      "requirements.in": "e26f5b786f5aa7edaf26272b94db17db0d6cc63661be9937b18fd26173d7855e",
+      "requirements.txt": "ed4345da7ea6f209ec2bb9be61ebfbbd55d06a16a75942a97a49197dbad3b6d0",
+      "rewards.py": "25a272cc7b58906f8f1ced553d90c7ec63b22aba5151e657f3e8c09be976f0c7",
+      "run_comparison.py": "41ad0baa1eca34f7f3ebd366889fa2ec9edf2340b801b50ddf7de0b6e9a0befb",
+      "setup_gpu.sh": "19ad7fbb6c661620eda827e1a9246a92fc2db0efae629a3260b9af5a1d246374",
+      "status.sh": "4b646c233f85c6099516140e3986f6b94b3c152e37557cd492da070d22d7f6dd",
+      "train_grpo.py": "4dea102875cc1b8780ee8527b36d8c5cada843e4927889a4d597c598df5a49da",
+      "train_sft.py": "cba3476a4b2a6480cdf6a20748b46b3d7c9af25a363d9e99386524bbd5996107",
+      "upload_hf.py": "16c31cfd49a65c8fad473ec6bff104cae2d467e3c5527c13fbafc6816a42ee7e"
+    }
+  }
+}

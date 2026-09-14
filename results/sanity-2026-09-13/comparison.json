@@ -1,0 +1,707 @@
+{
+  "plan_sha256": "1d5cd77ffeabcf31cb727d84ddbdb18247ebf8996bba52b49d0b9c2efb14c431",
+  "environment": {
+    "created_at": "2026-09-13T15:19:53.837538+00:00",
+    "versions": {
+      "torch": "2.13.0+cu130",
+      "transformers": "5.12.1",
+      "trl": "1.12.0",
+      "vllm": "0.27.1",
+      "peft": "0.20.0",
+      "datasets": "5.0.1",
+      "math-verify": "0.9.0"
+    },
+    "git_commit": "fde52c7609b6e81cf6a6704ceeecf0f71e089026",
+    "tracked_diff_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+    "source_sha256": {
+      "cleanup_gpu.py": "b88e139c4928e9ff7ece24cfa6608999aa73766ebf59d764734a32b2ebe6df84",
+      "compare_pilot.py": "44aa1b273ec7aa429c1dd1f7e74751bfa2c673f74ac4b0a058414b153b24bbfb",
+      "compare_results.py": "7992fa68fbbb2672faca8a322096269e04ceee74ba7585ec650070b20bf30064",
+      "eval_budget.py": "59123fbef47204dc6b1dd7cbd71b301894ca7176bfc8a5a0804bc177d38262d0",
+      "experiment.py": "35f16625d3a1464b20ac79b863df740a4138bdadf75276bf4df7654a18ba72b5",
+      "export_gguf.sh": "3b13037e2884b50b5d1e54cbf9a1bb72568a6ab8f8f5502d984258725d8e72a7",
+      "gpu_monitor.py": "4ef9a9449289a127486ecf5b254a15e96fd9ab94facddbf8fef7a5029033d094",
+      "paid_sanity.py": "342f98faeeb5f112b8c54c31e0b4cea323c13df647ac3e74000ae9a483dc136e",
+      "pipeline.sh": "d49ac21291a9d1e00192ff01683cc2a2a1d55503538b07d690407dfe1f50f2db",
+      "plot_inference.py": "3d08a5f40c8cbd4e710e9ba5940250c56510bcbf306d48921f70fa0bcf80efbe",
+      "plot_progress.py": "9f6fa0aeb037282ece8563acad15e0ba7e0fa243c528eb84294ade5a0d8356cf",
+      "plot_results.py": "c9235312d4b0781ff3aad0bc0bee9d11dc2e46a0339d7e2f092caf65d5125fa7",
+      "prepare_data.py": "7a45f2f4bef35e75850b5181481bbe2d919c28620e28c7bfdaf8ca250c4f7f5d",
+      "prepare_pilot.py": "39ff60b7d2687387acf6f2ee07ff5630736f5993523d734350f9a28c335b86bc",
+      "profile_inference.py": "39b6aa8db7f574d0908d930d59ec78a7dbd2010ffd9e2d1696edbc1909141b61",
+      "regrade_eval.py": "50678f91fd6c904f2c3612cf0a618bafc5fc68280b34866515adad756e62d9ef",
+      "rent_and_run.sh": "bcaf6c250f4f44d1b2ac2d5c8b7327b88963c5c65d9fa2afd1e62558ff33f3e8",
+      "requirements-gpu.in": "4ac43e45ed497948b500d17dad7e818684f208dcb448ab6a012e9d78d6af6bce",
+      "requirements-gpu.txt": "10d1f97daf8b7b6651583c67b5d82a2f739e13cce88582e513a8e8894266a986",
+      "requirements.in": "e26f5b786f5aa7edaf26272b94db17db0d6cc63661be9937b18fd26173d7855e",
+      "requirements.txt": "ed4345da7ea6f209ec2bb9be61ebfbbd55d06a16a75942a97a49197dbad3b6d0",
+      "rewards.py": "dcfcfd26c2dbf5cbb75ee3d86d8e1e868be248232917081c9e635a03bf6fe88f",
+      "run_comparison.py": "7c2f87bb2d02a741b3a3db618b3acb6d9c3a08229841c7efdaab97930ec471de",
+      "sanity_sft.py": "75171cd4116d321f234bac8e14a7ec335bcff084feca288c38843273cd81bd7e",
+      "setup_gpu.sh": "19ad7fbb6c661620eda827e1a9246a92fc2db0efae629a3260b9af5a1d246374",
+      "status.sh": "4b646c233f85c6099516140e3986f6b94b3c152e37557cd492da070d22d7f6dd",
+      "train_grpo.py": "b7c521db5b180f001f1115c84820162ce181aa7d832a02bc8b7eb453100c6920",
+      "train_sft.py": "8c7671d6f3dbc63ee16d0d3cbcee7ba45cf237a54eebae37b1d89d2fc604d514",
+      "upload_hf.py": "16c31cfd49a65c8fad473ec6bff104cae2d467e3c5527c13fbafc6816a42ee7e"
+    }
+  },
+  "arms": {
+    "base": {
+      "results": [
+        {
+          "dataset": "sanity_probe",
+          "budget": 512,
+          "n": 12,
+          "n_problems": 12,
+          "accuracy": 0.75,
+          "mean_tokens": 4054.75,
+          "median_tokens": 3091.5,
+          "mean_abs_deviation": 3557.4166666666665,
+          "mean_relative_error": 6.948079427083333,
+          "within_20pct": 0.08333333333333333,
+          "overshoot_rate": 0.9166666666666666,
+          "mean_overshoot": 3550.0833333333335,
+          "truncation_rate": 0.16666666666666666,
+          "think_closed_rate": 0.8333333333333334,
+          "mean_reasoning_tokens": 2834.8
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 1024,
+          "n": 12,
+          "n_problems": 12,
+          "accuracy": 0.75,
+          "mean_tokens": 4111.75,
+          "median_tokens": 3457.0,
+          "mean_abs_deviation": 3302.4166666666665,
+          "mean_relative_error": 3.2250162760416665,
+          "within_20pct": 0,
+          "overshoot_rate": 0.8333333333333334,
+          "mean_overshoot": 3195.0833333333335,
+          "truncation_rate": 0.25,
+          "think_closed_rate": 0.75,
+          "mean_reasoning_tokens": 2376
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 3600,
+          "n": 12,
+          "n_problems": 12,
+          "accuracy": 0.75,
+          "mean_tokens": 4504.583333333333,
+          "median_tokens": 3982.5,
+          "mean_abs_deviation": 2341.4166666666665,
+          "mean_relative_error": 0.6503935185185186,
+          "within_20pct": 0.25,
+          "overshoot_rate": 0.5833333333333334,
+          "mean_overshoot": 1623,
+          "truncation_rate": 0.25,
+          "think_closed_rate": 0.75,
+          "mean_reasoning_tokens": 2886.8888888888887
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 512,
+          "n": 24,
+          "n_problems": 24,
+          "accuracy": 0.8333333333333334,
+          "mean_tokens": 3955.2083333333335,
+          "median_tokens": 3385.0,
+          "mean_abs_deviation": 3443.2083333333335,
+          "mean_relative_error": 6.725016276041667,
+          "within_20pct": 0,
+          "overshoot_rate": 1,
+          "mean_overshoot": 3443.2083333333335,
+          "truncation_rate": 0.125,
+          "think_closed_rate": 0.875,
+          "mean_reasoning_tokens": 2926.904761904762
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 1024,
+          "n": 24,
+          "n_problems": 24,
+          "accuracy": 0.875,
+          "mean_tokens": 3992.2083333333335,
+          "median_tokens": 2904.5,
+          "mean_abs_deviation": 2968.2083333333335,
+          "mean_relative_error": 2.8986409505208335,
+          "within_20pct": 0,
+          "overshoot_rate": 1,
+          "mean_overshoot": 2968.2083333333335,
+          "truncation_rate": 0.08333333333333333,
+          "think_closed_rate": 0.9166666666666666,
+          "mean_reasoning_tokens": 3206.2272727272725
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 3600,
+          "n": 24,
+          "n_problems": 24,
+          "accuracy": 0.8333333333333334,
+          "mean_tokens": 3177.9583333333335,
+          "median_tokens": 2316.0,
+          "mean_abs_deviation": 1858.2083333333333,
+          "mean_relative_error": 0.5161689814814815,
+          "within_20pct": 0.125,
+          "overshoot_rate": 0.2916666666666667,
+          "mean_overshoot": 718.0833333333334,
+          "truncation_rate": 0.08333333333333333,
+          "think_closed_rate": 0.9166666666666666,
+          "mean_reasoning_tokens": 2315.318181818182
+        }
+      ],
+      "paired_control": {
+        "sanity_train": {
+          "n_pairs": 24,
+          "positive_endpoint_fraction": 0.2916666666666667,
+          "monotonic_fraction": 0.16666666666666666,
+          "mean_endpoint_slope": -0.25170012953367876
+        },
+        "sanity_probe": {
+          "n_pairs": 12,
+          "positive_endpoint_fraction": 0.5,
+          "monotonic_fraction": 0.16666666666666666,
+          "mean_endpoint_slope": 0.14567141623488775
+        }
+      }
+    },
+    "token": {
+      "results": [
+        {
+          "dataset": "sanity_probe",
+          "budget": 512,
+          "n": 12,
+          "n_problems": 12,
+          "accuracy": 0.8333333333333334,
+          "mean_tokens": 676.9166666666666,
+          "median_tokens": 551.0,
+          "mean_abs_deviation": 285.5833333333333,
+          "mean_relative_error": 0.5577799479166666,
+          "within_20pct": 0.3333333333333333,
+          "overshoot_rate": 0.5833333333333334,
+          "mean_overshoot": 225.25,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 584.1666666666666
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 1024,
+          "n": 12,
+          "n_problems": 12,
+          "accuracy": 0.9166666666666666,
+          "mean_tokens": 1130.5,
+          "median_tokens": 781.5,
+          "mean_abs_deviation": 490.3333333333333,
+          "mean_relative_error": 0.4788411458333333,
+          "within_20pct": 0.25,
+          "overshoot_rate": 0.3333333333333333,
+          "mean_overshoot": 298.4166666666667,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 930.5833333333334
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 3600,
+          "n": 12,
+          "n_problems": 12,
+          "accuracy": 0.9166666666666666,
+          "mean_tokens": 2757.5833333333335,
+          "median_tokens": 3123.5,
+          "mean_abs_deviation": 940.75,
+          "mean_relative_error": 0.26131944444444444,
+          "within_20pct": 0.5833333333333334,
+          "overshoot_rate": 0.16666666666666666,
+          "mean_overshoot": 49.166666666666664,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 2421.5
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 512,
+          "n": 24,
+          "n_problems": 24,
+          "accuracy": 1,
+          "mean_tokens": 564.125,
+          "median_tokens": 496.5,
+          "mean_abs_deviation": 135.45833333333334,
+          "mean_relative_error": 0.2645670572916667,
+          "within_20pct": 0.7916666666666666,
+          "overshoot_rate": 0.4166666666666667,
+          "mean_overshoot": 93.79166666666667,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 502.7916666666667
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 1024,
+          "n": 24,
+          "n_problems": 24,
+          "accuracy": 0.9583333333333334,
+          "mean_tokens": 1523.375,
+          "median_tokens": 999.5,
+          "mean_abs_deviation": 607.2916666666666,
+          "mean_relative_error": 0.5930582682291666,
+          "within_20pct": 0.6666666666666666,
+          "overshoot_rate": 0.4166666666666667,
+          "mean_overshoot": 553.3333333333334,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 1323.2916666666667
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 3600,
+          "n": 24,
+          "n_problems": 24,
+          "accuracy": 0.9166666666666666,
+          "mean_tokens": 3690.875,
+          "median_tokens": 3454.0,
+          "mean_abs_deviation": 894.2083333333334,
+          "mean_relative_error": 0.2483912037037037,
+          "within_20pct": 0.6666666666666666,
+          "overshoot_rate": 0.4583333333333333,
+          "mean_overshoot": 492.5416666666667,
+          "truncation_rate": 0.08333333333333333,
+          "think_closed_rate": 0.9166666666666666,
+          "mean_reasoning_tokens": 2939.0454545454545
+        }
+      ],
+      "paired_control": {
+        "sanity_train": {
+          "n_pairs": 24,
+          "positive_endpoint_fraction": 1,
+          "monotonic_fraction": 0.9166666666666666,
+          "mean_endpoint_slope": 1.0125485751295338
+        },
+        "sanity_probe": {
+          "n_pairs": 12,
+          "positive_endpoint_fraction": 1,
+          "monotonic_fraction": 0.9166666666666666,
+          "mean_endpoint_slope": 0.6737910189982729
+        }
+      },
+      "paired_differences": [
+        {
+          "dataset": "sanity_probe",
+          "budget": 512,
+          "metric": "correct",
+          "n_problems": 12,
+          "mean_delta": 0.08333333333333333,
+          "bootstrap_95pct_ci": [
+            -0.25,
+            0.4166666666666667
+          ]
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 512,
+          "metric": "total_tokens",
+          "n_problems": 12,
+          "mean_delta": -3377.8333333333335,
+          "bootstrap_95pct_ci": [
+            -4518.333333333333,
+            -2209.9166666666665
+          ]
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 1024,
+          "metric": "correct",
+          "n_problems": 12,
+          "mean_delta": 0.16666666666666666,
+          "bootstrap_95pct_ci": [
+            -0.16666666666666666,
+            0.4166666666666667
+          ]
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 1024,
+          "metric": "total_tokens",
+          "n_problems": 12,
+          "mean_delta": -2981.25,
+          "bootstrap_95pct_ci": [
+            -4548,
+            -1538.8333333333333
+          ]
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 3600,
+          "metric": "correct",
+          "n_problems": 12,
+          "mean_delta": 0.16666666666666666,
+          "bootstrap_95pct_ci": [
+            0,
+            0.4166666666666667
+          ]
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 3600,
+          "metric": "total_tokens",
+          "n_problems": 12,
+          "mean_delta": -1747,
+          "bootstrap_95pct_ci": [
+            -2908.75,
+            -606.8333333333334
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 512,
+          "metric": "correct",
+          "n_problems": 24,
+          "mean_delta": 0.16666666666666666,
+          "bootstrap_95pct_ci": [
+            0.041666666666666664,
+            0.3333333333333333
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 512,
+          "metric": "total_tokens",
+          "n_problems": 24,
+          "mean_delta": -3391.0833333333335,
+          "bootstrap_95pct_ci": [
+            -4310.5,
+            -2545.4166666666665
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 1024,
+          "metric": "correct",
+          "n_problems": 24,
+          "mean_delta": 0.08333333333333333,
+          "bootstrap_95pct_ci": [
+            0,
+            0.20833333333333334
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 1024,
+          "metric": "total_tokens",
+          "n_problems": 24,
+          "mean_delta": -2468.8333333333335,
+          "bootstrap_95pct_ci": [
+            -3514.2083333333335,
+            -1493.0833333333333
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 3600,
+          "metric": "correct",
+          "n_problems": 24,
+          "mean_delta": 0.08333333333333333,
+          "bootstrap_95pct_ci": [
+            -0.08333333333333333,
+            0.25
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 3600,
+          "metric": "total_tokens",
+          "n_problems": 24,
+          "mean_delta": 512.9166666666666,
+          "bootstrap_95pct_ci": [
+            -186.75,
+            1126.5416666666667
+          ]
+        }
+      ],
+      "train_gate": {
+        "passed": false,
+        "checks": {
+          "length_error_under_35pct_each_budget": false,
+          "truncation_under_10pct_each_budget": true,
+          "positive_response_on_75pct_of_pairs": true,
+          "slope_between_half_and_one_and_half": true,
+          "slope_exceeds_base_by_point_three": true,
+          "some_correct_answers_each_budget": true,
+          "training_accuracy_at_least_75pct_each_budget": true
+        },
+        "note": "Overfitting/learnability diagnostic on 24 training problems, not held-out success."
+      }
+    },
+    "sequence": {
+      "results": [
+        {
+          "dataset": "sanity_probe",
+          "budget": 512,
+          "n": 12,
+          "n_problems": 12,
+          "accuracy": 0.8333333333333334,
+          "mean_tokens": 662.1666666666666,
+          "median_tokens": 558.0,
+          "mean_abs_deviation": 306.8333333333333,
+          "mean_relative_error": 0.5992838541666666,
+          "within_20pct": 0.08333333333333333,
+          "overshoot_rate": 0.5,
+          "mean_overshoot": 228.5,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 581.5
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 1024,
+          "n": 12,
+          "n_problems": 12,
+          "accuracy": 1,
+          "mean_tokens": 1544.3333333333333,
+          "median_tokens": 1091.5,
+          "mean_abs_deviation": 674.6666666666666,
+          "mean_relative_error": 0.6588541666666666,
+          "within_20pct": 0.4166666666666667,
+          "overshoot_rate": 0.6666666666666666,
+          "mean_overshoot": 597.5,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 1338.4166666666667
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 3600,
+          "n": 12,
+          "n_problems": 12,
+          "accuracy": 0.75,
+          "mean_tokens": 3706.5,
+          "median_tokens": 2938.0,
+          "mean_abs_deviation": 1954.6666666666667,
+          "mean_relative_error": 0.542962962962963,
+          "within_20pct": 0.25,
+          "overshoot_rate": 0.3333333333333333,
+          "mean_overshoot": 1030.5833333333333,
+          "truncation_rate": 0.16666666666666666,
+          "think_closed_rate": 0.8333333333333334,
+          "mean_reasoning_tokens": 2459.2
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 512,
+          "n": 24,
+          "n_problems": 24,
+          "accuracy": 1,
+          "mean_tokens": 493.25,
+          "median_tokens": 492.5,
+          "mean_abs_deviation": 58,
+          "mean_relative_error": 0.11328125,
+          "within_20pct": 0.875,
+          "overshoot_rate": 0.375,
+          "mean_overshoot": 19.625,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 440.375
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 1024,
+          "n": 24,
+          "n_problems": 24,
+          "accuracy": 1,
+          "mean_tokens": 1200.1666666666667,
+          "median_tokens": 1029.0,
+          "mean_abs_deviation": 384.5,
+          "mean_relative_error": 0.37548828125,
+          "within_20pct": 0.625,
+          "overshoot_rate": 0.5,
+          "mean_overshoot": 280.3333333333333,
+          "truncation_rate": 0,
+          "think_closed_rate": 1.0,
+          "mean_reasoning_tokens": 992.875
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 3600,
+          "n": 24,
+          "n_problems": 24,
+          "accuracy": 0.875,
+          "mean_tokens": 3414.75,
+          "median_tokens": 3212.5,
+          "mean_abs_deviation": 1307.5833333333333,
+          "mean_relative_error": 0.36321759259259256,
+          "within_20pct": 0.4583333333333333,
+          "overshoot_rate": 0.375,
+          "mean_overshoot": 561.1666666666666,
+          "truncation_rate": 0.08333333333333333,
+          "think_closed_rate": 0.9166666666666666,
+          "mean_reasoning_tokens": 2674.5454545454545
+        }
+      ],
+      "paired_control": {
+        "sanity_train": {
+          "n_pairs": 24,
+          "positive_endpoint_fraction": 1,
+          "monotonic_fraction": 1,
+          "mean_endpoint_slope": 0.9460816062176166
+        },
+        "sanity_probe": {
+          "n_pairs": 12,
+          "positive_endpoint_fraction": 1,
+          "monotonic_fraction": 0.9166666666666666,
+          "mean_endpoint_slope": 0.9858592400690847
+        }
+      },
+      "paired_differences": [
+        {
+          "dataset": "sanity_probe",
+          "budget": 512,
+          "metric": "correct",
+          "n_problems": 12,
+          "mean_delta": 0.08333333333333333,
+          "bootstrap_95pct_ci": [
+            -0.25,
+            0.4166666666666667
+          ]
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 512,
+          "metric": "total_tokens",
+          "n_problems": 12,
+          "mean_delta": -3392.5833333333335,
+          "bootstrap_95pct_ci": [
+            -4553.416666666667,
+            -2254.5833333333335
+          ]
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 1024,
+          "metric": "correct",
+          "n_problems": 12,
+          "mean_delta": 0.25,
+          "bootstrap_95pct_ci": [
+            0,
+            0.5
+          ]
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 1024,
+          "metric": "total_tokens",
+          "n_problems": 12,
+          "mean_delta": -2567.4166666666665,
+          "bootstrap_95pct_ci": [
+            -3960.5833333333335,
+            -1034.8333333333333
+          ]
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 3600,
+          "metric": "correct",
+          "n_problems": 12,
+          "mean_delta": 0,
+          "bootstrap_95pct_ci": [
+            -0.25,
+            0.25
+          ]
+        },
+        {
+          "dataset": "sanity_probe",
+          "budget": 3600,
+          "metric": "total_tokens",
+          "n_problems": 12,
+          "mean_delta": -798.0833333333334,
+          "bootstrap_95pct_ci": [
+            -2055.9166666666665,
+            507.4166666666667
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 512,
+          "metric": "correct",
+          "n_problems": 24,
+          "mean_delta": 0.16666666666666666,
+          "bootstrap_95pct_ci": [
+            0.041666666666666664,
+            0.3333333333333333
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 512,
+          "metric": "total_tokens",
+          "n_problems": 24,
+          "mean_delta": -3461.9583333333335,
+          "bootstrap_95pct_ci": [
+            -4411.041666666667,
+            -2624.4583333333335
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 1024,
+          "metric": "correct",
+          "n_problems": 24,
+          "mean_delta": 0.125,
+          "bootstrap_95pct_ci": [
+            0,
+            0.25
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 1024,
+          "metric": "total_tokens",
+          "n_problems": 24,
+          "mean_delta": -2792.0416666666665,
+          "bootstrap_95pct_ci": [
+            -3815.4583333333335,
+            -1787.625
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 3600,
+          "metric": "correct",
+          "n_problems": 24,
+          "mean_delta": 0.041666666666666664,
+          "bootstrap_95pct_ci": [
+            -0.125,
+            0.20833333333333334
+          ]
+        },
+        {
+          "dataset": "sanity_train",
+          "budget": 3600,
+          "metric": "total_tokens",
+          "n_problems": 24,
+          "mean_delta": 236.79166666666666,
+          "bootstrap_95pct_ci": [
+            -839.6666666666666,
+            1415.5833333333333
+          ]
+        }
+      ],
+      "train_gate": {
+        "passed": false,
+        "checks": {
+          "length_error_under_35pct_each_budget": false,
+          "truncation_under_10pct_each_budget": true,
+          "positive_response_on_75pct_of_pairs": true,
+          "slope_between_half_and_one_and_half": true,
+          "slope_exceeds_base_by_point_three": true,
+          "some_correct_answers_each_budget": true,
+          "training_accuracy_at_least_75pct_each_budget": true
+        },
+        "note": "Overfitting/learnability diagnostic on 24 training problems, not held-out success."
+      }
+    }
+  },
+  "selected_loss": null,
+  "stage_two_permitted": false,
+  "note": "A pass permits a larger SFT pilot only; no GRPO or release. Existing 100-problem holdout was not used."
+}
