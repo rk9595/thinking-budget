@@ -39,6 +39,11 @@ recipe; it is not a faithful reproduction of the original full-finetuning experi
   remote timeout stops compute using the instance-restricted key, but stopping alone does
   not end storage charges. Provisioning has a 15-minute local timeout; job cleanup begins
   at 80 minutes and remote compute stop is scheduled at 90 minutes from creation.
+- That diagnostic completed: both variants learned a strong within-problem budget response,
+  but both failed the per-response length-error gate. The larger pilot was not started.
+  Both adapters and all 324 outputs were backed up and checksum-verified before GPU deletion.
+  Reported charges total $0.519. See the
+  [completed diagnostic and targeted next step](results/sanity-2026-09-13/STATUS.md).
 
 ## 1. Install and validate
 

@@ -18,6 +18,11 @@ held-out budget control and final-answer accuracy. GRPO is blocked on a better c
 The 2026-09-10 grading audit fixes credit for unfinished, prefilled reasoning; original outputs
 are retained. The pilot report also records a rental cleanup error and the verified-deletion fix.
 
+The [September 13 small SFT diagnostic](results/sanity-2026-09-13/STATUS.md) learned a strong
+budget response on 24 training problems, but both loss-weighting variants missed the preset
+length-precision gate. The larger pilot remains blocked. Results and both checkpoints are
+backed up; the GPU was verified deleted after $0.519 in reported charges.
+
 Reward: `r = 1[answer correct] − α·|N − tokens_used|` (LCPO-Exact, α=3e-4), correctness via `math-verify`.
 Both overshoot and undershoot are penalized; learning to condition on N is not guaranteed.
 `--length-reward max` retains our legacy additive overshoot penalty. It is **not** the published
