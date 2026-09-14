@@ -44,6 +44,10 @@ recipe; it is not a faithful reproduction of the original full-finetuning experi
   Both adapters and all 324 outputs were backed up and checksum-verified before GPU deletion.
   Reported charges total $0.519. See the
   [completed diagnostic and targeted next step](results/sanity-2026-09-13/STATUS.md).
+- On September 14, the user requested continuation and a viability assessment. The next
+  [frozen decoding-only diagnostic](results/decode-2026-09-14/PLAN.md) reuses the saved
+  adapters at two fresh sampling seeds plus greedy decoding. Its additional limit is $1.50
+  within the original diagnostic allocation. It cannot automatically unlock stage two.
 
 ## 1. Install and validate
 
